@@ -11,11 +11,6 @@ const conduction = [
   {x:    0, y: 500}
 ]
 
-const output = [
-  {x:    a, y:  50},
-  {x:  100, y:  50}
-]
-
 const input = [
   {x: -200, y: 250},
   {x: -100-a, y: 250}
@@ -29,7 +24,6 @@ const transistor = [
 const points = {
   conduction,
   input,
-  output,
   transistor
 }
 

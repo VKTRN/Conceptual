@@ -1,13 +1,12 @@
-import {makeAndGate} from '../components/AndGate/make'
-import {AndGate}     from '../components/AndGate/AndGate'
+import {makeOrGate} from '../components/OrGate/make'
+import {OrGate}     from '../components/OrGate/OrGate'
 
-
-const and_gate1  = makeAndGate( 20, 32,  70,  1111,   -Math.PI/2,  1, 900,  600)
+const or_gate1  = makeOrGate( 0, 12,  70,   -Math.PI/2,  .8, 300, 500)
 
 const Scene = () => {
   return (
     <>
-      <AndGate {...and_gate1} />
+      <OrGate  {...or_gate1}/>
     </>
   )
 }

@@ -1,13 +1,10 @@
-const conductionWidth = 14
-const inputWidth      = 14
-const outputWidth     = 14
-const transistorWidth = 22
+const a = 14
+const b = 1.75*a
 
 const widths = {
-  conduction: conductionWidth, 
-  input:      inputWidth, 
-  output:     outputWidth, 
-  transistor: transistorWidth
+  conduction: a,
+  input:      a, 
+  transistor: b
 }
 
 export {widths}
