@@ -1,14 +1,8 @@
-import {points}          from './points'
-import {widths}          from './widths'
-import {velocities}      from './velocities'
-import {colors}          from './colors'
-import {clone}           from '../../utils/util'
-import {setTransform}    from '../../utils/util'
+import {getPoints}       from './points'
 import {transformPoints} from '../../utils/util'
+import {config}          from './config'
 
-const config_ = {widths, velocities, colors}
-
-const makeNotGate = (t0, t1, t2, t3, rotation, scale, x,y, config = config_) => {
+const makeNotGate = (t0, t1, t2, rotation, scale, x,y, Config = config) => {
 
   // t0:       time of input signal
   // t1:       time of transistor signal
@@ -19,27 +13,16 @@ const makeNotGate = (t0, t1, t2, t3, rotation, scale, x,y, config = config_) => 
   // x:        x-translation of the not gate
   // y:        y-translation of the not gate
 
-  const {widths, velocities, colors} = config
-
-  const newPoints      = clone(points)
+  const newPoints      = getPoints(Config.conduction.width/2, Config.input.length)
   const translation    = {x,y}
-  const transform      = setTransform(rotation, scale, translation)
-  const {scale: s}     = transform
-  const signals        = {}
+  const transform      = {rotation, scale, translation}
+  const s              = scale
 
-  signals.input        = {t0:t0, color: colors.input}
-  signals.transistor   = {t0:t1, color: colors.transistor}
-  signals.conduction   = {t0:t2, color: colors.conduction}
+  const conduction     = {points: transformPoints(newPoints.conduction, transform), strokeWidth: Config.conduction.width*s, signal: {t0:t2, color: Config.conduction.color}, velocity:Config.conduction.velocity*s}
+  const input          = {points: transformPoints(newPoints.input, transform),      strokeWidth: Config.input.width*s,      signal: {t0:t0, color: Config.input.color},      velocity:Config.input.velocity*s}
+  const transistor     = {points: transformPoints(newPoints.transistor, transform), strokeWidth: Config.transistor.width*s, signal: {t0:t1, color: Config.transistor.color}}
 
-  newPoints.conduction = transformPoints(newPoints.conduction, transform)
-  newPoints.input      = transformPoints(newPoints.input, transform)
-  newPoints.transistor = transformPoints(newPoints.transistor, transform)
-
-  const conduction     = {points: newPoints.conduction, strokeWidth: widths.conduction*s, signal: signals.conduction, velocity:velocities.conduction*s}
-  const input          = {points: newPoints.input,      strokeWidth: widths.input*s,      signal: signals.input,      velocity:velocities.input*s}
-  const transistor     = {points: newPoints.transistor, strokeWidth: widths.transistor*s, signal: signals.transistor}
-
-  const notGate        = {conduction, input, transistor}
+  const notGate = {conduction, input, transistor}
 
   return notGate
 }

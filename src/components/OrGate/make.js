@@ -23,7 +23,7 @@ const makeOrGate = (t0, t1, t2, rotation, scale, x,y) => {
 
   const newPoints      = clone(points)
   const translation    = {x,y}
-  const transform      = setTransform(rotation, scale, translation)
+  const transform      = {rotation, scale, translation}
   const {scale: s}     = transform
   const signals        = {}
 
@@ -44,12 +44,12 @@ const makeOrGate = (t0, t1, t2, rotation, scale, x,y) => {
   const p2 = newPoints.notGate2[0]
 
   
-  const conduction1    = {points: newPoints.conduction1, strokeWidth: widths.conduction*s, signal: signals.conduction1, velocity:velocities.conduction*s}
-  const conduction2    = {points: newPoints.conduction2, strokeWidth: widths.conduction*s, signal: signals.conduction2, velocity:velocities.conduction*s}
-  const conduction3    = {points: newPoints.conduction3, strokeWidth: widths.conduction*s, signal: signals.conduction3, velocity:velocities.conduction*s}
-  const conduction4    = {points: newPoints.conduction4, strokeWidth: widths.conduction*s, signal: signals.conduction4, velocity:velocities.conduction*s}
-  const notGate1 = makeNotGate(t0, t1, t2+119, 1111, rotation, scale,  p1.x, p1.y, notGateConfig)
-  const notGate2 = makeNotGate(t0, t1, t2+69, 1111, rotation, scale,  p2.x, p2.y, notGateConfig)
+  const conduction1 = {points: newPoints.conduction1, strokeWidth: widths.conduction*s, signal: signals.conduction1, velocity:velocities.conduction*s}
+  const conduction2 = {points: newPoints.conduction2, strokeWidth: widths.conduction*s, signal: signals.conduction2, velocity:velocities.conduction*s}
+  const conduction3 = {points: newPoints.conduction3, strokeWidth: widths.conduction*s, signal: signals.conduction3, velocity:velocities.conduction*s}
+  const conduction4 = {points: newPoints.conduction4, strokeWidth: widths.conduction*s, signal: signals.conduction4, velocity:velocities.conduction*s}
+  const notGate1    = makeNotGate(t0, t1, t2+119, 1111, rotation, scale,  p1.x, p1.y, notGateConfig)
+  const notGate2    = makeNotGate(t0, t1, t2+69, 1111, rotation, scale,  p2.x, p2.y, notGateConfig)
 
   const orGate        = {conduction1, conduction2,conduction3,conduction4, notGate1, notGate2}
 

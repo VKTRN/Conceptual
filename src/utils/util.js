@@ -119,11 +119,6 @@ export const scalePoints = (points, c) => {
   return newPoints
 }
 
-export const setTransform = (rotation, scale, translation) => {
-  const transform = {rotation, scale, translation}
-  return transform
-}
-
 export const transformPoints = (points, transform) => {
 
   const {rotation, scale, translation} = transform
