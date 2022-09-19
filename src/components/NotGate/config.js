@@ -9,7 +9,7 @@ const input = {
   color:    color, 
   width:    a, 
   velocity: v, 
-  length:   400
+  length:   200
 }
 
 const conduction = {

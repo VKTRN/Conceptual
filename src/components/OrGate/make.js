@@ -1,16 +1,14 @@
-import {points}          from './points'
-import {widths}          from './widths'
-import {velocities}      from './velocities'
-import {colors}          from './colors'
-import {clone}           from '../../utils/util'
-import {setTransform}    from '../../utils/util'
-import {transformPoints} from '../../utils/util'
-import {makeNotGate}     from '../NotGate/make'
+import {points}            from './points'
+import {widths}            from './widths'
+import {velocities}        from './velocities'
+import {colors}            from './colors'
+import {clone}             from '../../utils/util'
+import {setTransform}      from '../../utils/util'
+import {transformPoints}   from '../../utils/util'
+import {makeNotGate}       from '../NotGate/make'
+import {config as config_} from './config'
 
-
-const notGateConfig = {widths: widths.notGate, velocities: velocities.notGate, colors:colors.notGate}
-
-const makeOrGate = (t0, t1, t2, rotation, scale, x,y) => {
+const makeOrGate = (t0, t1, t2, rotation, scale, x,y, config = config_) => {
 
   // t0:       time of input signal
   // t1:       time of transistor signal
@@ -24,32 +22,18 @@ const makeOrGate = (t0, t1, t2, rotation, scale, x,y) => {
   const newPoints      = clone(points)
   const translation    = {x,y}
   const transform      = {rotation, scale, translation}
-  const {scale: s}     = transform
-  const signals        = {}
+  const s              = scale
 
-  signals.conduction1   = {t0:t2, color: colors.conduction}
-  signals.conduction2   = {t0:t2, color: colors.conduction}
+  const conduction1   = {points: transformPoints(newPoints.conduction1, transform), strokeWidth: config.conduction.width*s, signal: {t0:t2, color: config.conduction.color}, velocity:config.conduction.velocity*s}
+  const conduction2   = {points: transformPoints(newPoints.conduction2, transform), strokeWidth: config.conduction.width*s, signal: {t0:t2, color: config.conduction.color}, velocity:config.conduction.velocity*s}
+  const conduction3   = {points: transformPoints(newPoints.conduction3, transform), strokeWidth: config.conduction.width*s, signal: {t0:t2+192, color: config.conduction.color}, velocity:config.conduction.velocity*s}
+  const conduction4   = {points: transformPoints(newPoints.conduction4, transform), strokeWidth: config.conduction.width*s, signal: {t0:t2+142, color: config.conduction.color}, velocity:config.conduction.velocity*s}
 
-  signals.conduction3   = {t0:t2+192, color: colors.conduction}
-  signals.conduction4   = {t0:t2+142, color: colors.conduction}
+  const p1 = transformPoints(newPoints.notGate1, transform)[0]
+  const p2 = transformPoints(newPoints.notGate2, transform)[0]
 
-  newPoints.conduction1 = transformPoints(newPoints.conduction1, transform)
-  newPoints.conduction2 = transformPoints(newPoints.conduction2, transform)
-  newPoints.conduction3 = transformPoints(newPoints.conduction3, transform)
-  newPoints.conduction4 = transformPoints(newPoints.conduction4, transform)
-  newPoints.notGate1    = transformPoints(newPoints.notGate1,    transform)
-  newPoints.notGate2    = transformPoints(newPoints.notGate2,    transform)
-
-  const p1 = newPoints.notGate1[0]
-  const p2 = newPoints.notGate2[0]
-
-  
-  const conduction1 = {points: newPoints.conduction1, strokeWidth: widths.conduction*s, signal: signals.conduction1, velocity:velocities.conduction*s}
-  const conduction2 = {points: newPoints.conduction2, strokeWidth: widths.conduction*s, signal: signals.conduction2, velocity:velocities.conduction*s}
-  const conduction3 = {points: newPoints.conduction3, strokeWidth: widths.conduction*s, signal: signals.conduction3, velocity:velocities.conduction*s}
-  const conduction4 = {points: newPoints.conduction4, strokeWidth: widths.conduction*s, signal: signals.conduction4, velocity:velocities.conduction*s}
-  const notGate1    = makeNotGate(t0, t1, t2+119, 1111, rotation, scale,  p1.x, p1.y, notGateConfig)
-  const notGate2    = makeNotGate(t0, t1, t2+69, 1111, rotation, scale,  p2.x, p2.y, notGateConfig)
+  const notGate1      = makeNotGate(t0, t0+86, t2+119, rotation, scale, p1.x, p1.y, config.notgate1)
+  const notGate2      = makeNotGate(t0, t0+24, t2+69, rotation, scale, p2.x,p2.y, config.notgate2)
 
   const orGate        = {conduction1, conduction2,conduction3,conduction4, notGate1, notGate2}
 
