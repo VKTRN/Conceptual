@@ -1,48 +1,27 @@
-import {yellowStep} from '../../utils/util'
+import {getConfig as getNotGateConfig} from '../NotGate/config'
 
-const color = 'yellow'
-const a     = 14 // width of the conduction lines
-const v     = 8 // velocity of the conduction lines
-const b     = 1.75*a // width of the transistor
-const l1    = 800 // length of the input line
-const l2    = 300 // length of the conduction line'
+export const getConfig = (color, width1, width2, velocity, length1, length2) => {
+  
+  const conduction = {
+    color:    color, 
+    width:    width1, 
+    velocity: velocity
+  }
 
+  const notgate1 = getNotGateConfig(color, width1, width2, velocity, length1)
+  const notgate2 = getNotGateConfig(color, width1, width2, velocity, length2)  
 
-const input1 = {
-  color:    color, 
-  width:    a, 
-  velocity: v, 
-  length:   l1
+  return {conduction, notgate1, notgate2}
+  
 }
+ 
+const color    = 'yellow'    // color of the not gate
+const width1   = 14          // width of the conduction lines
+const width2   = 1.75*width1 // velocity of the conduction lines
+const velocity = 8           // width of the transistor
+const length1  = 800         // length of the input line
+const length2  = 300         // length of the conduction line'
 
-const input2 = {
-  color:    color, 
-  width:    a, 
-  velocity: v, 
-  length:   l2
-}
+const config = getConfig(color, width1, width2, velocity, length1, length2)
 
-const conduction = {
-  color:    color, 
-  width:    a, 
-  velocity: v
-}
-
-const transistor = {
-  color:    yellowStep, 
-  width:    b
-}
-
-const notgate1 = {
-  input: input1,
-  conduction: conduction,
-  transistor: transistor
-}
-
-const notgate2 = {
-  input: input2,
-  conduction: conduction,
-  transistor: transistor
-}
-
-export const config = {conduction, notgate1, notgate2}
+export {config}
