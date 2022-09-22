@@ -32,8 +32,8 @@ const makeOrGate = (t0, t1, t2, rotation, scale, x,y, config = config_) => {
   const p1 = transformPoints(newPoints.notGate1, transform)[0]
   const p2 = transformPoints(newPoints.notGate2, transform)[0]
 
-  const notGate1      = makeNotGate(t0, t0+86, t2+119, rotation, scale, p1.x, p1.y, config.notgate1)
-  const notGate2      = makeNotGate(t0, t0+24, t2+69, rotation, scale, p2.x,p2.y, config.notgate2)
+  const notGate1      = makeNotGate(t0, t0+86, t2+119,999, rotation, scale, p1.x, p1.y, config.notgate1)
+  const notGate2      = makeNotGate(t0, t0+24, t2+69,999, rotation, scale, p2.x,p2.y, config.notgate2)
 
   const orGate        = {conduction1, conduction2,conduction3,conduction4, notGate1, notGate2}
 
