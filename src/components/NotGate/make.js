@@ -2,7 +2,7 @@ import {getPoints}         from './points'
 import {transformPoints}   from '../../utils/util'
 import {config as config_} from './config'
 
-const makeNotGate = (tInput, tTransistor, tConduction, rotation, scale, x,y, config = config_) => {
+const makeNotGate = (tInput, tTransistor, tConduction,tStop, rotation, scale, x,y, config = config_) => {
 
   const newPoints      = getPoints(config.conduction.width/2, config.input.length)
   const translation    = {x,y}
@@ -16,7 +16,8 @@ const makeNotGate = (tInput, tTransistor, tConduction, rotation, scale, x,y, con
                     t0:    tConduction, 
                     color: config.conduction.color
                   }, 
-    velocity:     config.conduction.velocity*s
+    velocity:     config.conduction.velocity*s,
+    stop:         tStop,
   }
   
   const input          = {

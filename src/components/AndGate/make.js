@@ -9,11 +9,11 @@ const makeAndGate = (tInput, tTransistor, tConduction, rotation, scale, x,y, con
   const translation    = {x,y}
   const transform      = {rotation, scale, translation}
 
-  const p1 = transformPoints(newPoints.notgate1, transform)[0]
-  const p2 = transformPoints(newPoints.notgate2, transform)[0]
+  const p1             = transformPoints(newPoints.notgate1, transform)[0]
+  const p2             = transformPoints(newPoints.notgate2, transform)[0]
 
-  const notgate1      = makeNotGate(tInput, tTransistor, tConduction,    rotation, scale, p1.x, p1.y, config.notgate1)
-  const notgate2      = makeNotGate(tInput, tTransistor, tConduction+73, rotation, scale, p2.x,p2.y, config.notgate2)
+  const notgate1       = makeNotGate(tInput, tTransistor, tConduction,    rotation, scale, p1.x, p1.y, config.notgate1)
+  const notgate2       = makeNotGate(tInput, tTransistor, tConduction+73, rotation, scale, p2.x, p2.y,  config.notgate2)
 
   const andgate = {notgate1, notgate2}
 

@@ -6,9 +6,10 @@ import {signalVelocity}  from '../constants';
 import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
 
-export const Connection = ({points, color='black', signal, strokeWidth, velocity}) => {
+export const Connection = ({points, color='black', signal, strokeWidth, velocity, stop=100000}) => {
 
-	const t   = useCurrentFrame()
+	const t   = Math.min(useCurrentFrame(), stop)
+
 	const v 	= velocity
 	const ls 	= signalLength
 	const l 	= getTotalLength(points)
