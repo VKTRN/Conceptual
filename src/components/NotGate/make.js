@@ -1,9 +1,6 @@
 import {getPoints}         from './points'
 import {transformPoints}   from '../../utils/util'
 
-// const makeNotGate = (tInput, tTransistor, tConduction,tStop, rotation, scale, x,y, config = config_) => {
-
-
 const makeNotGate = (config) => {
 
   const points         = getPoints(config.conduction.width/2, config.input.length)
@@ -12,16 +9,16 @@ const makeNotGate = (config) => {
   const conduction     = {
     points:       transformPoints(points.conduction, config.transform), 
     strokeWidth:  config.conduction.width*s, 
-    signal:       config.conduction.signal,
     velocity:     config.velocity*s,
+    signal:       config.conduction.signal,
     stop:         config.conduction.tStop,
   }
   
   const input          = {
     points:       transformPoints(points.input, config.transform),      
     strokeWidth:  config.input.width*s,      
+    velocity:     config.velocity*s,
     signal:       config.input.signal,      
-    velocity:     config.velocity*s
   }
   
   const transistor     = {

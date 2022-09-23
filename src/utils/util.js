@@ -132,3 +132,21 @@ export const transformPoints = (points, transform) => {
 
   return transformedPoints
 }
+
+export function isPlainObject(input) {
+  return input && !Array.isArray(input) && typeof input === 'object';
+}
+
+export const overwrite = (objectA, objectB) => {
+  for (const key in objectB) {
+    if (objectB.hasOwnProperty(key)) {
+      const element = objectB[key];
+      if (isPlainObject(element)) {
+        overwrite(objectA[key], element)
+      } else {
+        objectA[key] = element
+      }
+    }
+  }
+  return objectA
+}

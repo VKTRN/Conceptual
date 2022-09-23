@@ -3,21 +3,44 @@ import {transformPoints}   from '../../utils/util'
 import {config as config_} from './config'
 import {makeNotGate}       from '../NotGate/make'
 
-const makeAndGate = (tInput, tTransistor, tConduction, rotation, scale, x,y, config = config_) => {
+import {config as notGateDefault_} from '../NotGate/config'
+import {cloneDeep} from 'lodash'
+import {makeNotGate} from '../NotGate/make'
 
-  const newPoints      = getPoints()
-  const translation    = {x,y}
-  const transform      = {rotation, scale, translation}
+import {overwrite} from '../../utils/util'
 
-  const p1             = transformPoints(newPoints.notgate1, transform)[0]
-  const p2             = transformPoints(newPoints.notgate2, transform)[0]
+const makeAndGate = (config) => {
 
-  const notgate1       = makeNotGate(tInput, tTransistor, tConduction,    rotation, scale, p1.x, p1.y, config.notgate1)
-  const notgate2       = makeNotGate(tInput, tTransistor, tConduction+73, rotation, scale, p2.x, p2.y,  config.notgate2)
+  const points = getPoints()
 
-  const andgate = {notgate1, notgate2}
+  const points1          = transformPoints(points.notgate1, config.transform) 
+  const points2          = transformPoints(points.notgate2, config.transform)
+  const transform1       = cloneDeep(config.transform)
+  const transform2       = cloneDeep(config.transform)
+  
+  transform1.translation = points1[0]
+  transform2.translation = points2[0]
+  
+  const notgate1Default  = cloneDeep(notGateDefault_)
+  const notgate2Default  = cloneDeep(notGateDefault_)
 
-  return andgate
+  const notgate1Change   = {
+    transform: transform1,
+    velocity: config.velocity,
+  }
+  
+  const notgate2Change   = {
+    transform: transform2,
+    velocity: config.velocity,
+  }
+
+  const notgate1New = overwrite(notgate1Default, notgate1Change)
+  const notgate2New = overwrite(notgate2Default, notgate2Change)
+
+  const notgate1    = makeNotGate(notgate1New)
+  const notgate2    = makeNotGate(notgate2New)
+
+  return {notgate1, notgate2}
 }
 
 export {makeAndGate}
