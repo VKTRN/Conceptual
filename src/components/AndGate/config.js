@@ -1,4 +1,5 @@
 import {transform} from '../../constants'
+import {signal}    from '../../constants'
 
 const color    = 'yellow'
 const width1   = 14
@@ -11,6 +12,7 @@ const config = {
   width2,
   velocity,
   transform,
+  signal
 }
 
 

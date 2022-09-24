@@ -1,18 +1,13 @@
-import {getPoints}         from './points'
-import {transformPoints}   from '../../utils/util'
-import {config as config_} from './config'
-import {makeNotGate}       from '../NotGate/make'
-
+import {getPoints}                 from './points'
+import {transformPoints}           from '../../utils/util'
+import {makeNotGate}               from '../NotGate/make'
 import {config as notGateDefault_} from '../NotGate/config'
-import {cloneDeep} from 'lodash'
-import {makeNotGate} from '../NotGate/make'
-
-import {overwrite} from '../../utils/util'
+import {cloneDeep}                 from 'lodash'
+import {overwrite}                 from '../../utils/util'
 
 const makeAndGate = (config) => {
 
-  const points = getPoints()
-
+  const points           = getPoints()
   const points1          = transformPoints(points.notgate1, config.transform) 
   const points2          = transformPoints(points.notgate2, config.transform)
   const transform1       = cloneDeep(config.transform)
@@ -27,11 +22,23 @@ const makeAndGate = (config) => {
   const notgate1Change   = {
     transform: transform1,
     velocity: config.velocity,
+    conduction: {
+      signal: {
+        t0: config.signal.t0,
+        color: config.signal.color
+      }
+    }
   }
   
   const notgate2Change   = {
     transform: transform2,
     velocity: config.velocity,
+    conduction: {
+      signal: {
+        t0: config.signal.t0 + 73,
+        color: config.signal.color
+      }
+    }
   }
 
   const notgate1New = overwrite(notgate1Default, notgate1Change)

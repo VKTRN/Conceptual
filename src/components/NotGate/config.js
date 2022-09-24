@@ -1,6 +1,7 @@
 import {yellowStep} from '../../utils/util'
 import {transform}  from '../../constants'
 import {signal}     from '../../constants'
+import {cloneDeep}  from 'lodash'
 
 const color    = 'yellow'
 const width1   = 14
@@ -12,13 +13,13 @@ const input = {
   color:    color, 
   width:    width1, 
   length:   length,
-  signal:   signal,
+  signal:   cloneDeep(signal),
 }
 
 const conduction = {
   color:    color, 
   width:    width1, 
-  signal:   signal,
+  signal:   cloneDeep(signal),
   tStop: 9999
 }
 
@@ -26,7 +27,7 @@ const transistor = {
   width:    width2,
   signal:   {
     color: yellowStep,
-    width: width2,
+    t0: 0,
   },
 }
 
@@ -36,6 +37,7 @@ const config = {
   transistor,
   transform,
   velocity,
+  signal: cloneDeep(signal),
 }
 
 export {config}

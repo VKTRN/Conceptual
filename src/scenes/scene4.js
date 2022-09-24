@@ -11,6 +11,8 @@ import {AndGate}                    from '../components/AndGate/AndGate'
 import {config as andGateDefault_}  from '../components/AndGate/config'
 
 import {cloneDeep}                  from 'lodash'
+import {roundedCorners}             from '../utils/util'
+
 
 function isPlainObject(input) {
   return input && !Array.isArray(input) && typeof input === 'object';
@@ -38,8 +40,10 @@ const andGateDefault = cloneDeep(andGateDefault_)
  /// Configs ///
 ///////////////
 
+const p = [{x:0,y:0},{x:300, y:0}, {x: 300,y:300}]
+
 const lineConfig = {
-  points: [{x:0,y:0},{x:300, y:0}, {x: 300,y:300}],
+  // points: roundedCorners(p, 50),
   width:    14, 
   velocity: 8,
   tStop:    50,
@@ -50,17 +54,15 @@ const lineConfig = {
 
 const notGateConfig = {
   transform: {
-    translation: {x:300,y:200}
-  },
-  velocity: 2,
+    translation: {x:900,y:200}
+  }
 }
 
 const andGateConfig = {
   transform: {
     translation: {x:800,y:300},
     rotation: -Math.PI/2,
-  },
-  velocity: 2,
+  }
 }
 
   ///////////////
@@ -75,14 +77,12 @@ const lineProps    = makeLine(line1)
 const notGateProps = makeNotGate(notgate1)
 const andGateProps = makeAndGate(andgate1)
 
-console.log(andGateProps)
-
 const Scene = () => {
   return (
     <>
       <Line line = {lineProps} />
-      <NotGate {...notGateProps} />
-      <AndGate {...andGateProps} />
+      {/* <NotGate {...notGateProps} /> */}
+      {/* <AndGate {...andGateProps} /> */}
     </>
   )
 }

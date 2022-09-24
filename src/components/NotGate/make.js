@@ -10,7 +10,7 @@ const makeNotGate = (config) => {
     points:       transformPoints(points.conduction, config.transform), 
     strokeWidth:  config.conduction.width*s, 
     velocity:     config.velocity*s,
-    signal:       config.conduction.signal,
+    signal:       config.signal,
     stop:         config.conduction.tStop,
   }
   
@@ -18,7 +18,7 @@ const makeNotGate = (config) => {
     points:       transformPoints(points.input, config.transform),      
     strokeWidth:  config.input.width*s,      
     velocity:     config.velocity*s,
-    signal:       config.input.signal,      
+    signal:       config.signal,      
   }
   
   const transistor     = {

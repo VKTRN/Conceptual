@@ -150,3 +150,14 @@ export const overwrite = (objectA, objectB) => {
   }
   return objectA
 }
+
+export const roundedCorners = (points, radius) => {
+  const p1      = getCenter(points)
+  const {p2,p3} = getTangentPoints(points, radius)
+
+
+}
+
+// This function implements bisection. It takes a function f and a number x and returns a number y such that f(y) = x.
+// The function f must be monotonic.
+  
