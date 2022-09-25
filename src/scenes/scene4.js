@@ -11,7 +11,10 @@ import {AndGate}                    from '../components/AndGate/AndGate'
 import {config as andGateDefault_}  from '../components/AndGate/config'
 
 import {cloneDeep}                  from 'lodash'
-import {roundedCorners}             from '../utils/util'
+import {getRoundedPathPoints}       from '../utils/util'
+import {getRoundedPath}             from '../utils/util'
+
+
 
 
 function isPlainObject(input) {
@@ -33,6 +36,7 @@ const overwrite = (objectA, objectB) => {
 }
 
 const lineDefault    = cloneDeep(lineDefault_)
+const lineDefault2 = cloneDeep(lineDefault_)
 const notGateDefault = cloneDeep(notGateDefault_)
 const andGateDefault = cloneDeep(andGateDefault_)
 
@@ -40,10 +44,16 @@ const andGateDefault = cloneDeep(andGateDefault_)
  /// Configs ///
 ///////////////
 
-const p = [{x:0,y:0},{x:300, y:0}, {x: 300,y:300}]
+const p = [{x:0,y:0},{x:100, y:0}, {x: 100,y:100}]
+
+const pathPoints = getRoundedPathPoints(p[0], p[1], p[2], 50)
+const path = getRoundedPath(pathPoints)
+
+console.log(path)
+
 
 const lineConfig = {
-  // points: roundedCorners(p, 50),
+  points: path,
   width:    14, 
   velocity: 8,
   tStop:    50,
@@ -52,35 +62,48 @@ const lineConfig = {
   },
 }
 
-const notGateConfig = {
+const lineConfig2 = {
+  points: p,
+  width:    14, 
+  velocity: 8,
+  tStop:    50,
   transform: {
-    translation: {x:900,y:200}
-  }
+    translation: {x:300,y:200}
+  },
 }
 
-const andGateConfig = {
-  transform: {
-    translation: {x:800,y:300},
-    rotation: -Math.PI/2,
-  }
-}
+// const notGateConfig = {
+//   transform: {
+//     translation: {x:900,y:200}
+//   }
+// }
 
-  ///////////////
- ///////////////
-///////////////
+// const andGateConfig = {
+//   transform: {
+//     translation: {x:800,y:300},
+//     rotation: -Math.PI/2,
+//   }
+// }
+
+//   ///////////////
+//  ///////////////
+// ///////////////
 
 const line1        = overwrite(lineDefault, lineConfig)
-const notgate1     = overwrite(notGateDefault, notGateConfig)
-const andgate1     = overwrite(andGateDefault, andGateConfig)
+const line2        = overwrite(lineDefault2, lineConfig2)
+// const notgate1     = overwrite(notGateDefault, notGateConfig)
+// const andgate1     = overwrite(andGateDefault, andGateConfig)
 
 const lineProps    = makeLine(line1)
-const notGateProps = makeNotGate(notgate1)
-const andGateProps = makeAndGate(andgate1)
+const lineProps2    = makeLine(line2)
+// const notGateProps = makeNotGate(notgate1)
+// const andGateProps = makeAndGate(andgate1)
 
 const Scene = () => {
   return (
     <>
       <Line line = {lineProps} />
+      {/* <Line line = {lineProps2} /> */}
       {/* <NotGate {...notGateProps} /> */}
       {/* <AndGate {...andGateProps} /> */}
     </>

@@ -107,9 +107,18 @@ export const translatePoints = (points,x,y) => {
 
 export const rotatePoints = (points, angle) => {
   const newPoints = points.map(point => {
-    return {x: point.x * Math.cos(angle) - point.y * Math.sin(angle), y: point.x * Math.sin(angle) + point.y * Math.cos(angle)}
+    return {
+      x: point.x * Math.cos(angle) - point.y * Math.sin(angle), 
+      y: point.x * Math.sin(angle) + point.y * Math.cos(angle)}
   })
   return newPoints
+}
+
+const rotateVector = (v, angle) => {
+  return {
+    x: v.x * Math.cos(angle) - v.y * Math.sin(angle),
+    y: v.x * Math.sin(angle) + v.y * Math.cos(angle)
+  }
 }
 
 export const scalePoints = (points, c) => {
@@ -151,13 +160,83 @@ export const overwrite = (objectA, objectB) => {
   return objectA
 }
 
-export const roundedCorners = (points, radius) => {
-  const p1      = getCenter(points)
-  const {p2,p3} = getTangentPoints(points, radius)
+const getLength = (v) => {
+  return Math.sqrt(v.x * v.x + v.y * v.y)
+}
 
+const getAngle = (v1, v2) => {
+  const dot = v1.x * v2.x + v1.y * v2.y
+  const det = v1.x * v2.y - v1.y * v2.x
+  return Math.atan2(det, dot)
+}
+
+const getVector = (p1, p2) => {
+  return {x: p2.x - p1.x, y: p2.y - p1.y}
+}
+
+const getPointOnLine = (p, n, l) => {
+  const x = p.x + n.x * l
+  const y = p.y + n.y * l
+  return {x,y}
+}
+
+const getUnitVector = (v) => {
+  const l = getLength(v)
+  return {x: v.x / l, y: v.y / l}
+}
+
+const getOrthogonalUnitVector = (v) => {
+  const l = getLength(v)
+  return {x: -v.y / l, y: -v.x / l}
+}
+
+const linspace = (a,b,n) => {
+  const arr = []
+  const step = (b-a) / (n-1)
+  for (let i = 0; i < n; i++) {
+    arr.push(a + i * step)
+  }
+  return arr
+}
+
+
+
+export const getRoundedPathPoints = (pR, p, pL, radius) => {
+  
+  const vR    = getVector(p, pR)
+  const vL    = getVector(p, pL)
+  const nvR   = getUnitVector(vR)
+  const nvL   = getUnitVector(vL)
+  const alpha = getAngle(vL, vR)
+  const beta  = Math.PI - alpha
+  const l     = radius / Math.tan(alpha / 2)
+  const A     = getPointOnLine(p, nvR, l)
+  const B     = getPointOnLine(p, nvL, l)
+  const tA    = getOrthogonalUnitVector(nvR)
+  const C     = getPointOnLine(A, tA, radius)
+
+  const angles = linspace(0, beta, 10)
+  const points = angles.map(angle => {
+    const v = rotateVector(tA, angle)
+    return getPointOnLine(C, v, -radius)
+  })
+
+  return points
 
 }
 
-// This function implements bisection. It takes a function f and a number x and returns a number y such that f(y) = x.
-// The function f must be monotonic.
+export const getRoundedPath = (points, radius) => {
   
+  const path = []
+
+  for (let i = 0; i < points.length; i++) {
+    const pR = points[(i-1+points.length) % points.length]
+    const p  = points[i]
+    const pL = points[(i+1) % points.length]
+    const roundedPoints = getRoundedPathPoints(pR, p, pL, radius)
+    path.push(...roundedPoints)
+  }
+
+  return path
+}
+
