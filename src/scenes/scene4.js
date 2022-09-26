@@ -36,7 +36,6 @@ const overwrite = (objectA, objectB) => {
 }
 
 const lineDefault    = cloneDeep(lineDefault_)
-const lineDefault2 = cloneDeep(lineDefault_)
 const notGateDefault = cloneDeep(notGateDefault_)
 const andGateDefault = cloneDeep(andGateDefault_)
 
@@ -44,66 +43,56 @@ const andGateDefault = cloneDeep(andGateDefault_)
  /// Configs ///
 ///////////////
 
-const p = [{x:0,y:0},{x:100, y:0}, {x: 100,y:100}]
+const p = [
+  {x:  0,  y:  0},
+  {x: 100, y:  0}, 
+  {x: 100, y:100}, 
+  {x: 200, y:100},
+  {x: 400, y:0},
+]
 
-const pathPoints = getRoundedPathPoints(p[0], p[1], p[2], 50)
-const path = getRoundedPath(pathPoints)
-
-console.log(path)
-
+const path = getRoundedPath(p, 50)
 
 const lineConfig = {
   points: path,
   width:    14, 
   velocity: 8,
-  tStop:    50,
+  // tStop:    50,
   transform: {
     translation: {x:300,y:200}
   },
 }
 
-const lineConfig2 = {
-  points: p,
-  width:    14, 
-  velocity: 8,
-  tStop:    50,
+
+const notGateConfig = {
   transform: {
-    translation: {x:300,y:200}
-  },
+    translation: {x:900,y:200}
+  }
 }
 
-// const notGateConfig = {
-//   transform: {
-//     translation: {x:900,y:200}
-//   }
-// }
-
-// const andGateConfig = {
-//   transform: {
-//     translation: {x:800,y:300},
-//     rotation: -Math.PI/2,
-//   }
-// }
+const andGateConfig = {
+  transform: {
+    translation: {x:800,y:300},
+    rotation: -Math.PI/2,
+  }
+}
 
 //   ///////////////
 //  ///////////////
 // ///////////////
 
 const line1        = overwrite(lineDefault, lineConfig)
-const line2        = overwrite(lineDefault2, lineConfig2)
-// const notgate1     = overwrite(notGateDefault, notGateConfig)
-// const andgate1     = overwrite(andGateDefault, andGateConfig)
+const notgate1     = overwrite(notGateDefault, notGateConfig)
+const andgate1     = overwrite(andGateDefault, andGateConfig)
 
 const lineProps    = makeLine(line1)
-const lineProps2    = makeLine(line2)
-// const notGateProps = makeNotGate(notgate1)
-// const andGateProps = makeAndGate(andgate1)
+const notGateProps = makeNotGate(notgate1)
+const andGateProps = makeAndGate(andgate1)
 
 const Scene = () => {
   return (
     <>
       <Line line = {lineProps} />
-      {/* <Line line = {lineProps2} /> */}
       {/* <NotGate {...notGateProps} /> */}
       {/* <AndGate {...andGateProps} /> */}
     </>

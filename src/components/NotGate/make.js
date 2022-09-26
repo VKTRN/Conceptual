@@ -1,5 +1,6 @@
 import {getPoints}         from './points'
 import {transformPoints}   from '../../utils/util'
+import {getRoundedPath}    from '../../utils/util'
 
 const makeNotGate = (config) => {
 
@@ -7,7 +8,7 @@ const makeNotGate = (config) => {
   const s              = config.transform.scale
 
   const conduction     = {
-    points:       transformPoints(points.conduction, config.transform), 
+    points:       getRoundedPath(transformPoints(points.conduction, config.transform),30), 
     strokeWidth:  config.conduction.width*s, 
     velocity:     config.velocity*s,
     signal:       config.signal,

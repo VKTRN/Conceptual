@@ -168,6 +168,7 @@ const getAngle = (v1, v2) => {
   const dot = v1.x * v2.x + v1.y * v2.y
   const det = v1.x * v2.y - v1.y * v2.x
   return Math.atan2(det, dot)
+
 }
 
 const getVector = (p1, p2) => {
@@ -185,9 +186,9 @@ const getUnitVector = (v) => {
   return {x: v.x / l, y: v.y / l}
 }
 
-const getOrthogonalUnitVector = (v) => {
-  const l = getLength(v)
-  return {x: -v.y / l, y: -v.x / l}
+const getOrthogonalUnitVector = (v, sign) => {
+  const l = -getLength(v)*sign
+  return {x: -v.y / l, y: v.x / l}
 }
 
 const linspace = (a,b,n) => {
@@ -199,26 +200,34 @@ const linspace = (a,b,n) => {
   return arr
 }
 
-
-
 export const getRoundedPathPoints = (pR, p, pL, radius) => {
   
-  const vR    = getVector(p, pR)
-  const vL    = getVector(p, pL)
-  const nvR   = getUnitVector(vR)
-  const nvL   = getUnitVector(vL)
-  const alpha = getAngle(vL, vR)
-  const beta  = Math.PI - alpha
-  const l     = radius / Math.tan(alpha / 2)
-  const A     = getPointOnLine(p, nvR, l)
-  const B     = getPointOnLine(p, nvL, l)
-  const tA    = getOrthogonalUnitVector(nvR)
-  const C     = getPointOnLine(A, tA, radius)
+  const vR     = getVector(p, pR)
+  const vL     = getVector(p, pL)
+  const nvR    = getUnitVector(vR)
+  const nvL    = getUnitVector(vL)
+  const alpha  = getAngle(vL, vR)
 
-  const angles = linspace(0, beta, 10)
+  const beta   = (Math.PI - alpha) % Math.PI * Math.sign(alpha)
+  const l      = Math.abs(radius / Math.tan(alpha / 2))
+  const A      = getPointOnLine(p, nvR, l)
+  const B      = getPointOnLine(p, nvL, l)
+  const tA     = getOrthogonalUnitVector(nvR, Math.sign(alpha))
+  const tB     = getOrthogonalUnitVector(nvL, Math.sign(alpha))
+  const C      = getPointOnLine(A, tA, radius)
+
+  // const beta0 = Math.max( 0, beta)
+  // const beta1 = Math.min( 0, beta)
+
+  const beta0 = 0
+  const beta1 = beta
+
+  const angles = linspace(beta0, beta1, 10)
+
   const points = angles.map(angle => {
-    const v = rotateVector(tA, angle)
-    return getPointOnLine(C, v, -radius)
+    const t = scaleVector(tA, -1)
+    const v = rotateVector(t, angle)
+    return getPointOnLine(C, v, radius)
   })
 
   return points
@@ -227,16 +236,24 @@ export const getRoundedPathPoints = (pR, p, pL, radius) => {
 
 export const getRoundedPath = (points, radius) => {
   
-  const path = []
+  const path = [points[0]]
 
-  for (let i = 0; i < points.length; i++) {
-    const pR = points[(i-1+points.length) % points.length]
+  for (let i = 1; i < points.length-1; i++) {
+    
+    const pR = points[i-1]
     const p  = points[i]
-    const pL = points[(i+1) % points.length]
+    const pL = points[i+1]
+
     const roundedPoints = getRoundedPathPoints(pR, p, pL, radius)
     path.push(...roundedPoints)
   }
 
+  path.push(points[points.length-1])
+
+  console.log(path)
   return path
 }
 
+const scaleVector = (v, c) => {
+  return {x: v.x * c, y: v.y * c}
+}
