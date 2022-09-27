@@ -208,7 +208,7 @@ export const getRoundedPathPoints = (pR, p, pL, radius) => {
   const nvL    = getUnitVector(vL)
   const alpha  = getAngle(vL, vR)
 
-  const beta   = (Math.PI - alpha) % Math.PI * Math.sign(alpha)
+  const beta   = (Math.PI - Math.abs(alpha)) % Math.PI * Math.sign(alpha)
   const l      = Math.abs(radius / Math.tan(alpha / 2))
   const A      = getPointOnLine(p, nvR, l)
   const B      = getPointOnLine(p, nvL, l)
@@ -216,13 +216,7 @@ export const getRoundedPathPoints = (pR, p, pL, radius) => {
   const tB     = getOrthogonalUnitVector(nvL, Math.sign(alpha))
   const C      = getPointOnLine(A, tA, radius)
 
-  // const beta0 = Math.max( 0, beta)
-  // const beta1 = Math.min( 0, beta)
-
-  const beta0 = 0
-  const beta1 = beta
-
-  const angles = linspace(beta0, beta1, 10)
+  const angles = linspace(0, beta, 10)
 
   const points = angles.map(angle => {
     const t = scaleVector(tA, -1)

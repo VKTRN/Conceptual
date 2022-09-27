@@ -36,6 +36,7 @@ const overwrite = (objectA, objectB) => {
 }
 
 const lineDefault    = cloneDeep(lineDefault_)
+const lineDefault2   = cloneDeep(lineDefault_)
 const notGateDefault = cloneDeep(notGateDefault_)
 const andGateDefault = cloneDeep(andGateDefault_)
 
@@ -56,12 +57,26 @@ const path = getRoundedPath(p, 50)
 const lineConfig = {
   points: path,
   width:    14, 
+  velocity: 4,
+  // tStop:    50,
+  transform: {
+    translation: {x:300,y:200}
+  },
+}
+
+const lineConfig2 = {
+  points: p,
+  width:    14, 
+  signal: {
+    color: 'red',
+  },
   velocity: 8,
   // tStop:    50,
   transform: {
     translation: {x:300,y:200}
   },
 }
+
 
 
 const notGateConfig = {
@@ -82,19 +97,22 @@ const andGateConfig = {
 // ///////////////
 
 const line1        = overwrite(lineDefault, lineConfig)
+const line2        = overwrite(lineDefault2, lineConfig2)
 const notgate1     = overwrite(notGateDefault, notGateConfig)
 const andgate1     = overwrite(andGateDefault, andGateConfig)
 
 const lineProps    = makeLine(line1)
+const lineProps2   = makeLine(line2)
 const notGateProps = makeNotGate(notgate1)
 const andGateProps = makeAndGate(andgate1)
 
 const Scene = () => {
   return (
     <>
-      <Line line = {lineProps} />
+      {/* <Line line = {lineProps2} /> */}
+      {/* <Line line = {lineProps} /> */}
       {/* <NotGate {...notGateProps} /> */}
-      {/* <AndGate {...andGateProps} /> */}
+      <AndGate {...andGateProps} />
     </>
   )
 }
