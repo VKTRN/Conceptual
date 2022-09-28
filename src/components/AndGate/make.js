@@ -22,30 +22,53 @@ const makeAndGate = (config) => {
   const notgate1Change   = {
     transform: transform1,
     velocity: config.velocity,
+    
     conduction: {
       signal: {
-        t0: config.signal.t0,
-        color: config.signal.color
+        t0: config.timings.conduction1,
       }
-    }
+    },
+    input:      {
+      signal: {
+        t0: config.timings.input1,
+      }
+    },
+    transistor:     {
+      signal: {
+        t0: config.timings.transistor1,
+      }
+    },
+
   }
   
   const notgate2Change   = {
     transform: transform2,
     velocity: config.velocity,
+
     conduction: {
       signal: {
-        t0: config.signal.t0 + 73,
-        color: config.signal.color
+        t0: config.timings.conduction2,
       }
-    }
+    },
+    input:      {
+      signal: {
+        t0: config.timings.input2,
+      }
+    },
+    transistor:     {
+      signal: {
+        t0: config.timings.transistor2,
+      }
+    },
   }
 
   const notgate1New = overwrite(notgate1Default, notgate1Change)
-  const notgate2New = overwrite(notgate2Default, notgate2Change)
-
   const notgate1    = makeNotGate(notgate1New)
+  
+  const notgate2New = overwrite(notgate2Default, notgate2Change)
   const notgate2    = makeNotGate(notgate2New)
+
+
 
   return {notgate1, notgate2}
 }

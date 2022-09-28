@@ -37,7 +37,6 @@ const config = {
   transistor,
   transform,
   velocity,
-  signal: cloneDeep(signal),
 }
 
 export {config}

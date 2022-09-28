@@ -12,7 +12,15 @@ const config = {
   width2,
   velocity,
   transform,
-  signal
+  signal,
+  timings: {
+    conduction1: 0,
+    conduction2: 0,
+    input1:      0,
+    input2:      0,
+    transistor1: 0,
+    transistor2: 0,
+  }
 }
 
 

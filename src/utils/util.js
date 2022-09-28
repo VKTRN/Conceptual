@@ -151,6 +151,7 @@ export const overwrite = (objectA, objectB) => {
     if (objectB.hasOwnProperty(key)) {
       const element = objectB[key];
       if (isPlainObject(element)) {
+        console.log(key, objectA)
         overwrite(objectA[key], element)
       } else {
         objectA[key] = element
@@ -244,7 +245,6 @@ export const getRoundedPath = (points, radius) => {
 
   path.push(points[points.length-1])
 
-  console.log(path)
   return path
 }
 

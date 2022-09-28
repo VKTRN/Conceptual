@@ -11,29 +11,9 @@ import {AndGate}                    from '../components/AndGate/AndGate'
 import {config as andGateDefault_}  from '../components/AndGate/config'
 
 import {cloneDeep}                  from 'lodash'
-import {getRoundedPathPoints}       from '../utils/util'
 import {getRoundedPath}             from '../utils/util'
-
-
-
-
-function isPlainObject(input) {
-  return input && !Array.isArray(input) && typeof input === 'object';
-}
-
-const overwrite = (objectA, objectB) => {
-  for (const key in objectB) {
-    if (objectB.hasOwnProperty(key)) {
-      const element = objectB[key];
-      if (isPlainObject(element)) {
-        overwrite(objectA[key], element)
-      } else {
-        objectA[key] = element
-      }
-    }
-  }
-  return objectA
-}
+import {isPlainObject}              from '../utils/util'
+import {overwrite}                  from '../utils/util'
 
 const lineDefault    = cloneDeep(lineDefault_)
 const lineDefault2   = cloneDeep(lineDefault_)
@@ -77,8 +57,6 @@ const lineConfig2 = {
   },
 }
 
-
-
 const notGateConfig = {
   transform: {
     translation: {x:900,y:200}
@@ -92,9 +70,9 @@ const andGateConfig = {
   }
 }
 
-//   ///////////////
-//  ///////////////
-// ///////////////
+  ///////////////
+ ///////////////
+///////////////
 
 const line1        = overwrite(lineDefault, lineConfig)
 const line2        = overwrite(lineDefault2, lineConfig2)
