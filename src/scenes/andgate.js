@@ -28,7 +28,6 @@ const p = [
 const outputConfig = {
   points: p,
   width:    14, 
-  velocity: 4,
 
   transform: {
     translation: {x:1420,y:293}
@@ -39,6 +38,7 @@ const outputConfig = {
 }
 
 const andGateConfig = {
+  
   transform: {
     translation: {x:1920/2-500,y:400},
     rotation:    -Math.PI/2,
@@ -61,7 +61,7 @@ const andGateConfig = {
 const output       = overwrite(lineDefault, outputConfig)
 const andgate      = overwrite(andGateDefault, andGateConfig)
 
-const outputProps = makeLine(output)
+const outputProps  = makeLine(output)
 const andGateProps = makeAndGate(andgate)
 
 const Scene = () => {

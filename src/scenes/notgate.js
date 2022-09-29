@@ -46,22 +46,10 @@ const notGateConfig = {
     rotation:    -Math.PI/2,
   },
 
-  conduction: {
-    signal: {
-      t0: 40,
-    }
-  },
-
-  input: {
-    signal: {
-      t0: 0,
-    }
-  },
-
-  transistor: {
-    signal: {
-      t0: 11,
-    }
+  timings: {
+    input:      0,
+    conduction: 40,
+    transistor: 11,
   }
 }
 

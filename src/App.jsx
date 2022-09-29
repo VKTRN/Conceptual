@@ -2,7 +2,7 @@ import {AbsoluteFill}    from 'remotion'
 import {Sequence}        from 'remotion'
 import {Screen}          from './components/Screen'
 import {backgroundColor} from './constants'
-import {Scene}           from './scenes/andgate'
+import {Scene}           from './scenes/notgate'
 
 export const App = () => {
   

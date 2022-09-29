@@ -11,7 +11,10 @@ const makeNotGate = (config) => {
     points:       getRoundedPath(transformPoints(points.conduction, config.transform),30), 
     strokeWidth:  config.conduction.width*s, 
     velocity:     config.velocity*s,
-    signal:       config.conduction.signal,
+    signal:       {
+      color: config.conduction.signal.color,
+      t0:    config.timings.conduction
+    },
     stop:         config.conduction.tStop,
   }
   
@@ -19,13 +22,19 @@ const makeNotGate = (config) => {
     points:       transformPoints(points.input, config.transform),      
     strokeWidth:  config.input.width*s,      
     velocity:     config.velocity*s,
-    signal:       config.input.signal,      
+    signal:       {
+      color: config.input.signal.color,
+      t0:    config.timings.input
+    },      
   }
   
   const transistor     = {
     points:       transformPoints(points.transistor, config.transform), 
     strokeWidth:  config.transistor.width*s, 
-    signal:       config.transistor.signal,
+    signal:       {
+      color: config.transistor.signal.color,
+      t0:    config.timings.transistor
+    },
   }
 
   const notGate = {conduction, input, transistor}
