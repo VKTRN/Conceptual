@@ -23,20 +23,10 @@ const makeAndGate = (config) => {
     transform: transform1,
     velocity: config.velocity,
     
-    conduction: {
-      signal: {
-        t0: config.timings.conduction1,
-      }
-    },
-    input:      {
-      signal: {
-        t0: config.timings.input1,
-      }
-    },
-    transistor:     {
-      signal: {
-        t0: config.timings.transistor1,
-      }
+    timings: {
+      conduction: config.timings.conduction1,
+      input:      config.timings.input1,
+      transistor: config.timings.transistor1,
     },
 
   }
@@ -44,21 +34,10 @@ const makeAndGate = (config) => {
   const notgate2Change   = {
     transform: transform2,
     velocity: config.velocity,
-
-    conduction: {
-      signal: {
-        t0: config.timings.conduction2,
-      }
-    },
-    input:      {
-      signal: {
-        t0: config.timings.input2,
-      }
-    },
-    transistor:     {
-      signal: {
-        t0: config.timings.transistor2,
-      }
+    timings: {
+      conduction: config.timings.conduction2,
+      input:      config.timings.input2,
+      transistor: config.timings.transistor2,
     },
   }
 

@@ -64,6 +64,8 @@ const andgate      = overwrite(andGateDefault, andGateConfig)
 const outputProps  = makeLine(output)
 const andGateProps = makeAndGate(andgate)
 
+console.log(andGateProps)
+
 const Scene = () => {
   return (
     <>

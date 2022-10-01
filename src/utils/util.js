@@ -151,7 +151,6 @@ export const overwrite = (objectA, objectB) => {
     if (objectB.hasOwnProperty(key)) {
       const element = objectB[key];
       if (isPlainObject(element)) {
-        console.log(key, objectA)
         overwrite(objectA[key], element)
       } else {
         objectA[key] = element
@@ -250,4 +249,10 @@ export const getRoundedPath = (points, radius) => {
 
 const scaleVector = (v, c) => {
   return {x: v.x * c, y: v.y * c}
+}
+
+export const make = (config, defaultConfig, makeProps) => {
+  const overwritten = overwrite(defaultConfig, config)
+  const props = makeProps(overwritten)
+  return props
 }

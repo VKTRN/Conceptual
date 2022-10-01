@@ -1,7 +1,7 @@
 export const signalLength     = 5000
 export const signalVelocity   = 8
-export const durationInFrames = 230
-export const backgroundColor  = '#22aaff'
+export const durationInFrames = 350
+export const backgroundColor  = '#07253d'
 
 export const transform = {
   rotation: 0,
