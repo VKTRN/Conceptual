@@ -1,6 +1,4 @@
-import {makeLine}                   from '../components/Line/make'
-import {Line}                       from '../components/Line/Line'
-import {config as lineDefault_}     from '../components/Line/config'
+import {Line as LineComp}           from '../components/Line/Line'
 
 import {makeNotGate}                from '../components/NotGate/make'
 import {NotGate}                    from '../components/NotGate/NotGate'
@@ -9,11 +7,12 @@ import {config as notGateDefault_}  from '../components/NotGate/config'
 import {cloneDeep}                  from 'lodash'
 import {overwrite}                  from '../utils/util'
 
+import {Line} from '../classes/Line'
+
   ///////////////////////
  /// Default Configs ///
 ///////////////////////
 
-const lineDefault    = cloneDeep(lineDefault_)
 const notGateDefault = cloneDeep(notGateDefault_)
 
   ///////////////
@@ -23,22 +22,15 @@ const notGateDefault = cloneDeep(notGateDefault_)
 const p = [
   {x:  0,  y:  100},
   {x: 0, y:  0}, 
+  {x: 200, y:  -200}, 
 ]
 
-const outputConfig = {
-  points: p,
-  width:    14, 
-  velocity: 4,
-  
-  transform: {
-    translation: {x:760,y:293}
-  },
+const output = new Line()
 
-  signal: {
-    t0: 47,
-  }
-
-}
+output.points = p
+output.transform.translation.x = 750
+output.transform.translation.y = 293
+output.setSecondaries()
 
 const notGateConfig = {
   transform: {
@@ -57,16 +49,15 @@ const notGateConfig = {
  ///////////////
 ///////////////
 
-const output       = overwrite(lineDefault, outputConfig)
 const notgate      = overwrite(notGateDefault, notGateConfig)
 
-const outputProps  = makeLine(output)
+const outputProps = output.getProps()
 const notGateProps = makeNotGate(notgate)
 
 const Scene = () => {
   return (
     <>
-      <Line line = {outputProps} />
+      <LineComp line = {outputProps} />
       <NotGate {...notGateProps} />
     </>
   )

@@ -34,7 +34,6 @@ const transistor = {
 const timings = {
   input: 0,
   conduction: 0,
-  transistor: 0,
 }
 
 const config = {

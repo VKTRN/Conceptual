@@ -256,3 +256,8 @@ export const make = (config, defaultConfig, makeProps) => {
   const props = makeProps(overwritten)
   return props
 }
+
+export const getTravelTime = (points, velocity) => {
+  const l = getTotalLength(points)
+  return l/velocity
+}

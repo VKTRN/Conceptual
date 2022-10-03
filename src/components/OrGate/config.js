@@ -14,12 +14,7 @@ const config = {
   transform,
   signal,
   timings: {
-    conduction1: 0,
-    conduction2: 0,
-    conduction3: 0,
-    conduction4: 0,
-    notgate1:    0,
-    notgate2:    0,
+    conduction: 0,
     input1:      0,
     input2:      0,
     transistor1: 0,

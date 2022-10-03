@@ -26,16 +26,9 @@ const orGateConfig = {
   },
 
   timings: {
-    conduction1: 40,
-    conduction2: 40,
-    conduction3: 228,
-    conduction4: 179,
-    notgate1:    156,
-    notgate2:    106,
+    conduction: 40,
     input1:      0,
-    input2:      0,
-    transistor1: 11,
-    transistor2: 11,
+    input2:      20,
   }
 }
 
