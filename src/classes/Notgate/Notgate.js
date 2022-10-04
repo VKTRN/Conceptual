@@ -7,6 +7,7 @@ const points = getPoints(100, 11)
 
 class Notgate {
   constructor() {
+    this.transform  = {}
     this.conduction = new Conduction(points.conduction)
     this.input      = new Conduction(points.input)
     this.transistor = new Transistor(points.transistor)

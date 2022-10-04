@@ -46,11 +46,13 @@ class Conduction extends Element {
 
   getProps() {
 
+    const s = this.transform.scale
+
     const props = {
       points: this.transformedPoints,
-      strokeWidth: this.width,
+      strokeWidth: this.width*s,
       signal: this.signal,
-      velocity: this.velocity,
+      velocity: this.velocity*s,
     }
 
     return props

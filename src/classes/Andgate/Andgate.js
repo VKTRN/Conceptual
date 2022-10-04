@@ -3,6 +3,7 @@ import {Notgate} from '../Notgate/Notgate'
 
 class Andgate {
   constructor() {
+    this.transform  = {}
     this.notgate1    = new Notgate()
     this.notgate2    = new Notgate()
     this.tInput1     = 0
@@ -32,8 +33,6 @@ class Andgate {
     
     this.notgate2.t1 = this.notgate1.t1 + this.notgate1.conduction.travelTime 
     this.notgate2.setSecondaries()
-
-
   }
 
   getProps() {

@@ -1,6 +1,6 @@
 export const signalLength     = 5000
 export const signalVelocity   = 8
-export const durationInFrames = 260
+export const durationInFrames = 350 
 export const backgroundColor  = '#07253d'
 export const conductionWidth  = 14
 export const transistorWidth  = 22

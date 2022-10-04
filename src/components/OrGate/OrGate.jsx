@@ -3,7 +3,7 @@ import {Line}       from '../Line'
 import {NotGate}    from '../NotGate/NotGate'
 
 export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate1, notgate2}) => {
-  
+
   return (
     <>
       <Connection {...conduction1}/>
