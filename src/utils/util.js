@@ -257,7 +257,6 @@ export const make = (config, defaultConfig, makeProps) => {
   return props
 }
 
-export const getTravelTime = (points, velocity) => {
-  const l = getTotalLength(points)
-  return l/velocity
+export const getTravelTime = (length, velocity) => {
+  return length/velocity
 }

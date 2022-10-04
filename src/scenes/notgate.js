@@ -7,7 +7,7 @@ import {config as notGateDefault_}  from '../components/NotGate/config'
 import {cloneDeep}                  from 'lodash'
 import {overwrite}                  from '../utils/util'
 
-import {Line} from '../classes/Line'
+import {Line} from '../classes/Conduction'
 
   ///////////////////////
  /// Default Configs ///
@@ -22,7 +22,6 @@ const notGateDefault = cloneDeep(notGateDefault_)
 const p = [
   {x:  0,  y:  100},
   {x: 0, y:  0}, 
-  {x: 200, y:  -200}, 
 ]
 
 const output = new Line()

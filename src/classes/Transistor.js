@@ -1,40 +1,35 @@
 import {Element}         from './Element.js'
-import {conductionWidth} from '../constants.js'
+import {transistorWidth} from '../constants.js'
 import {signalVelocity}  from '../constants.js'
 import {signal}          from '../constants.js'
 import {getRoundedPath}  from '../utils/util'
 import {transformPoints} from '../utils/util'
+import {yellowStep}      from '../utils/util'
 
-
-class Line extends Element {
-  constructor() {
-    super()
-    this.signal = signal
-    this.width = conductionWidth
-    this.velocity = signalVelocity
-    this.stop = 10000
-    this.path = []
-  }
-
-  setPath() {
-    this.path = getRoundedPath(this.points, 30)
+class Transistor extends Element {
+  constructor(points) {
+    super(points)
+    this.color    = yellowStep
+    this.t0       = 0
+    this.signal   = {t0: this.t0, color: this.color}
+    this.width    = transistorWidth
+    this.stop     = 10000
   }
 
   transformPoints() {
-    this.transformedPoints = transformPoints(this.path, this.transform)
+    this.transformedPoints = transformPoints(this.points, this.transform)
   }
 
   setSecondaries() {
-    this.setPath()
     this.transformPoints()
   }
 
   getProps() {
+
     const props = {
       points: this.transformedPoints,
       strokeWidth: this.width,
       signal: this.signal,
-      velocity: this.velocity,
     }
 
     return props
@@ -42,6 +37,6 @@ class Line extends Element {
 
 }
 
-export {Line}
+export {Transistor}
 
 

@@ -1,26 +1,43 @@
-import {Line as LineComp} from '../components/Line/Line'
-import {Line}             from '../classes/Line'
+import {NotGate as NotgateComp} from '../components/NotGate/NotGate'
+import {Notgate}                from '../classes/Notgate/Notgate'
 
-const output = new Line()
+import {AndGate as AndgateComp} from '../components/AndGate/AndGate'
+import {Andgate}                from '../classes/Andgate/Andgate'
 
-const p = [
-  {x:  0,  y:  100},
-  {x: 0,   y:    0}, 
-  {x: 200,   y:    -200}, 
-] 
+const notgate = new Notgate()
+const andgate = new Andgate()
 
-output.points                  = p
-output.transform.translation.x = 750
-output.transform.translation.y = 293
+const transform = {
+  translation : {x: 400, y: 400},
+  rotation : -Math.PI/2,
+  scale : 1,
+}
 
-output.setSecondaries()
+notgate.transform = transform
+notgate.t0 = 10
+notgate.t1 = 40
 
-const outputProps = output.getProps()
+andgate.transform = transform
+andgate.tInput1 = 10
+andgate.tInput2 = 20
+andgate.tConduction = 40
+
+andgate.setColor('red')
+
+notgate.setSecondaries()
+andgate.setSecondaries()
+
+const notgateProps = notgate.getProps()
+const andgateProps = andgate.getProps()
+
+console.log(andgateProps)
+
 
 const Scene = () => {
   return (
     <>
-      <LineComp line = {outputProps} />
+      {/* <NotgateComp {...notgateProps} /> */}
+      <AndgateComp {...andgateProps} />
     </>
   )
 }

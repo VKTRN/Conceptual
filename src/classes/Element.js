@@ -2,8 +2,8 @@ import {transformPoints} from '../utils/util'
 import {transform}       from '../constants'
 
 class Element {
-  constructor() {
-    this.points = []
+  constructor(points) {
+    this.points = points
     this.transformedPoints = []
     this.transform = transform
   }

@@ -12,8 +12,8 @@ const getConduction = () => {
 
 const getInput = (a,b) => {
   const points = [
-    {x: -100-b, y: 250},
-    {x: -100-a, y: 250}
+    {x: -100-a, y: 250},
+    {x: -100-b, y: 250}
   ]
   return points
 }
