@@ -36,11 +36,22 @@ class Notgate {
   }
 
   getProps() {
+    const x         = this.transform.translation.x
+    const y         = this.transform.translation.y
+    const rotation  = this.transform.rotation
+    const s         = this.transform.scale
+
+    const translate = `translate(${x}px, ${y}px)`
+    const rotate    = `rotate(${rotation}deg)`
+    const scale     = `scale(${s})`
+    
+    const transform = `${translate} ${rotate} ${scale}` 
 
     const props = {
       conduction: this.conduction.getProps(),
       input:      this.input.getProps(),
       transistor: this.transistor.getProps(),
+      transform:  transform,
     }
 
     return props

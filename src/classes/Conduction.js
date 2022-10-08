@@ -50,9 +50,11 @@ class Conduction extends Element {
 
     const props = {
       points: this.transformedPoints,
-      strokeWidth: this.width*s,
+      strokeWidth: this.width,
       signal: this.signal,
-      velocity: this.velocity*s,
+      velocity: this.velocity,
+      // velocity: this.velocity*s,
+      // strokeWidth: this.width*s,
     }
 
     return props

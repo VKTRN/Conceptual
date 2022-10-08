@@ -26,7 +26,7 @@ class Transistor extends Element {
 
   getProps() {
 
-    const strokeWidth = this.width * this.transform.scale
+    const strokeWidth = this.width
 
     const props = {
       points: this.transformedPoints,

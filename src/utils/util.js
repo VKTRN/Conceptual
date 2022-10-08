@@ -135,9 +135,9 @@ export const transformPoints = (points, transform) => {
 
   let transformedPoints = points
 
-  transformedPoints = rotatePoints(transformedPoints, rotation)
-  transformedPoints = scalePoints(transformedPoints, scale)
-  transformedPoints = translatePoints(transformedPoints, x, y)
+  // transformedPoints = rotatePoints(transformedPoints, rotation)
+  // transformedPoints = scalePoints(transformedPoints, scale)
+  // transformedPoints = translatePoints(transformedPoints, x, y)
 
   return transformedPoints
 }

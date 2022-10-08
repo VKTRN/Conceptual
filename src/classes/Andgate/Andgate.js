@@ -37,9 +37,12 @@ class Andgate {
 
   getProps() {
 
+    const transform = `scale(${this.transform.scale})`
+
     const props = {
       notgate1: this.notgate1.getProps(),
       notgate2: this.notgate2.getProps(),
+      transform: transform
     }
 
     return props
