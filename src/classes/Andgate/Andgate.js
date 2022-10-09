@@ -1,5 +1,6 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
+import {transform} from '../../constants'
 
 class Andgate {
   constructor() {
@@ -18,26 +19,42 @@ class Andgate {
 
   setSecondaries() {
 
-    const transform1 = cloneDeep(this.transform)
-    const transform2 = cloneDeep(this.transform)
-    transform2.translation.x += 500
-
-    this.notgate1.transform = transform1
+    const transform2 = cloneDeep(transform)
+    transform2.translation.y += 500
     this.notgate2.transform = transform2
     
-    this.notgate1.t0 = this.tInput1
-    this.notgate2.t0 = this.tInput2
+    this.notgate1.tInput = this.tInput1
+    this.notgate2.tInput = this.tInput2
 
-    this.notgate1.t1 = this.tInput1 + this.tConduction
+    this.notgate1.tConduction = this.tInput1 + this.tConduction
     this.notgate1.setSecondaries()
     
-    this.notgate2.t1 = this.notgate1.t1 + this.notgate1.conduction.travelTime 
+    this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
+    console.log(this.notgate1.conduction.travelTime)
     this.notgate2.setSecondaries()
+  }
+
+  getTransform() {
+
+    if (Object.keys(this.transform).length === 0) {
+      return {}
+    }
+    const x         = this.transform.translation.x
+    const y         = this.transform.translation.y
+    const rotation  = this.transform.rotation
+    const s         = this.transform.scale
+
+    const translate = `translate(${x}px, ${y}px)`
+    const rotate    = `rotate(${rotation}deg)`
+    const scale     = `scale(${s})`
+    const transform = `${translate} ${rotate} ${scale}`
+    
+    return transform
   }
 
   getProps() {
 
-    const transform = `scale(${this.transform.scale})`
+    const transform = this.getTransform()
 
     const props = {
       notgate1: this.notgate1.getProps(),

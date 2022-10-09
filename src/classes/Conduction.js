@@ -30,7 +30,7 @@ class Conduction extends Element {
   }
 
   setLength() {
-    this.length = getTotalLength(this.transformedPoints)
+    this.length = getTotalLength(this.path)
   }
 
   setTravelTime() {
@@ -39,22 +39,18 @@ class Conduction extends Element {
 
   setSecondaries() {
     this.setPath()
-    this.transformPoints()
+    // this.transformPoints()
     this.setLength()
     this.setTravelTime()
   }
 
   getProps() {
 
-    const s = this.transform.scale
-
     const props = {
-      points: this.transformedPoints,
+      points: this.path,
       strokeWidth: this.width,
       signal: this.signal,
       velocity: this.velocity,
-      // velocity: this.velocity*s,
-      // strokeWidth: this.width*s,
     }
 
     return props

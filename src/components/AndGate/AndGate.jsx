@@ -1,6 +1,6 @@
 import {NotGate}    from '../NotGate/NotGate'
 
-export const AndGate = ({notgate1, notgate2, transform}) => {
+export const AndGate = ({notgate1, notgate2, transform = {}}) => {
   return (
     <g style = {{transform: transform}}>
       <NotGate {...notgate1}/>

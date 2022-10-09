@@ -21,7 +21,7 @@ class Transistor extends Element {
   }
 
   setSecondaries() {
-    this.transformPoints()
+    // this.transformPoints()
   }
 
   getProps() {
@@ -29,7 +29,7 @@ class Transistor extends Element {
     const strokeWidth = this.width
 
     const props = {
-      points: this.transformedPoints,
+      points: this.points,
       strokeWidth: strokeWidth,
       signal: this.signal,
     }

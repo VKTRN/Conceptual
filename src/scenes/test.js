@@ -17,9 +17,9 @@ const orgate  = new Orgate()
 const norgate = new Norgate()
 
 const transform = {
-  translation : {x: 1920/2-250, y: 1080/2-250},
-  rotation : -90,
-  scale : 1,
+  translation : {x: 1920/2-500, y: 1080/2},
+  rotation : -80,
+  scale : .5,
 }
 
 notgate.transform   = transform
@@ -36,28 +36,30 @@ orgate.tInput1     = 0
 orgate.tInput2     = 20
 orgate.tConduction = 40
 
-norgate.transform   = transform
-norgate.tInput1     = 0
-norgate.tInput2     = 20
-norgate.tConduction = 60
+// norgate.transform   = transform
+// norgate.tInput1     = 0
+// norgate.tInput2     = 20
+// norgate.tConduction = 60
 
 
 notgate.setSecondaries()
 andgate.setSecondaries()
 orgate.setSecondaries()
-norgate.setSecondaries()
+// norgate.setSecondaries()
 
 const notgateProps = notgate.getProps()
 const andgateProps = andgate.getProps()
 const orgateProps  = orgate.getProps()
-const norgateProps = norgate.getProps()
+// const norgateProps = norgate.getProps()
+
+console.log(andgateProps)
 
 const Scene = () => {
   return (
     <>
-      <NotgateComp {...notgateProps} />
+      {/* <NotgateComp {...notgateProps} /> */}
       {/* <AndgateComp {...andgateProps} /> */}
-      {/* <OrgateComp {...orgateProps} /> */}
+      <OrgateComp {...orgateProps} />
       {/* <NorgateComp {...norgateProps} /> */}
     </>
   )
