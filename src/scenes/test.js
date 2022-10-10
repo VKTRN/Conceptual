@@ -13,19 +13,9 @@ import {Norgate}               from '../classes/Norgate/Norgate'
 import {NandGate as NandgateComp} from '../components/LogicGates/NandGate'
 import {Nandgate}                from '../classes/Nandgate/Nandgate'
 
-function constant(c) {
-  
-  const fn = (t) => c
-  
-  return fn 
-}
-
-function linear(c) {
-  
-  const fn = t => c*t
-  
-  return fn 
-}
+import {constant} from '../utils/functions'
+import {linear}   from '../utils/functions'
+import {sigmoid}  from '../utils/functions'
 
 const notgate  = new Notgate()
 const andgate  = new Andgate()
@@ -33,10 +23,13 @@ const orgate   = new Orgate()
 const norgate  = new Norgate()
 const nandgate = new Nandgate()
 
+const x = constant(200)
+const y = constant(400)
+
 const transform = {
-  translation : {x: 800, y: 1080/2},
-  rotation : linear(1),
-  scale : .5,
+  translation : {x: x, y: y},
+  rotation : constant(-90),
+  scale : sigmoid(.5,1.2,100,.1),
 }
 
 notgate.transform    = transform

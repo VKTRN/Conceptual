@@ -28,10 +28,10 @@ class Nandgate {
 
   setSecondaries() {
       
-      const transform1 = cloneDeep(transform)
-      transform1.translation.x += points.notgate.x
-      transform1.translation.y += points.notgate.y
-      transform1.rotation = constant(90)
+      const transform1         = cloneDeep(transform)
+      transform1.translation.x = constant(points.notgate.x)
+      transform1.translation.y = constant(points.notgate.y)
+      transform1.rotation      = constant(90)
   
       this.notgate.transform = transform1
 

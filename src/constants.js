@@ -1,6 +1,6 @@
 export const signalLength     = 5000
 export const signalVelocity   = 8
-export const durationInFrames = 450 
+export const durationInFrames = 500
 export const backgroundColor  = '#07253d'
 export const conductionWidth  = 14
 export const transistorWidth  = 22
@@ -9,8 +9,8 @@ import {constant} from './utils/functions.js'
 
 export const transform = {
   rotation: constant(0),
-  scale:    1,
-  translation: {x:0, y:0}
+  scale:    constant(1),
+  translation: {x:constant(0), y:constant(0)}
 }
 
 export const signal = {

@@ -1,6 +1,7 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
 import {transform} from '../../constants'
+import {constant} from '../../utils/functions'
 
 class Andgate {
   constructor() {
@@ -21,7 +22,7 @@ class Andgate {
   setSecondaries() {
 
     const transform2 = cloneDeep(transform)
-    transform2.translation.y += 500
+    transform2.translation.y = constant(500)
     this.notgate2.transform = transform2
     
     this.notgate1.tInput = this.tInput1

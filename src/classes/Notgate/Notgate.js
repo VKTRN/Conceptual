@@ -52,7 +52,7 @@ class Notgate {
 
   getProps() {
     
-    const transform = this.getTransform()
+    // const transform = this.getTransform()
 
     const props = {
       conduction: this.conduction.getProps(),

@@ -4,6 +4,7 @@ import {Orgate} from '../Orgate/Orgate'
 import {Conduction} from '../Conduction.js'
 // import {points} from './points'
 import {transform}  from '../../constants'
+import {constant} from '../../utils/functions'
 
 const points = {
   notgate: {x: 250, y: 1700},
@@ -29,7 +30,7 @@ class Norgate {
       const transform1 = cloneDeep(transform)
       transform1.translation.x += points.notgate.x
       transform1.translation.y += points.notgate.y
-      transform1.rotation +=90
+      transform1.rotation = constant(90)
   
       this.notgate.transform = transform1
 
