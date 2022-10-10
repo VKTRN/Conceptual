@@ -58,7 +58,7 @@ class Notgate {
       conduction: this.conduction.getProps(),
       input:      this.input.getProps(),
       transistor: this.transistor.getProps(),
-      transform:  transform,
+      transform:  this.transform,
     }
 
     return props

@@ -75,8 +75,6 @@ class Orgate {
 
   getProps() {
 
-    const transform = this.getTransform()
-
     const props = {
       notgate1: this.notgate1.getProps(),
       notgate2: this.notgate2.getProps(),
@@ -84,7 +82,7 @@ class Orgate {
       conduction2: this.conduction2.getProps(),
       conduction3: this.conduction3.getProps(),
       conduction4: this.conduction4.getProps(),
-      transform,
+      transform: this.transform,
     }
 
     return props

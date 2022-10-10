@@ -5,8 +5,10 @@ export const backgroundColor  = '#07253d'
 export const conductionWidth  = 14
 export const transistorWidth  = 22
 
+import {constant} from './utils/functions.js'
+
 export const transform = {
-  rotation: 0,
+  rotation: constant(0),
   scale:    1,
   translation: {x:0, y:0}
 }

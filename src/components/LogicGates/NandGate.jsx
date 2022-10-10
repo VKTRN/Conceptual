@@ -1,11 +1,13 @@
-import {NotGate}    from './NotGate'
-import {AndGate}     from './AndGate'
+import {NotGate}   from './NotGate'
+import {AndGate}   from './AndGate'
+import {Transform} from '../Transform'
 
 export const NandGate = ({notgate, andgate, transform}) => {
   return (
-    <g style = {{transform: transform}}>
+    <Transform transform = {transform}>
       <NotGate {...notgate}/>
       <AndGate {...andgate}/>
-    </g>
+    </Transform>
+    
   )
-}
+}    

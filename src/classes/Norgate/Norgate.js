@@ -66,13 +66,12 @@ class Norgate {
 
   getProps() {
 
-    const transform = this.getTransform()
+    // const transform = this.getTransform()
 
     return {
-      transform: this.transform,
       notgate: this.notgate.getProps(),
       orgate: this.orgate.getProps(),
-      transform
+      transform: this.transform
     }
   }
 }

@@ -31,7 +31,6 @@ class Andgate {
     this.notgate1.setSecondaries()
     
     this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
-    console.log(this.notgate1.conduction.travelTime)
     this.notgate2.setSecondaries()
 
     this.travelTime = this.notgate1.conduction.travelTime + this.notgate2.conduction.travelTime
@@ -57,12 +56,12 @@ class Andgate {
 
   getProps() {
 
-    const transform = this.getTransform()
+    // const transform = this.getTransform()
 
     const props = {
       notgate1: this.notgate1.getProps(),
       notgate2: this.notgate2.getProps(),
-      transform: transform
+      transform: this.transform
     }
 
     return props

@@ -13,6 +13,19 @@ import {Norgate}               from '../classes/Norgate/Norgate'
 import {NandGate as NandgateComp} from '../components/LogicGates/NandGate'
 import {Nandgate}                from '../classes/Nandgate/Nandgate'
 
+function constant(c) {
+  
+  const fn = (t) => c
+  
+  return fn 
+}
+
+function linear(c) {
+  
+  const fn = t => c*t
+  
+  return fn 
+}
 
 const notgate  = new Notgate()
 const andgate  = new Andgate()
@@ -21,29 +34,29 @@ const norgate  = new Norgate()
 const nandgate = new Nandgate()
 
 const transform = {
-  translation : {x: 200, y: 1080/2},
-  rotation : -90,
-  scale : .75,
+  translation : {x: 800, y: 1080/2},
+  rotation : linear(1),
+  scale : .5,
 }
 
-notgate.transform   = transform
-notgate.t0          = 10
-notgate.t1          = 40
+notgate.transform    = transform
+notgate.t0           = 10
+notgate.t1           = 40
 
-andgate.transform   = transform
-andgate.tInput1     = 10
-andgate.tInput2     = 20
-andgate.tConduction = 40
+andgate.transform    = transform
+andgate.tInput1      = 10
+andgate.tInput2      = 20
+andgate.tConduction  = 40
 
-orgate.transform   = transform
-orgate.tInput1     = 0
-orgate.tInput2     = 20
-orgate.tConduction = 40
+orgate.transform     = transform
+orgate.tInput1       = 0
+orgate.tInput2       = 20
+orgate.tConduction   = 40
 
-norgate.transform   = transform
-norgate.tInput1     = 0
-norgate.tInput2     = 20
-norgate.tConduction = 60
+norgate.transform    = transform
+norgate.tInput1      = 0
+norgate.tInput2      = 20
+norgate.tConduction  = 60
 
 nandgate.transform   = transform
 nandgate.tInput1     = 0
@@ -56,10 +69,10 @@ orgate.setSecondaries()
 norgate.setSecondaries()
 nandgate.setSecondaries()
 
-const notgateProps = notgate.getProps()
-const andgateProps = andgate.getProps()
-const orgateProps  = orgate.getProps()
-const norgateProps = norgate.getProps()
+const notgateProps  = notgate.getProps()
+const andgateProps  = andgate.getProps()
+const orgateProps   = orgate.getProps()
+const norgateProps  = norgate.getProps()
 const nandgateProps = nandgate.getProps()
 
 console.log(nandgateProps)
