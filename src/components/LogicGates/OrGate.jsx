@@ -1,5 +1,5 @@
 import {Connection} from '../Connection'
-import {NotGate}    from '../NotGate/NotGate'
+import {NotGate}    from '../LogicGates/NotGate'
 
 export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate1, notgate2, transform = {}}) => {
 

@@ -1,19 +1,19 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
-import {Orgate} from '../Orgate/Orgate'
+import {Andgate} from '../Andgate/Andgate'
 import {Conduction} from '../Conduction.js'
 // import {points} from './points'
 import {transform}  from '../../constants'
 
 const points = {
-  notgate: {x: 250, y: 1700},
+  notgate: {x: 250, y: 1200},
 }
 
-class Norgate {
+class Nandgate {
   constructor() {
     this.transform  = {}
     this.notgate    = new Notgate()
-    this.orgate     = new Orgate()
+    this.andgate     = new Andgate()
 
     this.tInput1     = 0
     this.tInput2     = 0
@@ -33,13 +33,13 @@ class Norgate {
   
       this.notgate.transform = transform1
 
-      this.notgate.tInput     = this.tInput1
-      this.orgate.tConduction = this.tConduction
-      this.orgate.tInput1     = this.tInput1
-      this.orgate.tInput2     = this.tInput2
-      this.orgate.setSecondaries()
+      this.notgate.tConduction = this.tInput1
+      this.andgate.tConduction = this.tConduction
+      this.andgate.tInput1     = this.tInput1
+      this.andgate.tInput2     = this.tInput2
+      this.andgate.setSecondaries()
 
-      const travelTime         = this.orgate.conduction1.travelTime + this.orgate.conduction3.travelTime + this.orgate.notgate1.conduction.travelTime
+      const travelTime         = this.andgate.travelTime
       this.notgate.tInput      = this.tConduction + travelTime
       this.notgate.tConduction = this.notgate.tInput + 40
 
@@ -69,12 +69,11 @@ class Norgate {
     const transform = this.getTransform()
 
     return {
-      transform: this.transform,
       notgate: this.notgate.getProps(),
-      orgate: this.orgate.getProps(),
+      andgate: this.andgate.getProps(),
       transform
     }
   }
 }
 
-export {Norgate}
+export {Nandgate}

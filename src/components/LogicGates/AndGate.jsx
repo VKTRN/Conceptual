@@ -1,4 +1,4 @@
-import {NotGate}    from '../NotGate/NotGate'
+import {NotGate} from '../LogicGates/NotGate'
 
 export const AndGate = ({notgate1, notgate2, transform = {}}) => {
   return (

@@ -10,6 +10,7 @@ class Andgate {
     this.tInput1     = 0
     this.tInput2     = 0
     this.tConduction = 0
+    this.travelTime  = 0
   }
 
   setColor(color){
@@ -32,6 +33,8 @@ class Andgate {
     this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
     console.log(this.notgate1.conduction.travelTime)
     this.notgate2.setSecondaries()
+
+    this.travelTime = this.notgate1.conduction.travelTime + this.notgate2.conduction.travelTime
   }
 
   getTransform() {
