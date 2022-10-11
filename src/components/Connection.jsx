@@ -6,6 +6,10 @@ import {signalVelocity}  from '../constants';
 import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
 
+// const style = {
+// 	filter: 'drop-shadow(0px 0px 7px rgb(0 0 0 / 0.4))',
+// }
+
 export const Connection = ({points, color='black', signal, strokeWidth, velocity, stop=100000}) => {
 
 	const t   = Math.min(useCurrentFrame(), stop)

@@ -1,7 +1,7 @@
 export const signalLength     = 5000
 export const signalVelocity   = 8
-export const durationInFrames = 500
-export const backgroundColor  = '#07253d'
+export const durationInFrames = 150
+export const backgroundColor  = {backgroundImage: 'radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% )'  }
 export const conductionWidth  = 14
 export const transistorWidth  = 22
 

@@ -1,11 +1,11 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
 import {Andgate} from '../Andgate/Andgate'
-import {Conduction} from '../Conduction.js'
+import {Conduction} from '../../Conduction.js'
 // import {points} from './points'
-import {transform}  from '../../constants'
+import {transform}  from '../../../constants'
 
-import {constant} from '../../utils/functions'
+import {constant} from '../../../utils/functions'
 
 const points = {
   notgate: {x: 250, y: 1200},
@@ -13,8 +13,8 @@ const points = {
 
 class Nandgate {
   constructor() {
-    this.transform  = {}
-    this.notgate    = new Notgate()
+    this.transform   = {}
+    this.notgate     = new Notgate()
     this.andgate     = new Andgate()
 
     this.tInput1     = 0

@@ -1,7 +1,7 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
-import {transform} from '../../constants'
-import {constant} from '../../utils/functions'
+import {transform} from '../../../constants'
+import {constant} from '../../../utils/functions'
 
 class Andgate {
   constructor() {

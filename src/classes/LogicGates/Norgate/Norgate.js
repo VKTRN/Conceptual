@@ -1,10 +1,9 @@
 import {cloneDeep} from 'lodash'
 import {Notgate} from '../Notgate/Notgate'
 import {Orgate} from '../Orgate/Orgate'
-import {Conduction} from '../Conduction.js'
-// import {points} from './points'
-import {transform}  from '../../constants'
-import {constant} from '../../utils/functions'
+import {Conduction} from '../../Conduction.js'
+import {transform}  from '../../../constants'
+import {constant} from '../../../utils/functions'
 
 const points = {
   notgate: {x: 250, y: 1700},

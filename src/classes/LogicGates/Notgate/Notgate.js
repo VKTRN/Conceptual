@@ -1,7 +1,7 @@
 import {Element}         from '../Element.js'
 import {getPoints}       from './points'
-import {Conduction}      from '../Conduction.js'
-import {Transistor}      from '../Transistor.js'
+import {Conduction}      from '../../Conduction.js'
+import {Transistor}      from '../../Transistor.js'
 
 const points = getPoints(100, 11)
 

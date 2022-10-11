@@ -1,8 +1,8 @@
 import {cloneDeep}  from 'lodash'
 import {Notgate}    from '../Notgate/Notgate'
-import {Conduction} from '../Conduction.js'
+import {Conduction} from '../../Conduction.js'
 import {points}     from './points'
-import {transform}  from '../../constants'
+import {transform}  from '../../../constants'
 
 class Orgate {
   constructor() {

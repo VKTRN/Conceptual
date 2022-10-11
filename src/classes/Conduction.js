@@ -39,7 +39,6 @@ class Conduction extends Element {
 
   setSecondaries() {
     this.setPath()
-    // this.transformPoints()
     this.setLength()
     this.setTravelTime()
   }

@@ -1,17 +1,17 @@
 import {NotGate as NotgateComp} from '../components/LogicGates/NotGate'
-import {Notgate}                from '../classes/Notgate/Notgate'
+import {Notgate}                from '../classes/LogicGates/Notgate/Notgate'
 
 import {AndGate as AndgateComp} from '../components/LogicGates/AndGate'
-import {Andgate}                from '../classes/Andgate/Andgate'
+import {Andgate}                from '../classes/LogicGates/Andgate/Andgate'
 
 import {OrGate as OrgateComp} from '../components/LogicGates/OrGate'
-import {Orgate}               from '../classes/Orgate/Orgate'
+import {Orgate}               from '../classes/LogicGates/Orgate/Orgate'
 
 import {NorGate as NorgateComp} from '../components/LogicGates/NorGate'
-import {Norgate}               from '../classes/Norgate/Norgate'
+import {Norgate}               from '../classes/LogicGates/Norgate/Norgate'
 
 import {NandGate as NandgateComp} from '../components/LogicGates/NandGate'
-import {Nandgate}                from '../classes/Nandgate/Nandgate'
+import {Nandgate}                from '../classes/LogicGates/Nandgate/Nandgate'
 
 import {constant} from '../utils/functions'
 import {linear}   from '../utils/functions'
@@ -29,7 +29,8 @@ const y = constant(400)
 const transform = {
   translation : {x: x, y: y},
   rotation : constant(-90),
-  scale : sigmoid(.5,1.2,100,.1),
+  // scale : sigmoid(.5,1.2,100,.1),
+  scale : constant(1),
 }
 
 notgate.transform    = transform

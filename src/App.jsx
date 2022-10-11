@@ -7,7 +7,7 @@ import {Scene}           from './scenes/test'
 export const App = () => {
   
   return (
-    <AbsoluteFill style={{backgroundColor: backgroundColor}}>
+    <AbsoluteFill style={{...backgroundColor}}>
       <Sequence from={0}>
         <Screen>
           <Scene/>
