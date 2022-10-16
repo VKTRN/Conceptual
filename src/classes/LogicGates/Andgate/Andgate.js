@@ -20,7 +20,6 @@ class Andgate {
   }
 
   setSecondaries() {
-
     const transform2 = cloneDeep(transform)
     transform2.translation.y = constant(500)
     this.notgate2.transform = transform2

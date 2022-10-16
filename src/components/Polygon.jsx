@@ -1,7 +1,7 @@
 import {useCurrentFrame} from 'remotion';
 
 const style = {
-	filter: 'drop-shadow(6px 6px 7px rgb(0 0 0 / 0.4))',
+	filter: 'drop-shadow(0px 0px 4px rgb(0 0 0 / .9))',
 	strokeLinejoin: 'round'
 }
 

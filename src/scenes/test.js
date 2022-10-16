@@ -17,20 +17,22 @@ import {constant} from '../utils/functions'
 import {linear}   from '../utils/functions'
 import {sigmoid}  from '../utils/functions'
 
+import {cloneDeep} from 'lodash'
+
 const notgate  = new Notgate()
 const andgate  = new Andgate()
 const orgate   = new Orgate()
 const norgate  = new Norgate()
 const nandgate = new Nandgate()
 
-const x = constant(200)
+const x = constant(400)
 const y = constant(400)
 
 const transform = {
   translation : {x: x, y: y},
   rotation : constant(-90),
   // scale : sigmoid(.5,1.2,100,.1),
-  scale : constant(1),
+  scale : constant(2),
 }
 
 notgate.transform    = transform
@@ -68,17 +70,22 @@ const andgateProps  = andgate.getProps()
 const orgateProps   = orgate.getProps()
 const norgateProps  = norgate.getProps()
 const nandgateProps = nandgate.getProps()
-
-console.log(nandgateProps)
+const andgateProps2 = cloneDeep(andgateProps)
+// andgateProps.transform.translation.x = linear(2)
+// andgateProps2.transform.translation.x = linear(1)
+// andgateProps2.transform.translation.y = constant(500)
 
 const Scene = () => {
   return (
     <>
-      {/* <NotgateComp {...notgateProps} /> */}
+      <NotgateComp {...notgateProps} />
+      
+
       {/* <AndgateComp {...andgateProps} /> */}
+      {/* <AndgateComp {...andgateProps2} /> */}
       {/* <OrgateComp {...orgateProps} /> */}
       {/* <NorgateComp {...norgateProps} /> */}
-      <NandgateComp {...nandgateProps} />
+      {/* <NandgateComp {...nandgateProps} /> */}
     </>
   )
 }

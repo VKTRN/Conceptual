@@ -3,6 +3,7 @@ import {Notgate}    from '../Notgate/Notgate'
 import {Conduction} from '../../Conduction.js'
 import {points}     from './points'
 import {transform}  from '../../../constants'
+import {constant}   from '../../../utils/functions'
 
 class Orgate {
   constructor() {
@@ -27,11 +28,11 @@ class Orgate {
 
     const transform1 = cloneDeep(transform)
     const transform2 = cloneDeep(transform)
-    transform1.translation.x += points.notgate1.x
-    transform1.translation.y += points.notgate1.y
+    transform1.translation.x = constant(points.notgate1.x)
+    transform1.translation.y = constant(points.notgate1.y)
 
-    transform2.translation.x += points.notgate2.x
-    transform2.translation.y += points.notgate2.y
+    transform2.translation.x = constant(points.notgate2.x)
+    transform2.translation.y = constant(points.notgate2.y)
 
     this.notgate1.transform    = transform1
     this.notgate2.transform    = transform2

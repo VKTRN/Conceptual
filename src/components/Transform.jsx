@@ -2,7 +2,6 @@ import {useCurrentFrame} from 'remotion'
 
 function getTransform(transform, t) {
 
-  console.log(typeof transform.translation?.y)
 
   if (Object.keys(transform).length === 0) {
     return {}
@@ -21,13 +20,18 @@ function getTransform(transform, t) {
   return transformString
 }
 
-export const Transform = ({children, transform = {}}) => {
+export const Transform = ({children, id, transform = {}}) => {
 
   const t = useCurrentFrame()
   const transformString = getTransform(transform, t)
 
+  const style = {
+    transform: transformString,
+
+  }
+
   return (
-    <g style = {{transform: transformString}}>
+    <g style = {style}>
       {...children}
     </g>
   )

@@ -11,7 +11,7 @@ class Notgate extends Polygon{
     super(points)
     this.signal = {}
     this.transform = {}
-    this.width = 20
+    this.width = 10
   }
 
 

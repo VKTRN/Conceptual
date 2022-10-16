@@ -1,9 +1,13 @@
 export const signalLength     = 5000
 export const signalVelocity   = 8
-export const durationInFrames = 150
-export const backgroundColor  = {backgroundImage: 'radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% )'  }
+export const durationInFrames = 350
+const gradient1               = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
+const gradient2               = 'linear-gradient(30deg, #09203f 0%, #537895 100%)'
+export const backgroundColor  = {backgroundImage: gradient2}
 export const conductionWidth  = 14
 export const transistorWidth  = 22
+
+
 
 import {constant} from './utils/functions.js'
 

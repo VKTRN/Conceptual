@@ -2,17 +2,18 @@ import {Element}         from '../Element.js'
 import {getPoints}       from './points'
 import {Conduction}      from '../../Conduction.js'
 import {Transistor}      from '../../Transistor.js'
+import {addTransforms}   from '../../../utils/util'
 
 const points = getPoints(100, 11)
 
 class Notgate {
   constructor() {
-    this.transform   = {}
-    this.conduction  = new Conduction(points.conduction)
-    this.input       = new Conduction(points.input)
-    this.transistor  = new Transistor(points.transistor)
-    this.tInput      = 0
-    this.tConduction = 0
+    this.transform       = {}
+    this.conduction      = new Conduction(points.conduction)
+    this.input           = new Conduction(points.input)
+    this.transistor      = new Transistor(points.transistor)
+    this.tInput          = 0
+    this.tConduction     = 0
   }
 
   setColor(color) {

@@ -260,3 +260,15 @@ export const make = (config, defaultConfig, makeProps) => {
 export const getTravelTime = (length, velocity) => {
   return length/velocity
 }
+
+export const addTransforms = (transformA, transformB) => {
+  const {rotation: rotationA, scale: scaleA, translation: translationA} = transformA
+  const {rotation: rotationB, scale: scaleB, translation: translationB} = transformB
+  const rotation = rotationA + rotationB
+  const scale = scaleA * scaleB
+  const translation = {
+    x: translationA.x + translationB.x,
+    y: translationA.y + translationB.y
+  }
+  return {rotation, scale, translation}
+}
