@@ -5,13 +5,12 @@ import {Polygon}    from '../Polygon'
 import {Circle}     from '../Circle'
 import {Text}       from '../Text'
 
-export const Notgate = ({points, strokeWidth, signal, circle, text, transform = {}}) => {
+export const Andgate = ({points, strokeWidth, signal, text, transform = {}}) => {
 
   return (
-    <g id = 'notgate'>
+    <g id = 'andgate'>
       <Transform transform={transform}>
         <Polygon points = {points} strokeWidth = {strokeWidth} signal = {signal}/>
-        <Circle {...circle}/>
         <Text {...text}/>
       </Transform>
     </g>

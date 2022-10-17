@@ -1,15 +1,34 @@
+import {constant} from './utils/functions.js'
+
+
 export const signalLength     = 5000
 export const signalVelocity   = 8
 export const durationInFrames = 350
 const gradient1               = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 const gradient2               = 'linear-gradient(30deg, #09203f 0%, #537895 100%)'
-export const backgroundColor  = {backgroundImage: gradient2}
+const gradient3 = {
+  backgroundColor: '#4158D0',
+  backgroundImage: 'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)'
+
+}
+
+const gradient4 = {
+  backgroundColor: '#8BC6EC',
+  backgroundImage: 'linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%)',
+}
+
+const gradient5 = {
+  backgroundImage: 'linear-gradient(135deg, #313454 10%, #41294f 100%)',
+}
+
+const gradient6 = {
+  backgroundImage: 'linear-gradient(135deg, #6b0505 10%, #3b3232 100%)',
+}
+
+export const backgroundColor  = gradient6
 export const conductionWidth  = 14
 export const transistorWidth  = 22
 
-
-
-import {constant} from './utils/functions.js'
 
 export const transform = {
   rotation: constant(0),

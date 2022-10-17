@@ -5,26 +5,27 @@ import {yellowStep} from '../../utils/util'
 
 const points = [
   {x: 0, y: 0},
-  {x: 0, y: 100},
-  {x: 100, y: 50},
+  {x: 80, y: 0},
+  {x: 90, y: 10},
+  {x: 90, y: 60},
+  {x: 80, y: 70},
+  {x: 0, y: 70},
+
 ]
 
-class Notgate extends Polygon{
+class Andgate extends Polygon{
   constructor() {
     super(points)
     this.transform = {}
     this.width     = 6
-    this.circle    = new Circle({x: 110, y: 50}, 7)
-    this.text      = new Text({x: 10, y: 52}, 'NOT')
+    this.text      = new Text({x: 10, y: 37}, 'AND')
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
   }
 
   setSecondaries() {
-    this.circle.setSecondaries()
     this.text.signal = this.signal
-    this.circle.signal = this.signal
   }
 
 
@@ -35,14 +36,11 @@ class Notgate extends Polygon{
       strokeWidth: this.width,
       signal: this.signal,
       transform: this.transform,
-      circle: this.circle.getProps(),
       text: this.text.getProps(),
     } 
-
-    console.log(props)
 
     return props
   }
 }
 
-export {Notgate}
+export {Andgate}

@@ -1,13 +1,14 @@
 import {useCurrentFrame} from 'remotion';
 
 const style = {
-	filter: 'drop-shadow(0px 0px 4px rgb(0 0 0 / .9))',
 	strokeLinejoin: 'round'
 }
 
-export const Polygon = ({points, color='yellow', signal, strokeWidth}) => {
+export const Polygon = ({points, signal, strokeWidth}) => {
 
 	const t = useCurrentFrame()
+	const t0 = signal.t0
+	const color = signal.color(t, t0)
 
 	return(
 		<>

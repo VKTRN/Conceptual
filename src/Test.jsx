@@ -5,6 +5,10 @@ const style = {
 
 }
 
+const whiteFilter = {
+ filter: 'brightness(0) invert(1)'
+}
+
 export const Test = () => {
 
   useEffect(() => {
@@ -15,16 +19,40 @@ export const Test = () => {
 
   return (
     <g style = {style}>
-      <clipPath id = 'mask'>
-        {/* <rect id = 'group' fill = 'coral' x="400" y="400" width="30" height="30"/> */}
-        <g id = 'group'>
-          <rect fill = 'white' x="415" y="415" width="30" height="30"/>
-        </g>      
-        {/* <use href="#group"/> */}
-      </clipPath>
-      <rect id = 'screen' x="0" y="0" width="100%" height="100%" fill = 'white' clipPath = 'url(#mask)'  />
+      {/* <defs> */}
+        <g>
+          <rect id = 'r1' fill = 'red' x="415" y="415" width="30" height="30"/>
+          <rect id = 'r2' fill = 'white' x="430" y="430" width="30" height="30"/>
+          <line id = 'l1' x1="415" y1="415" x2="600" y2="600" strokeWidth="20"/>
+          <g>
+            <rect id = 'r3' fill = 'white' x="445" y="445" width="30" height="30"/>
+          </g>
+        </g>
+      {/* </defs> */}
 
-      <use clipPath = 'url(#mask)' href = '#screen'/>
+      <g style = {whiteFilter}>
+        <rect x="800px" y="200px" width="200px" height="200px"  fill = 'coral'/>
+        <rect x="900px" y="300px" width="200px" height="200px"  fill = 'coral'/>
+        <g>
+          <rect x="1000px" y="400px" width="200px" height="200px"  fill = 'coral'/>
+        </g>
+      </g>
+
+
+        <use href = '#r1' x = '1000px' style = {whiteFilter}/>
+      <mask id = 'mask'>
+        <use href = '#r2' />
+        <use href = '#r3' />
+        <g fill = 'white'>
+          <use href = '#l1' stroke = 'white' />
+        </g>
+      </mask>
+
+      
+
+      <rect id = 'screen' x="0" y="0" width="100%" height="100%" fill = 'white' mask = 'url(#mask)'  />
+
     </g>
   )
 }
+

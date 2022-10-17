@@ -20,7 +20,7 @@ function getTransform(transform, t) {
   return transformString
 }
 
-export const Transform = ({children, id, transform = {}}) => {
+export const Transform = ({children, transform = {}}) => {
 
   const t = useCurrentFrame()
   const transformString = getTransform(transform, t)

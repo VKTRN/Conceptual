@@ -7,6 +7,7 @@ import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
 import {useEffect} from 'react'
 import {useRef} from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 // const style = {
 // 	filter: 'drop-shadow(0px 0px 7px rgb(0 0 0 / 0.4))',
@@ -23,6 +24,8 @@ const lightStyle = {
 const connectionStyle = {
 	// filter: 'drop-shadow(0px 0px 7px rgb(0 0 0 / 0.4))',
 }
+
+
 
 export const Connection = ({points, color='black', signal, strokeWidth, velocity, stop=100000}) => {
 
@@ -69,10 +72,8 @@ export const Connection = ({points, color='black', signal, strokeWidth, velocity
 
 	return(
 		<>
-		 <polyline ref = {ref} className = 'connection'  points={getPolyline(points)}       fill='none'    stroke={color}        strokeWidth={strokeWidth} style = {connectionStyle}/>
-		 {/* <polyline points={getPolyline(points)}       fill='none'    stroke={color}        strokeWidth={strokeWidth} /> */}
-		 <polyline id = 'signal' points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
-		 {/* <polyline points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} style = {lightStyle}/> */}
+		 <polyline   points={getPolyline(points)} fill='none' stroke={color} strokeWidth={strokeWidth}/>
+		 <polyline  id = 'signal' points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
 		</> 
 	)
 }
