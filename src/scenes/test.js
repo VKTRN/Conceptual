@@ -19,6 +19,7 @@ import {sigmoid}   from '../utils/functions'
 import {cloneDeep} from 'lodash'
 
 import {DropShadow} from '../components/DropShadow'
+import {Glow} from '../components/Glow'
 
 const notgate  = new Notgate()
 const andgate  = new Andgate()
@@ -33,7 +34,7 @@ const transform = {
   translation : {x: x, y: y},
   rotation : constant(-90),
   // scale : sigmoid(.5,1.2,100,.1),
-  scale : constant(1.5),
+  scale : constant(1),
 }
 
 notgate.transform    = transform
@@ -79,12 +80,13 @@ const andgateProps2 = cloneDeep(andgateProps)
 const Scene = () => {
   return (
     <>
-      <DropShadow id = 'andgate'/>
+      <Glow       id = 'orgate'/>
+      {/* <DropShadow id = 'andgate'/> */}
       {/* <NotgateComp {...notgateProps} /> */}
 
-      <AndgateComp {...andgateProps} />
+      {/* <AndgateComp {...andgateProps} /> */}
       {/* <AndgateComp {...andgateProps2} /> */}
-      {/* <OrgateComp {...orgateProps} /> */}
+      <OrgateComp {...orgateProps} />
       {/* <NorgateComp {...norgateProps} /> */}
       {/* <NandgateComp {...nandgateProps} /> */}
     </>

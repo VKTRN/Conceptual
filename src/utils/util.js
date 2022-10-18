@@ -272,3 +272,43 @@ export const addTransforms = (transformA, transformB) => {
   }
   return {rotation, scale, translation}
 }
+
+export function getMiddlePoint(p1, p2){
+  return {x: (p1.x + p2.x)/2, y: (p1.y + p2.y)/2}
+} 
+
+export function getArc(position, radius, startAngle, endAngle, anticlockwise){
+  const start = startAngle
+  const end   = endAngle
+  const phis  = anticlockwise? linspace(start, end, 30) : linspace(end, start, 30)  
+
+  const points = phis.map(phi => {
+    const x = position.x + radius * Math.cos(phi)
+    const y = position.y + radius * Math.sin(phi)
+    return {x,y}
+  })
+
+  return points
+}
+
+export function makeArc(p1, p2, distance, flip){
+  const middle = getMiddlePoint(p1, p2)
+  const v      = getVector(p1, p2)
+  const d      = getLength(v)
+  const nv     = getUnitVector(v)
+  const t      = getOrthogonalUnitVector(nv, flip? -1 : 1)
+  const C      = getPointOnLine(middle, t, distance)
+  const vr     = getVector(C, p1)
+  const r      = getLength(vr) 
+  const beta   = 2*Math.asin(d/(2*r))
+  const beta0  = Math.atan2(vr.y, vr.x)
+  const angles = flip? linspace(beta0, beta0 + beta, 30) : linspace(beta0, beta0 - beta, 30)
+  
+  const points = angles.map(angle => {
+    const x = C.x + r * Math.cos(angle)
+    const y = C.y + r * Math.sin(angle)
+    return {x,y}
+  })
+
+  return points
+}

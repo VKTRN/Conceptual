@@ -2,15 +2,20 @@ import {Polygon} from '../Polygon.js'
 import {Circle}  from '../Circle.js'
 import {Text}    from '../Text.js'
 import {yellowStep} from '../../utils/util'
+import {getArc} from '../../utils/util'
+
+const a = 60
+const b = 70
+
+const arc = getArc( {x: a, y: b/2}, b/2, Math.PI/2, -Math.PI/2, false)
+
 
 const points = [
   {x: 0, y: 0},
-  {x: 80, y: 0},
-  {x: 90, y: 10},
-  {x: 90, y: 60},
-  {x: 80, y: 70},
-  {x: 0, y: 70},
-
+  {x: a, y: 0},
+  ...arc,
+  {x: a, y: b},
+  {x: 0, y: b},
 ]
 
 class Andgate extends Polygon{
@@ -18,7 +23,8 @@ class Andgate extends Polygon{
     super(points)
     this.transform = {}
     this.width     = 6
-    this.text      = new Text({x: 10, y: 37}, 'AND')
+    this.fill      = '#355073'
+    this.text      = new Text({x: 15, y: b/2+2}, 'AND')
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
@@ -36,6 +42,7 @@ class Andgate extends Polygon{
       strokeWidth: this.width,
       signal: this.signal,
       transform: this.transform,
+      fill: this.fill,
       text: this.text.getProps(),
     } 
 
@@ -44,3 +51,6 @@ class Andgate extends Polygon{
 }
 
 export {Andgate}
+
+
+

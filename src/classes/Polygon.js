@@ -10,6 +10,7 @@ class Polygon extends Element {
   constructor(points) {
     super(points)
     this.color    = yellowStep
+    this.fill     = 'none'
     this.t0       = 0
     this.signal   = {t0: this.t0, color: this.color}
     this.width    = 20
@@ -31,6 +32,7 @@ class Polygon extends Element {
       points: this.points,
       strokeWidth: strokeWidth,
       signal: this.signal,
+      fill: this.fill,
     }
 
     return props

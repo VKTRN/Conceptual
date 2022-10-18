@@ -11,6 +11,7 @@ const style = {
 export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate1, notgate2, transform = {}}) => {
 
   return (
+    <g id = 'orgate'>
       <Transform transform={transform}>
         <Connection {...conduction1}/>
         <Connection {...conduction2}/>
@@ -20,5 +21,6 @@ export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate
         <NotGate {...notgate2}/>
         <LightLayer/>
       </Transform>
+    </g>
   )
 }

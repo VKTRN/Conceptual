@@ -2,30 +2,41 @@ import {Polygon} from '../Polygon.js'
 import {Circle}  from '../Circle.js'
 import {Text}    from '../Text.js'
 import {yellowStep} from '../../utils/util'
+import {makeArc} from '../../utils/util'
+
+const a = 90
+const b = 70
+const c = 100
+
+const p1 = {x: 0, y: 0}
+const pc = {x: a, y: b/2}
+const p2 = {x: 0, y: b}
+
+const arc1 = makeArc(p1, pc, c, true)
+const arc2 = makeArc(pc, p2, c, true)
+const arc3 = makeArc(p2, p1, c, false)
+
 
 const points = [
-  {x: 0, y: 0},
-  {x: 0, y: 100},
-  {x: 100, y: 50},
+  ...arc1,
+  ...arc2,
+  ...arc3,
 ]
 
-class Notgate extends Polygon{
+class Orgate extends Polygon{
   constructor() {
     super(points)
     this.transform = {}
     this.width     = 6
-    this.fill      = '#733535'
-    this.circle    = new Circle({x: 108, y: 50}, 7)
-    this.text      = new Text({x: 10, y: 52}, 'NOT')
+    this.fill      = '#3a7335'
+    this.text      = new Text({x: 15, y: b/2+2}, 'OR')
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
   }
 
   setSecondaries() {
-    this.circle.setSecondaries()
     this.text.signal = this.signal
-    this.circle.signal = this.signal
   }
 
 
@@ -37,14 +48,14 @@ class Notgate extends Polygon{
       signal: this.signal,
       transform: this.transform,
       fill: this.fill,
-      circle: this.circle.getProps(),
       text: this.text.getProps(),
     } 
-
-    console.log(props)
 
     return props
   }
 }
 
-export {Notgate}
+export {Orgate}
+
+
+
