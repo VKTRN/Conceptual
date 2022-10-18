@@ -6,16 +6,14 @@ import {signalVelocity}  from '../constants';
 import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
 
-export const Line = ({points, signal, strokeWidth}) => {
+export const Line = ({points, signal, strokeWidth, style}) => {
 
 	const t0 		= signal.t0
 	const t     = useCurrentFrame()
 	const color = signal.color(t, t0)
 	
 	return(
-		<>
-		 <polyline  points={getPolyline(points)} fill='none'  stroke={color} strokeWidth={strokeWidth}/>
-		</> 
+		<polyline  points={getPolyline(points)} fill='none'  stroke={color} strokeWidth={strokeWidth} style = {style}/>
 	)
 }
 

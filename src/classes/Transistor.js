@@ -14,6 +14,7 @@ class Transistor extends Element {
     this.signal   = {t0: this.t0, color: this.color}
     this.width    = transistorWidth
     this.stop     = 10000
+    this.style    = {}
   }
 
   transformPoints() {
@@ -32,6 +33,7 @@ class Transistor extends Element {
       points: this.points,
       strokeWidth: strokeWidth,
       signal: this.signal,
+      style: this.style
     }
 
     return props
