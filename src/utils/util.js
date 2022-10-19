@@ -135,12 +135,13 @@ export const transformPoints = (points, transform) => {
 
   let transformedPoints = points
 
-  // transformedPoints = rotatePoints(transformedPoints, rotation)
-  // transformedPoints = scalePoints(transformedPoints, scale)
-  // transformedPoints = translatePoints(transformedPoints, x, y)
+  transformedPoints = rotatePoints(transformedPoints, rotation)
+  transformedPoints = scalePoints(transformedPoints, scale)
+  transformedPoints = translatePoints(transformedPoints, x, y)
 
   return transformedPoints
 }
+
 
 export function isPlainObject(input) {
   return input && !Array.isArray(input) && typeof input === 'object';
@@ -311,4 +312,25 @@ export function makeArc(p1, p2, distance, flip){
   })
 
   return points
+}
+
+export const generatePointsY = (start, end, offset) => {
+	const midY = start.y + (end.y - start.y) * offset
+	const points = []
+	points.push(start)
+	points.push({x: start.x, y: midY})
+	points.push({x: end.x, y: midY})
+	points.push(end)
+	return points
+}
+
+export const generatePointsX = (start, end, offset) => {
+	const midX = start.x + (end.x - start.x) * offset
+	const points = []
+	points.push(start)
+	points.push({x: midX, y: start.y})
+	points.push({x: midX, y: end.y})
+	points.push(end)
+  
+	return points
 }

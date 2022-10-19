@@ -4,9 +4,9 @@ import {Text}    from '../Text.js'
 import {yellowStep} from '../../utils/util'
 
 const points = [
-  {x: 0, y: 0},
-  {x: 0, y: 100},
-  {x: 100, y: 50},
+  {x: 0, y: -50},
+  {x: 0, y: 50},
+  {x: 100, y: 0},
 ]
 
 class Notgate extends Polygon{
@@ -15,8 +15,9 @@ class Notgate extends Polygon{
     this.transform = {}
     this.width     = 6
     this.fill      = '#733535'
-    this.circle    = new Circle({x: 108, y: 50}, 7)
-    this.text      = new Text({x: 10, y: 52}, 'NOT')
+    this.circle    = new Circle({x: 108, y: 0}, 7)
+    this.text      = new Text({x: 10, y: 3}, 'NOT')
+    this.connectors = {input: {x: 0, y: 0}, output: {x: 100, y: 0}}
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}

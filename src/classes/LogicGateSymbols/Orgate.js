@@ -8,9 +8,9 @@ const a = 90
 const b = 70
 const c = 100
 
-const p1 = {x: 0, y: 0}
-const pc = {x: a, y: b/2}
-const p2 = {x: 0, y: b}
+const p1 = {x: 0, y: -b/2}
+const pc = {x: a, y: 0}
+const p2 = {x: 0, y: b/2}
 
 const arc1 = makeArc(p1, pc, c, true)
 const arc2 = makeArc(pc, p2, c, true)
@@ -29,7 +29,7 @@ class Orgate extends Polygon{
     this.transform = {}
     this.width     = 6
     this.fill      = '#3a7335'
-    this.text      = new Text({x: 15, y: b/2+2}, 'OR')
+    this.text      = new Text({x: 15, y: 2}, 'OR')
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}

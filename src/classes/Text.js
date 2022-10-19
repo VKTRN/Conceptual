@@ -11,6 +11,7 @@ class Text{
     this.position = position
     this.color    = 'yellow'
     this.text     = text
+    this.fontSize = 26
     this.t0       = 0
     this.signal   = {t0: this.t0, color: this.color}
     this.width    = 6
@@ -28,6 +29,7 @@ class Text{
 
     const props = {
       position: this.position,
+      fontSize: this.fontSize,
       text: this.text,
       color : this.color,
       strokeWidth: this.width,

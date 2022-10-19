@@ -2,37 +2,30 @@ import {Polygon} from '../Polygon.js'
 import {Circle}  from '../Circle.js'
 import {Text}    from '../Text.js'
 import {yellowStep} from '../../utils/util'
-import {makeArc} from '../../utils/util'
-import {Circle}  from '../Circle.js'
+import {getArc} from '../../utils/util'
 
-
-const a = 90
+const a = 60
 const b = 70
-const c = 100
 
-const p1 = {x: 0, y: -b/2}
-const pc = {x: a, y: 0}
-const p2 = {x: 0, y: b/2}
-
-const arc1 = makeArc(p1, pc, c, true)
-const arc2 = makeArc(pc, p2, c, true)
-const arc3 = makeArc(p2, p1, c, false)
+const arc = getArc( {x: a, y: 0}, b/2, Math.PI/2, -Math.PI/2, false)
 
 
 const points = [
-  ...arc1,
-  ...arc2,
-  ...arc3,
+  {x: 0, y: -b/2},
+  {x: a, y: -b/2},
+  ...arc,
+  {x: a, y: b/2},
+  {x: 0, y: b/2},
 ]
 
-class Norgate extends Polygon{
+class Nandgate extends Polygon{
   constructor() {
     super(points)
     this.transform = {}
     this.width     = 6
-    this.fill      = '#736235'
-    this.text      = new Text({x: 12, y: 2}, 'NOR')
-    this.circle    = new Circle({x: c, y: 0}, 7)
+    this.fill      = '#355073'
+    this.text      = new Text({x: 8, y: 2}, 'NAND')
+    this.circle    = new Circle({x: 1.75*a, y: 0}, 7)
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
@@ -60,7 +53,7 @@ class Norgate extends Polygon{
   }
 }
 
-export {Norgate}
+export {Nandgate}
 
 
 

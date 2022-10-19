@@ -13,14 +13,28 @@ import {Xorgate}                from '../classes/LogicGateSymbols/Xorgate'
 import {Norgate as NorgateComp} from '../components/LogicGateSymbols/Norgate'
 import {Norgate}                from '../classes/LogicGateSymbols/Norgate'
 
+import {Nandgate as NandgateComp} from '../components/LogicGateSymbols/Nandgate'
+import {Nandgate}                from '../classes/LogicGateSymbols/Nandgate'
+
+import {Xnorgate as XnorgateComp} from '../components/LogicGateSymbols/Xnorgate'
+import {Xnorgate}                from '../classes/LogicGateSymbols/Xnorgate'
+
+import {Buffer as BufferComp} from '../components/LogicGateSymbols/Buffer'
+import {Buffer}               from '../classes/LogicGateSymbols/Buffer'
 
 import {cloneDeep} from 'lodash'
 
 import {constant} from '../utils/functions'
 import {linear}   from '../utils/functions'
 import {sigmoid}  from '../utils/functions'
+import {generatePointsX} from '../utils/util'
+import {generatePointsY} from '../utils/util'
+import {transformPoints} from '../utils/util'
 import {DropShadow} from '../components/DropShadow'
 import {Glow} from '../components/Glow'
+import {Line} from '../components/Line'
+import {Connection as ConnectionComp} from '../components/Connection'
+import {Conduction} from '../classes/Conduction'
 
 
 import {yellowStep} from '../utils/util'
@@ -31,40 +45,113 @@ const andgate  = new Andgate()
 const orgate   = new Orgate()
 const xorgate  = new Xorgate()
 const norgate  = new Norgate()
-
-const x = constant(700)
-const y = constant(300)
+const nandgate = new Nandgate()
+const xnorgate = new Xnorgate()
+const buffer   = new Buffer()
 
 const signal = {
   color : yellowStep,
   t0 : 40,
 }
 
-const transform = {
-  translation : {x: x, y: y},
+const x0 = 200
+const dx = 350
+const y0 = 300
+const dy = 300
+
+const x1 = constant(x0)
+const y1 = constant(y0+dy)
+const x2 = constant(x0+dx+500)
+const y2 = constant(y0)
+const x3 = constant(x0+2*dx)
+const y3 = constant(y0)
+const x4 = constant(x0+3*dx)
+const y4 = constant(y0)
+const x5 = constant(x0+2*dx)
+const y5 = constant(y0+dy)
+const x6 = constant(x0+1*dx)
+const y6 = constant(y0+dy)
+const x7 = constant(x0+3*dx)
+const y7 = constant(y0+dy)
+const x8 = constant(x0)
+const y8 = constant(y0)
+
+const transform1 = {
+  translation : {x: x1, y: y1},
   rotation : constant(0),
-  scale : constant(3),
+  scale : constant(2),
+}
+
+const transform2 = {
+  translation : {x: x2, y: y2},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform3 = {
+  translation : {x: x3, y: y3},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform4 = {
+  translation : {x: x4, y: y4},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform5 = {
+  translation : {x: x5, y: y5},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform6 = {
+  translation : {x: x6, y: y6},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform7 = {
+  translation : {x: x7, y: y7},
+  rotation : constant(0),
+  scale : constant(2),
+}
+
+const transform8 = {
+  translation : {x: x8, y: y8},
+  rotation : constant(0),
+  scale : constant(2),
 }
 
 ////////////////////////
 
-notgate.transform = cloneDeep(transform)
-andgate.transform = cloneDeep(transform)
-orgate.transform  = cloneDeep(transform)
-xorgate.transform = cloneDeep(transform)
-norgate.transform = cloneDeep(transform)
+notgate.transform  = cloneDeep(transform1)
+andgate.transform  = cloneDeep(transform2)
+orgate.transform   = cloneDeep(transform3)
+xorgate.transform  = cloneDeep(transform4)
+norgate.transform  = cloneDeep(transform5)
+nandgate.transform = cloneDeep(transform6)
+xnorgate.transform = cloneDeep(transform7)
+buffer.transform   = cloneDeep(transform8)
 
-notgate.signal    = signal
-andgate.signal    = signal
-orgate.signal     = signal
-xorgate.signal    = signal
-norgate.signal    = signal
+notgate.signal     = signal
+andgate.signal     = signal
+orgate.signal      = signal
+xorgate.signal     = signal
+norgate.signal     = signal
+nandgate.signal    = signal
+xnorgate.signal    = signal
+buffer.signal      = signal
 
 notgate.setSecondaries()
 andgate.setSecondaries()
 orgate.setSecondaries()
 xorgate.setSecondaries()
 norgate.setSecondaries()
+nandgate.setSecondaries()
+xnorgate.setSecondaries()
+buffer.setSecondaries()
 
 
 const notgateProps1 = notgate.getProps()
@@ -72,17 +159,25 @@ const andgateProps  = andgate.getProps()
 const orgateProps   = orgate.getProps()
 const xorgateProps  = xorgate.getProps()
 const norgateProps  = norgate.getProps()
+const nandgateProps = nandgate.getProps()
+const xnorgateProps = xnorgate.getProps()
+const bufferProps   = buffer.getProps()
 
 ///////////////////////////////////////////
 
-notgateProps1.transform.translation.x = constant(1200)
-orgateProps.transform.translation.x   = constant(300)
-xorgateProps.transform.translation.y   = constant(700)
-norgateProps.transform.translation.x   = constant(1200)
-norgateProps.transform.translation.y   = constant(700)
+const p1_ = transformPoints([notgate.connectors.output], transform1)[0]
+const p2_ = transformPoints([andgate.connectors.input.a], transform2)[0]
 
-console.log(norgateProps)
-console.log(notgateProps1)
+
+
+
+const points = generatePointsX(p1_, p2_, .2)
+const conduction = new Conduction(points)
+conduction.setSecondaries()
+const conductionProps = conduction.getProps()
+
+
+///////////////////////////////////////////
 
 const Scene = () => {
   return (
@@ -92,9 +187,13 @@ const Scene = () => {
       <g id='scene'>
         <NotgateComp {...notgateProps1} />
         <AndgateComp {...andgateProps}/>
-        <OrgateComp  {...orgateProps}/>
-        <XorgateComp {...xorgateProps}/>
-        <NorgateComp {...norgateProps}/>
+        {/* <OrgateComp  {...orgateProps}/> */}
+        {/* <XorgateComp {...xorgateProps}/> */}
+        {/* <NorgateComp {...norgateProps}/> */}
+        {/* <NandgateComp {...nandgateProps}/> */}
+        {/* <XnorgateComp {...xnorgateProps}/> */}
+        {/* <BufferComp {...bufferProps}/>  */}
+        <ConnectionComp {...conductionProps}/>
       </g>
     </>
   )

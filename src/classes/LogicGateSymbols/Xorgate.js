@@ -10,11 +10,11 @@ const b = 70
 const c = 100
 const d = 12
 
-const p1 = {x: 0, y: 0}
-const pc = {x: a, y: b/2}
-const p2 = {x: 0, y: b}
-const p3 = {x: -d, y: 0}
-const p4 = {x: -d, y: b}
+const p1 = {x: 0, y: -b/2}
+const pc = {x: a, y: 0}
+const p2 = {x: 0, y: b/2}
+const p3 = {x: -d, y: -b/2}
+const p4 = {x: -d, y: b/2}
 
 
 const arc1 = makeArc(p1, pc, c, true)
@@ -34,8 +34,8 @@ class Xorgate extends Polygon{
     this.transform = {}
     this.line      = new Transistor(arc4)
     this.width     = 6
-    this.fill      = '#733572'
-    this.text      = new Text({x: 12, y: b/2+2}, 'XOR')
+    this.fill      = '#b312b0'
+    this.text      = new Text({x: 12, y: 2}, 'XOR')
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
