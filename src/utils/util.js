@@ -142,6 +142,15 @@ export const transformPoints = (points, transform) => {
   return transformedPoints
 }
 
+export const computeTransform = (transform, t) => {
+  const translation = {
+    x : transform.translation.x(t),
+    y : transform.translation.y(t),
+  }
+  const rotation = transform.rotation(t)
+  const scale = transform.scale(t)
+  return {translation, rotation, scale}
+}
 
 export function isPlainObject(input) {
   return input && !Array.isArray(input) && typeof input === 'object';

@@ -1,5 +1,5 @@
 const shadow = {
-  filter: 'drop-shadow(18px 18px 10px rgba(0,0,0,0.6))',
+  filter: 'drop-shadow(6px 6px 5px rgba(0,0,0,0.6))',
 }
 
 const shadowFilter = {

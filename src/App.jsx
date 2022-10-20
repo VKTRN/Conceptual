@@ -2,7 +2,7 @@ import {AbsoluteFill}    from 'remotion'
 import {Sequence}        from 'remotion'
 import {Screen}          from './components/Screen'
 import {backgroundColor} from './constants'
-import {Scene}           from './scenes/test2'
+import {Scene}           from './scenes/test3'
 import {Test}            from './Test'
 import './style.css'
 

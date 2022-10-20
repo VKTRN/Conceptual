@@ -1,39 +1,12 @@
 import {useCurrentFrame} from 'remotion';
-import {interpolate}     from 'remotion';
-import {Easing}          from 'remotion';
 import {signalLength}    from '../constants';
-import {signalVelocity}  from '../constants';
-import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
-import {useEffect} from 'react'
-import {useRef} from 'react'
-import { v4 as uuidv4 } from 'uuid'
-
-// const style = {
-// 	filter: 'drop-shadow(0px 0px 7px rgb(0 0 0 / 0.4))',
-// }
-
-const signalStyle = {
-	
-}
-      
+    
 const lightStyle = {
 	filter: 'blur(15px)',
 }
 
-const connectionStyle = {
-	// filter: 'drop-shadow(0px 0px 7px rgb(0 0 0 / 0.4))',
-}
-
-
-
 export const Connection = ({points, color='black', signal, strokeWidth, velocity, stop=100000}) => {
-
-	const ref = useRef(null)
-
-	useEffect(() => {
-		console.log(ref.current)
-	}, [])
 
 	const t   = Math.min(useCurrentFrame(), stop)
 

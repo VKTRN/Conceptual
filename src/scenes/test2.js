@@ -39,6 +39,16 @@ import {Conduction} from '../classes/Conduction'
 
 import {yellowStep} from '../utils/util'
 
+const computeTransform = (transform, t) => {
+  const translation = {
+    x : transform.translation.x(t),
+    y : transform.translation.y(t),
+  }
+  const rotation = transform.rotation(t)
+  const scale = transform.scale(t)
+  return {translation, rotation, scale}
+}
+
 
 const notgate  = new Notgate()
 const andgate  = new Andgate()
@@ -165,10 +175,14 @@ const bufferProps   = buffer.getProps()
 
 ///////////////////////////////////////////
 
-const p1_ = transformPoints([notgate.connectors.output], transform1)[0]
-const p2_ = transformPoints([andgate.connectors.input.a], transform2)[0]
 
 
+
+
+const p1_ = transformPoints([notgate.connectors.output], computeTransform(transform1, 0))[0]
+const p2_ = transformPoints([andgate.connectors.input.a], computeTransform(transform2, 0))[0]
+// const p1 = {x: p1_.x(0), y: p1_.y(0)}
+// const p2 = {x: p2_.x(0), y: p2_.y(0)}
 
 
 const points = generatePointsX(p1_, p2_, .2)
@@ -185,6 +199,7 @@ const Scene = () => {
       {/* <Glow       id = 'scene'/> */}
       <DropShadow id = 'scene'/>
       <g id='scene'>
+        <ConnectionComp {...conductionProps}/>
         <NotgateComp {...notgateProps1} />
         <AndgateComp {...andgateProps}/>
         {/* <OrgateComp  {...orgateProps}/> */}
@@ -193,7 +208,6 @@ const Scene = () => {
         {/* <NandgateComp {...nandgateProps}/> */}
         {/* <XnorgateComp {...xnorgateProps}/> */}
         {/* <BufferComp {...bufferProps}/>  */}
-        <ConnectionComp {...conductionProps}/>
       </g>
     </>
   )
