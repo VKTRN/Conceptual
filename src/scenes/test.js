@@ -28,13 +28,13 @@ const norgate  = new Norgate()
 const nandgate = new Nandgate()
 
 const x = constant(200)
-const y = constant(400)
+const y = constant(500)
 
 const transform = {
   translation : {x: x, y: y},
   rotation : constant(-90),
   // scale : sigmoid(.5,1.2,100,.1),
-  scale : constant(1),
+  scale : constant(1.5),
 }
 
 notgate.transform    = transform
@@ -80,15 +80,16 @@ const andgateProps2 = cloneDeep(andgateProps)
 const Scene = () => {
   return (
     <>
-      <Glow       id = 'orgate'/>
-      {/* <DropShadow id = 'andgate'/> */}
-      {/* <NotgateComp {...notgateProps} /> */}
-
-      {/* <AndgateComp {...andgateProps} /> */}
-      {/* <AndgateComp {...andgateProps2} /> */}
-      <OrgateComp {...orgateProps} />
-      {/* <NorgateComp {...norgateProps} /> */}
-      {/* <NandgateComp {...nandgateProps} /> */}
+      {/* <Glow       id = 'orgate'/> */}
+      <DropShadow id = 'scene'/>
+      <g id='scene'>
+        <NotgateComp {...notgateProps} />
+        {/* <AndgateComp {...andgateProps} /> */}
+        {/* <AndgateComp {...andgateProps2} /> */}
+        {/* <OrgateComp {...orgateProps} /> */}
+        {/* <NorgateComp {...norgateProps} /> */}
+        {/* <NandgateComp {...nandgateProps} /> */}
+      </g>
     </>
   )
 }

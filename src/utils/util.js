@@ -1,3 +1,5 @@
+import {Conduction} from '../classes/Conduction'
+
 export const getTotalLength = (points) => {
   let length = 0
   for (let i = 0; i < points.length - 1; i++) {
@@ -334,6 +336,10 @@ export const generatePointsY = (start, end, offset) => {
 }
 
 export const generatePointsX = (start, end, offset) => {
+  if (start.y === end.y) {
+    return [start, end]
+  }
+    
 	const midX = start.x + (end.x - start.x) * offset
 	const points = []
 	points.push(start)
@@ -343,3 +349,12 @@ export const generatePointsX = (start, end, offset) => {
   
 	return points
 }
+
+// export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset = .5) {
+//   const p1_        = transformPoints([connector1], computeTransform(transform1, 0))[0]
+//   const p2_        = transformPoints([connector2], computeTransform(transform2, 0))[0]
+//   const points     = generatePointsX(p1_, p2_, offset)
+//   const conduction = new Conduction(points)
+//   conduction.setSecondaries()
+//   return conduction
+// }

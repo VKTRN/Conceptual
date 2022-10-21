@@ -2,7 +2,7 @@ import {AbsoluteFill}    from 'remotion'
 import {Sequence}        from 'remotion'
 import {Screen}          from './components/Screen'
 import {backgroundColor} from './constants'
-import {Scene}           from './scenes/test3'
+import {Scene}           from './scenes/test'
 import {Test}            from './Test'
 import './style.css'
 
@@ -14,8 +14,9 @@ export const App = () => {
       <Sequence from={0}>
         <Screen>
           <Scene/>
-          {/* <Test/> */}
         </Screen>
+        <Test/>
+        <div className = 'chapter'>NOT-GATE</div>
       </Sequence>
   )
 }

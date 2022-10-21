@@ -1,31 +1,29 @@
-import {useEffect} from 'react'
+// import './style.css';
 
-const style = {
-  // filter: 'drop-shadow(0 0 0.5rem #000)',
-  // filter: 'grayscale(1) brightness(100)',
-  filter: 'hue-rotate(0deg) saturate(0%) brightness(1000%)',
-}
+const data = [
+  {category: 'Input A', values: ['true', 'true','false','false']},
+  {category: 'Input B', values: ['true', 'false','true','false']},
+  {category: 'Output', values: ['false', 'true','true','false']},
+]
 
-// a filter that turns yellow to white
-const yellowFilter = {
-}
-
-const whiteFilter = {
-}
 
 export const Test = () => {
 
-  useEffect(() => {
-    const connections = document.querySelector('.connection')
-    console.log(connections)
-  }, [])
-
-
   return (
-    <g style = {style}>
-        <rect x="900px" y="300px" width="200px" height="200px"  fill = 'rgb(255,255,0)'/>
-        <rect x="1300px" y="300px" width="200px" height="200px"  fill = 'black'/>
-    </g>
+    <div className = 'table' >
+
+      <div className = 'categories'>
+        {data.map((item) => (<div className = 'item'>{item.category}</div>))}
+      </div>
+
+      <div className = 'content'>
+        {data.map((column) => (
+          <div className = 'column'>
+            {column.values.map((item) => (<div className = {`item row ${item}`}>{item}</div>))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
