@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Fredoka+One&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Fredoka+One&family=Roboto+Condensed&family=Rubik:wght@500&display=swap');
+
 body{
-  font: bold 36px sans-serif;
+  /* font: bold 36px sans-serif; */
+  /* font-family: 'Roboto Condensed', sans-serif; */
+  /* font-family: 'Bree Serif', serif; */
+  font-family: 'Rubik', sans-serif;
+  /* font-family: 'Fredoka One', cursive; */
+  font-size: 36px;
+  /* font-weight: bold; */
 }
 
 .screen{
@@ -29,8 +40,9 @@ body{
 
 .content{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 
@@ -38,6 +50,9 @@ body{
   background: rgba(0, 0, 0, 0.147);
 }
 
+.row{
+  display: flex;
+}
 
 .item{
   height: 70px;
@@ -45,11 +60,10 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .true{
-  color: rgb(255, 255, 0);
+  color: rgb(255,178,0);
 }
 
 .false{
@@ -57,16 +71,16 @@ body{
 }
 
 .categories{
-  background-color: rgba(15, 36, 94, 0.631);
+  /* background-color: rgba(15, 36, 94, 0.631); */
+  backdrop-filter: contrast(250%) brightness(160%);
   display: flex;
 }
 
 .chapter{
   position: absolute;
   top: 60px;
-  left: 100px;
-  color: yellow;
-  font-size: 100px;
+  left: 200px;
+  color: rgb(255,178,0);
+  font-size: 120px;
   text-shadow: 8px 8px 12px #000000aa;
-
 }

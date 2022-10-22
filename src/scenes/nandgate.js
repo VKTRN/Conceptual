@@ -1,21 +1,21 @@
-import {NotGate as GateComp} from '../components/LogicGates/NotGate'
-import {Notgate}             from '../classes/LogicGates/Notgate/Notgate'
-import {constant}            from '../utils/functions'
-import {DropShadow}          from '../components/DropShadow'
-import {notgate as table}    from '../logicTables'
+import {NandGate as GateComp} from '../components/LogicGates/NandGate'
+import {Nandgate}             from '../classes/LogicGates/Nandgate/Nandgate'
+import {constant}           from '../utils/functions'
+import {DropShadow}         from '../components/DropShadow'
+import {nandgate as table}    from '../logicTables'
 
 
   ///////////// 
  /// TITLE ///
 /////////////
 
-const title = 'NOT-GATE'
+const title = 'NAND-GATE'
 
   /////////////// 
  /// OBJECTS ///
 ///////////////
 
-const gate  = new Notgate()
+const gate  = new Nandgate()
 
   /////////////// 
  /// SIGNALS ///
@@ -28,9 +28,9 @@ gate.tInput = 0
 //////////////////
 
 gate.transform = {
-  translation : {x: constant(180), y: constant(600)},
+  translation : {x: constant(100), y: constant(700)},
   rotation : constant(-90),
-  scale : constant(1.5),
+  scale : constant(.8),
 }
 
   /////////////////////// 
@@ -43,7 +43,7 @@ gate.setSecondaries()
 /// GET PROPS ///
 /////////////////
 
-const props      = gate.getProps()
+const props = gate.getProps()
 
 const Scene = () => {
   return (

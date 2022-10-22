@@ -36,3 +36,14 @@ export const bump = (frame, start) => {
 
   return r
 }
+
+export const dampedSpring = (t) => {
+  const w = 0.1
+  const zeta = 1
+  const A = -800
+  const omega = Math.sqrt(1 - zeta**2)
+  const b = 100
+  const y0 = A * Math.exp(-zeta * w * t) * Math.cos(omega * w * t)
+  if (Math.abs(y0) < 0.01) return b
+  return y0 + b
+} 

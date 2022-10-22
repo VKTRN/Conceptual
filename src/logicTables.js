@@ -1,40 +1,67 @@
-const orgate = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['true', 'true','true','false']},
-]
+export const notgate = {
+  categories: ['Input', 'Output'],
+  values: [
+    ['true', 'false'],
+    ['false', 'true'],
+  ] 
+}
 
-const norgate = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['false', 'false','false','true']},
-]
+export const andgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'true'],
+    ['true', 'false', 'false'],
+    ['false', 'true', 'false'],
+    ['false', 'false', 'false'],
+  ]
+}
 
-const andgate = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['true', 'false','false','false']},
-]
+export const orgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'true'],
+    ['true', 'false', 'true'],
+    ['false', 'true', 'true'],
+    ['false', 'false', 'false'],
+  ]
+}
 
-const nandgate = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['true', 'false','false','true']},
-]
+export const nandgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'false'],
+    ['true', 'false', 'true'],
+    ['false', 'true', 'true'],
+    ['false', 'false', 'true'],
+  ]
+}
 
-const notgate = [
-  {category: 'Input', values: ['true', 'false']},
-  {category: 'Output', values: ['false', 'true']},
-]
+export const norgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'false'],
+    ['true', 'false', 'false'],
+    ['false', 'true', 'false'],
+    ['false', 'false', 'true'],
+  ]
+}
 
-const xor = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['false', 'true','true','false']},
-]
+export const xorgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'false'],
+    ['true', 'false', 'true'],
+    ['false', 'true', 'true'],
+    ['false', 'false', 'false'],
+  ]
+}
 
-const xnor = [
-  {category: 'Input A', values: ['true', 'true','false','false']},
-  {category: 'Input B', values: ['true', 'false','true','false']},
-  {category: 'Output', values: ['true', 'false','false','true']},
-]
+export const xnorgate = {
+  categories: ['Input A', 'Input B', 'Output'],
+  values: [
+    ['true', 'true', 'true'],
+    ['true', 'false', 'false'],
+    ['false', 'true', 'false'],
+    ['false', 'false', 'true'],
+  ]
+}

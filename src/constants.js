@@ -1,9 +1,9 @@
 import {constant} from './utils/functions.js'
 
 
-export const signalLength     = 5000
+export const signalLength     = 50000
 export const signalVelocity   = 8
-export const durationInFrames = 220
+export const durationInFrames = 600
 const gradient1               = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 const gradient2               = 'linear-gradient(30deg, #09203f 0%, #537895 100%)'
 const gradient3 = {
@@ -38,7 +38,7 @@ export const transform = {
 
 export const signal = {
   t0:    0,
-  color: 'yellow'
+  color: 'red',
 }
 
 const defaults                   = {}
@@ -52,7 +52,7 @@ defaults.transform.scale         = 1
 defaults.transform.translation.x = 0
 defaults.transform.translation.y = 0
 defaults.signal.t0               = 0
-defaults.signal.color            = 'yellow'
+defaults.signal.color            = 'rgb(255,0,0)'
 defaults.signal.length           = 5000
 defaults.velocity                = 8
 defaults.conduction.width        = 14

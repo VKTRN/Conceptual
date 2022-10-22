@@ -1,53 +1,59 @@
-import {cloneDeep}                 from 'lodash'
-import {overwrite}                 from '../utils/util'
-import {make}                      from '../utils/util'
-
-import {makeOrGate}                from '../components/OrGate/make'
-import {OrGate}                    from '../components/OrGate/OrGate'
-import {config as orGateDefault_}  from '../components/OrGate/config'
+import {OrGate as GateComp} from '../components/LogicGates/OrGate'
+import {Orgate}             from '../classes/LogicGates/Orgate/Orgate'
+import {constant}           from '../utils/functions'
+import {DropShadow}         from '../components/DropShadow'
+import {orgate as table}    from '../logicTables'
 
 
-  ///////////////////////
- /// Default Configs ///
-///////////////////////
+  ///////////// 
+ /// TITLE ///
+/////////////
 
-const orGateDefault = cloneDeep(orGateDefault_)
+const title = 'OR-GATE'
 
-  ///////////////
- /// Configs ///
+  /////////////// 
+ /// OBJECTS ///
 ///////////////
 
-const orGateConfig = {
-  
-  transform: {
-    translation: {x:1920/2-750,y:500},
-    rotation:    -Math.PI/2,
-    scale: 1,
-  },
+const gate  = new Orgate()
 
-  timings: {
-    conduction: 40,
-    input1:      0,
-    input2:      20,
-  }
+  /////////////// 
+ /// SIGNALS ///
+///////////////
+
+gate.tInput = 0
+
+  ////////////////// 
+ /// TRANSFORMS ///
+//////////////////
+
+gate.transform = {
+  translation : {x: constant(100), y: constant(700)},
+  rotation : constant(-90),
+  scale : constant(.8),
 }
 
-  ///////////////
- ///////////////
-///////////////
+  /////////////////////// 
+ /// SET SECONDARIES ///
+///////////////////////
 
-const orGateProps = make(orGateConfig, orGateDefault, makeOrGate)
+gate.setSecondaries()
+
+///////////////// 
+/// GET PROPS ///
+/////////////////
+
+const props = gate.getProps()
 
 const Scene = () => {
   return (
     <>
-      <OrGate {...orGateProps} />
+      <DropShadow id = 'scene'/>
+      <g id='scene'>
+        <GateComp {...props} />
+      </g>
     </>
   )
 }
 
-export {Scene}
-
-
-
-
+export {Scene, table, title}

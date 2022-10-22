@@ -1,80 +1,59 @@
-import {makeLine}                   from '../components/Line/make'
-import {Line}                       from '../components/Line/Line'
-import {config as lineDefault_}     from '../components/Line/config'
+import {AndGate as GateComp} from '../components/LogicGates/AndGate'
+import {Andgate}             from '../classes/LogicGates/Andgate/Andgate'
+import {constant}            from '../utils/functions'
+import {DropShadow}          from '../components/DropShadow'
+import {andgate as table}    from '../logicTables'
 
-import {makeAndGate}                from '../components/AndGate/make'
-import {AndGate}                    from '../components/AndGate/AndGate'
-import {config as andGateDefault_}  from '../components/AndGate/config'
 
-import {cloneDeep}                  from 'lodash'
-import {overwrite}                  from '../utils/util'
+  ///////////// 
+ /// TITLE ///
+/////////////
 
-  ///////////////////////
- /// Default Configs ///
+const title = 'AND-GATE'
+
+  /////////////// 
+ /// OBJECTS ///
+///////////////
+
+const gate  = new Andgate()
+
+  /////////////// 
+ /// SIGNALS ///
+///////////////
+
+gate.tInput = 0
+
+  ////////////////// 
+ /// TRANSFORMS ///
+//////////////////
+
+gate.transform = {
+  translation : {x: constant(180), y: constant(600)},
+  rotation : constant(-90),
+  scale : constant(1.5),
+}
+
+  /////////////////////// 
+ /// SET SECONDARIES ///
 ///////////////////////
 
-const lineDefault    = cloneDeep(lineDefault_)
-const andGateDefault  = cloneDeep(andGateDefault_)
+gate.setSecondaries()
 
-  ///////////////
- /// Configs ///
-///////////////
+///////////////// 
+/// GET PROPS ///
+/////////////////
 
-const p = [
-  {x:  0,  y:  100},
-  {x: 0, y:  0}, 
-]
-
-const outputConfig = {
-  points: p,
-  width:    14, 
-
-  transform: {
-    translation: {x:1420,y:293}
-  },
-  signal: {
-    t0: 181,
-  }
-}
-
-const andGateConfig = {
-  
-  transform: {
-    translation: {x:1920/2-500,y:400},
-    rotation:    -Math.PI/2,
-  },
-
-  timings: {
-    conduction1: 40,
-    conduction2: 113,
-    input1:      0,
-    input2:      0,
-    transistor1: 11,
-    transistor2: 11,
-  }
-}
-
-  ///////////////
- ///////////////
-///////////////
-
-const output       = overwrite(lineDefault, outputConfig)
-const andgate      = overwrite(andGateDefault, andGateConfig)
-
-const outputProps  = makeLine(output)
-const andGateProps = makeAndGate(andgate)
-
-console.log(andGateProps)
+const props = gate.getProps()
 
 const Scene = () => {
   return (
     <>
-      <Line line = {outputProps} />
-      <AndGate {...andGateProps} />
+      <DropShadow id = 'scene'/>
+      <g id='scene'>
+        <GateComp {...props} />
+      </g>
     </>
   )
 }
 
-export {Scene}
-
-
+export {Scene, table, title}

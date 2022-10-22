@@ -28,7 +28,8 @@ const norgate  = new Norgate()
 const nandgate = new Nandgate()
 
 const x = constant(200)
-const y = constant(500)
+const y = constant(650)
+const t0 = 80
 
 const transform = {
   translation : {x: x, y: y},
@@ -42,8 +43,8 @@ notgate.t0           = 10
 notgate.t1           = 40
 
 andgate.transform    = transform
-andgate.tInput1      = 10
-andgate.tInput2      = 20
+andgate.tInput1      = 10 + t0
+andgate.tInput2      = 20 + t0
 andgate.tConduction  = 40
 
 orgate.transform     = transform
@@ -83,8 +84,8 @@ const Scene = () => {
       {/* <Glow       id = 'orgate'/> */}
       <DropShadow id = 'scene'/>
       <g id='scene'>
-        <NotgateComp {...notgateProps} />
-        {/* <AndgateComp {...andgateProps} /> */}
+        {/* <NotgateComp {...notgateProps} /> */}
+        <AndgateComp {...andgateProps} />
         {/* <AndgateComp {...andgateProps2} /> */}
         {/* <OrgateComp {...orgateProps} /> */}
         {/* <NorgateComp {...norgateProps} /> */}

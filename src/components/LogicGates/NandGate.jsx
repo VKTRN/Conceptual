@@ -4,10 +4,12 @@ import {Transform} from '../Transform'
 
 export const NandGate = ({notgate, andgate, transform}) => {
   return (
-    <Transform transform = {transform}>
-      <NotGate {...notgate}/>
-      <AndGate {...andgate}/>
-    </Transform>
+    <g className = 'nandgate'>
+      <Transform transform = {transform}>
+        <NotGate {...notgate}/>
+        <AndGate {...andgate}/>
+      </Transform>
+    </g>
     
   )
 }    

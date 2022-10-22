@@ -10,7 +10,7 @@ import {getTravelTime}   from '../utils/util'
 class Conduction extends Element {
   constructor(points) {
     super(points)
-    this.color      = 'yellow'
+    this.color      = 'rgb(255,178,0)'
     this.t0         = 0
     this.signal     = {t0: this.t0, color:this.color}
     this.width      = conductionWidth

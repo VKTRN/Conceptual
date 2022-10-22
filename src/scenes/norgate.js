@@ -1,69 +1,59 @@
-import {cloneDeep}                 from 'lodash'
-import {make}                      from '../utils/util'
+import {NorGate as GateComp} from '../components/LogicGates/NorGate'
+import {Norgate}             from '../classes/LogicGates/Norgate/Norgate'
+import {constant}            from '../utils/functions'
+import {DropShadow}          from '../components/DropShadow'
+import {norgate as table}    from '../logicTables'
 
-import {makeNorGate}                from '../components/NorGate/make'
-import {NorGate}                    from '../components/NorGate/NorGate'
-import {config as norGateDefault_}  from '../components/NorGate/config'
 
-  ///////////////////////
- /// Default Configs ///
-///////////////////////
+  ///////////// 
+ /// TITLE ///
+/////////////
 
-const norGateDefault  = cloneDeep(norGateDefault_)
+const title = 'NOR-GATE'
 
-  ///////////////
- /// Configs ///
+  /////////////// 
+ /// OBJECTS ///
 ///////////////
 
-const x = 100
-const y = 500
-const rotation = -Math.PI/2
-const scale = .8
+const gate  = new Norgate()
 
-const norGateConfig = {
-  
-  transform: {
-    translation: {x:x,y:y},
-    rotation:    rotation,
-    scale: scale,
-  },
+  /////////////// 
+ /// SIGNALS ///
+///////////////
 
-  timings: {
-    conduction1: 40,
-    conduction2: 40,
-    conduction3: 204,
-    conduction4: 163,
-    notgate1:    132,
-    notgate2:    92,
-    input1:      0,
-    input2:      0,
-    transistor1: 11,
-    transistor2: 11,
-    notgate3:    255,
-    input3:      0,
-    transistor3: 11,
-  }
+gate.tInput = 0
+
+  ////////////////// 
+ /// TRANSFORMS ///
+//////////////////
+
+gate.transform = {
+  translation : {x: constant(100), y: constant(700)},
+  rotation : constant(-90),
+  scale : constant(.8),
 }
 
+  /////////////////////// 
+ /// SET SECONDARIES ///
+///////////////////////
 
-  ///////////////
- ///////////////
-///////////////
+gate.setSecondaries()
 
-const norGateProps = make(norGateConfig, norGateDefault, makeNorGate)
+///////////////// 
+/// GET PROPS ///
+/////////////////
 
-console.log(norGateProps)
+const props = gate.getProps()
 
 const Scene = () => {
   return (
     <>
-      <NorGate {...norGateProps} />
+      <DropShadow id = 'scene'/>
+      <g id='scene'>
+        <GateComp {...props} />
+      </g>
     </>
   )
 }
 
-export {Scene}
-
-
-
-
+export {Scene, table, title}

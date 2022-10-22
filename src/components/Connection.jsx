@@ -46,7 +46,7 @@ export const Connection = ({points, color='black', signal, strokeWidth, velocity
 	return(
 		<>
 		 <polyline   points={getPolyline(points)} fill='none' stroke={color} strokeWidth={strokeWidth}/>
-		 <polyline  id = 'signal' points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
+		 <polyline  points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
 		</> 
 	)
 }

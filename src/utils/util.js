@@ -92,11 +92,11 @@ export const smoothStepUp = (t, t0) => {
 }
 
 export const colorFunction = (v) => {
-	return `rgb(${v}, ${v}, 0)`
+	return `rgba(${255*v}, ${v*178}, ${v*0})`
 }
 
 export const yellowStep = (t, t0) => {
-	const v = smoothStepUp(t, t0) * 255
+	const v = smoothStepUp(t, t0)
 	return colorFunction(v)
 } 
 
@@ -350,11 +350,13 @@ export const generatePointsX = (start, end, offset) => {
 	return points
 }
 
-// export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset = .5) {
+// export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset) {
 //   const p1_        = transformPoints([connector1], computeTransform(transform1, 0))[0]
 //   const p2_        = transformPoints([connector2], computeTransform(transform2, 0))[0]
+  
 //   const points     = generatePointsX(p1_, p2_, offset)
 //   const conduction = new Conduction(points)
 //   conduction.setSecondaries()
 //   return conduction
 // }
+
