@@ -8,15 +8,17 @@ const style = {
 }
 
 
-export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate1, notgate2, transform = {}}) => {
+export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate1, notgate2, switchOrder, transform = {}}) => {
+
+  const conductions = switchOrder ? [conduction1,conduction2,conduction3,conduction4] : [conduction1,conduction2,conduction4,conduction3]
 
   return (
     <g id = 'orgate'>
       <Transform transform={transform}>
-        <Connection {...conduction1}/>
-        <Connection {...conduction2}/>
-        <Connection {...conduction3}/>
-        <Connection {...conduction4}/>
+        <Connection {...conductions[0]}/>
+        <Connection {...conductions[1]}/>
+        <Connection {...conductions[2]}/>
+        <Connection {...conductions[3]}/>
         <NotGate {...notgate1}/>
         <NotGate {...notgate2}/>
         <LightLayer/>

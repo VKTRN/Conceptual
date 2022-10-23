@@ -22,6 +22,7 @@ const gate  = new Andgate()
 ///////////////
 
 gate.tInput = 0
+gate.tStop = 103
 
   ////////////////// 
  /// TRANSFORMS ///
@@ -38,6 +39,8 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
+// gate.stopOnFirstTransistor()
+gate.stopOnSecondTransistor()
 
 ///////////////// 
 /// GET PROPS ///

@@ -12,6 +12,7 @@ class Andgate {
     this.tInput2     = 0
     this.tConduction = 0
     this.travelTime  = 0
+    this.tStop       = 9999
   }
 
   setColor(color){
@@ -23,17 +24,36 @@ class Andgate {
     const transform2 = cloneDeep(transform)
     transform2.translation.y = constant(500)
     this.notgate2.transform = transform2
+
+    this.notgate1.tStop = this.tStop
+    this.notgate2.tStop = this.tStop
     
     this.notgate1.tInput = this.tInput1
     this.notgate2.tInput = this.tInput2
 
-    this.notgate1.tConduction = this.tInput1 + this.tConduction
+    this.notgate1.tConduction = this.tConduction
     this.notgate1.setSecondaries()
     
     this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
     this.notgate2.setSecondaries()
 
     this.travelTime = this.notgate1.conduction.travelTime + this.notgate2.conduction.travelTime
+  }
+
+  stopOnFirstTransistor() {
+    this.notgate1.stopOnTransistor()
+    this.tStop = this.notgate1.tStop
+    this.notgate2.conduction.tStop = this.notgate1.conduction.tStop
+    this.notgate1.setSecondaries()
+    this.notgate2.setSecondaries()
+  }
+
+  stopOnSecondTransistor() {
+    this.notgate2.stopOnTransistor()
+    this.tStop = this.notgate2.tStop
+    this.notgate1.tStop = this.tStop
+    this.notgate1.setSecondaries()
+    this.notgate2.setSecondaries()
   }
 
   getTransform() {

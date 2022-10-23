@@ -17,9 +17,10 @@ body{
   /* background-image: linear-gradient(135deg, #6b0505 10%, #3b3232 100%); */
   /* background-image: linear-gradient(135deg, #144332 10%, #0a3c4f 100%); */
   /* background-image: linear-gradient(135deg, #313454 10%, #41294f 100%); */
-  background-image: linear-gradient(135deg, #313454 10%, #083236 100%);
+  /* background-image: linear-gradient(135deg, #313454 10%, #083236 100%); */
+  background-color: rgb(43, 41, 69);
+  
   /* background-image: linear-gradient(135deg, #646cc5 10%, #1897a3 100%); */
-  /* background-color: rgb(19, 18, 27); */
 }
 
 .table{
@@ -79,6 +80,7 @@ body{
 .chapter{
   position: absolute;
   top: 60px;
+  /* transform: scale(2) translate(50%, 100px); */
   left: 200px;
   color: rgb(255,178,0);
   font-size: 120px;

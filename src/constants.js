@@ -3,7 +3,7 @@ import {constant} from './utils/functions.js'
 
 export const signalLength     = 50000
 export const signalVelocity   = 8
-export const durationInFrames = 600
+export const durationInFrames = 500
 const gradient1               = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 const gradient2               = 'linear-gradient(30deg, #09203f 0%, #537895 100%)'
 const gradient3 = {

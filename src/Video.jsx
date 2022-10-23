@@ -5,7 +5,7 @@ import {durationInFrames} from './constants';
 export const RemotionVideo = () => {
 	return (
 		<Composition
-			id="ComponentStructure"
+			id="App"
 			component={App}
 			durationInFrames={durationInFrames}
 			fps={60}

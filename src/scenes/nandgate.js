@@ -21,7 +21,10 @@ const gate  = new Nandgate()
  /// SIGNALS ///
 ///////////////
 
-gate.tInput = 0
+gate.tInput1 = 30
+gate.tInput2 = 60
+gate.tConduction = 0
+gate.tConduction2 = 210
 
   ////////////////// 
  /// TRANSFORMS ///
@@ -38,6 +41,9 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
+// gate.stopOnFirstTransistor()
+// gate.stopOnSecondTransistor()
+// gate.notgate.stopOnTransistor()
 
 ///////////////// 
 /// GET PROPS ///

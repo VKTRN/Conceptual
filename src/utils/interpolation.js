@@ -43,7 +43,7 @@ export const dampedSpring = (t) => {
   const A = -800
   const omega = Math.sqrt(1 - zeta**2)
   const b = 100
-  const y0 = A * Math.exp(-zeta * w * t) * Math.cos(omega * w * t)
+  const y0 = Math.max(A * Math.exp(-zeta * w * t) * Math.cos(omega * w * t), 0.05)
   if (Math.abs(y0) < 0.01) return b
   return y0 + b
 } 

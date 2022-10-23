@@ -13,7 +13,8 @@ console.log("🚀 ~ file: Table.jsx ~ line 12 ~ Table ~ data", data)
 
   const t     = useCurrentFrame()
   const top   = dampedSpring(t)
-  const style = {top: top, left:1100}
+  // const style = {top: top, left:2600, transform: 'scale(2)'}
+  const style = {top: top, left:'1100px'}
 
   return (
     <div className = 'table' style = {style}>

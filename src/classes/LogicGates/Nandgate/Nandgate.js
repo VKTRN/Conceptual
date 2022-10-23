@@ -13,13 +13,14 @@ const points = {
 
 class Nandgate {
   constructor() {
-    this.transform   = {}
-    this.notgate     = new Notgate()
-    this.andgate     = new Andgate()
+    this.transform    = {}
+    this.notgate      = new Notgate()
+    this.andgate      = new Andgate()
 
-    this.tInput1     = 0
-    this.tInput2     = 0
-    this.tConduction = 0
+    this.tInput1      = 0
+    this.tInput2      = 0
+    this.tConduction  = 0
+    this.tConduction2 = 0
   }
 
   setColor(color){
@@ -43,9 +44,24 @@ class Nandgate {
 
       const travelTime         = this.andgate.travelTime
       this.notgate.tInput      = this.tConduction + travelTime
-      this.notgate.tConduction = this.notgate.tInput + 40
-
+      this.notgate.tConduction = this.tConduction2
       this.notgate.setSecondaries()
+  }
+
+  stopOnFirstTransistor() {
+    this.andgate.stopOnFirstTransistor()
+    this.notgate.conduction.tStop = 0
+    this.notgate.input.tStop      = 0
+    this.notgate.transistor.tStop = 0
+    this.notgate.setSecondaries()
+  }
+
+  stopOnSecondTransistor() {
+    this.andgate.stopOnSecondTransistor()
+    this.notgate.conduction.tStop = 0
+    this.notgate.input.tStop      = 0
+    this.notgate.transistor.tStop = 0
+    this.notgate.setSecondaries()
   }
 
   getTransform() {

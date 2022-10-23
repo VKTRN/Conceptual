@@ -33,7 +33,8 @@ class Norgate {
   
       this.notgate.transform = transform1
 
-      this.notgate.tInput     = this.tInput1
+      // this.notgate.tInput     = this.tInput1
+
       this.orgate.tConduction = this.tConduction
       this.orgate.tInput1     = this.tInput1
       this.orgate.tInput2     = this.tInput2

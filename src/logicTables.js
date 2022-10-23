@@ -1,8 +1,8 @@
 export const notgate = {
   categories: ['Input', 'Output'],
   values: [
-    ['true', 'false'],
     ['false', 'true'],
+    ['true', 'false'],
   ] 
 }
 
@@ -39,10 +39,10 @@ export const nandgate = {
 export const norgate = {
   categories: ['Input A', 'Input B', 'Output'],
   values: [
-    ['true', 'true', 'false'],
-    ['true', 'false', 'false'],
-    ['false', 'true', 'false'],
     ['false', 'false', 'true'],
+    ['false', 'true', 'false'],
+    ['true', 'false', 'false'],
+    ['true', 'true', 'false'],
   ]
 }
 

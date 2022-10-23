@@ -1,10 +1,6 @@
 import {useCurrentFrame} from 'remotion';
 import {signalLength}    from '../constants';
 import {getTotalLength}  from '../utils/util';
-    
-const lightStyle = {
-	filter: 'blur(15px)',
-}
 
 export const Connection = ({points, color='black', signal, strokeWidth, velocity, stop=100000}) => {
 

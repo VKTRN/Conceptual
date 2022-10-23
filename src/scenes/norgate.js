@@ -2,6 +2,7 @@ import {NorGate as GateComp} from '../components/LogicGates/NorGate'
 import {Norgate}             from '../classes/LogicGates/Norgate/Norgate'
 import {constant}            from '../utils/functions'
 import {DropShadow}          from '../components/DropShadow'
+import {Glow}                from '../components/Glow'
 import {norgate as table}    from '../logicTables'
 
 
@@ -21,14 +22,16 @@ const gate  = new Norgate()
  /// SIGNALS ///
 ///////////////
 
-gate.tInput = 0
+gate.tConduction = 0
+gate.tInput1 = 20
+gate.tInput2 = 50
 
   ////////////////// 
  /// TRANSFORMS ///
 //////////////////
 
 gate.transform = {
-  translation : {x: constant(100), y: constant(700)},
+  translation : {x: constant(50), y: constant(700)},
   rotation : constant(-90),
   scale : constant(.8),
 }
@@ -52,6 +55,7 @@ const Scene = () => {
       <g id='scene'>
         <GateComp {...props} />
       </g>
+      <Glow id = 'scene'/>
     </>
   )
 }

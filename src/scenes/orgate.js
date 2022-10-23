@@ -38,6 +38,8 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
+gate.stopOnFirstTransistor()
+// gate.stopOnSecondTransistor()
 
 ///////////////// 
 /// GET PROPS ///

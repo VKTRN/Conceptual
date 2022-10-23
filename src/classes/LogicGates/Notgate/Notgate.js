@@ -8,12 +8,14 @@ const points = getPoints(100, 11)
 
 class Notgate {
   constructor() {
-    this.transform       = {}
-    this.conduction      = new Conduction(points.conduction)
-    this.input           = new Conduction(points.input)
-    this.transistor      = new Transistor(points.transistor)
-    this.tInput          = 0
-    this.tConduction     = 0
+    this.transform        = {}
+    this.conduction       = new Conduction(points.conduction)
+    this.input            = new Conduction(points.input)
+    this.transistor       = new Transistor(points.transistor)
+    this.tInput           = 0
+    this.tConduction      = 0
+    this.tStop            = 9999
+    // this.stopOnTransistor = false
   }
 
   setColor(color) {
@@ -23,13 +25,20 @@ class Notgate {
 
   setSecondaries() {
 
+    // this.conduction.tStop = this.tStop
+    
     this.input.setSecondaries()
     this.conduction.setSecondaries()
     this.transistor.setSecondaries()
-
+    
+    
     this.input.signal.t0      = this.tInput
     this.transistor.signal.t0 = this.tInput + this.input.travelTime
     this.conduction.signal.t0 = this.tConduction
+  }
+
+  stopOnTransistor() {
+    this.conduction.tStop = this.tConduction + this.conduction.travelTime/2
   }
 
   getTransform() {

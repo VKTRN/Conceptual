@@ -15,7 +15,7 @@ class Conduction extends Element {
     this.signal     = {t0: this.t0, color:this.color}
     this.width      = conductionWidth
     this.velocity   = signalVelocity
-    this.stop       = 10000
+    this.tStop       = 10000
     this.path       = []
     this.length     = 0
     this.travelTime = 0
@@ -50,6 +50,7 @@ class Conduction extends Element {
       strokeWidth: this.width,
       signal: this.signal,
       velocity: this.velocity,
+      stop: this.tStop,
     }
 
     return props

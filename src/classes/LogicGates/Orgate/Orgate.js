@@ -14,6 +14,7 @@ class Orgate {
     this.conduction2 = new Conduction(points.conduction2)
     this.conduction3 = new Conduction(points.conduction3)
     this.conduction4 = new Conduction(points.conduction4)
+    this.switchOrder = false
 
     this.tInput1     = 0
     this.tInput2     = 0
@@ -40,8 +41,10 @@ class Orgate {
     this.notgate1.tInput = this.tInput1
     this.notgate2.tInput = this.tInput2
 
-    this.conduction1.signal.t0 = this.tInput1 + this.tConduction
-    this.conduction2.signal.t0 = this.tInput1 + this.tConduction
+    // this.conduction1.signal.t0 = this.tInput1 + this.tConduction
+    // this.conduction2.signal.t0 = this.tInput1 + this.tConduction
+    this.conduction1.signal.t0 = this.tConduction
+    this.conduction2.signal.t0 = this.tConduction
     this.conduction2.setSecondaries()
     this.conduction1.setSecondaries()
 
@@ -54,6 +57,40 @@ class Orgate {
     this.conduction4.signal.t0 = this.notgate2.tConduction + this.notgate2.conduction.travelTime
     this.conduction3.setSecondaries()
     this.conduction4.setSecondaries()
+  }
+
+  stopOnFirstTransistor() {
+    this.notgate1.stopOnTransistor()
+    this.tStop = this.notgate1.tStop
+    this.notgate2.conduction.tStop = this.notgate1.conduction.tStop
+    this.conduction1.tStop = this.notgate1.conduction.tStop
+    this.conduction2.tStop = this.notgate1.conduction.tStop
+    this.conduction3.tStop = this.notgate1.conduction.tStop
+    // this.conduction4.tStop = this.notgate1.conduction.tStop
+    this.notgate1.setSecondaries()
+    this.notgate2.setSecondaries()
+    this.conduction1.setSecondaries()
+    this.conduction2.setSecondaries()
+    this.conduction3.setSecondaries()
+    this.switchOrder = true
+    // this.conduction4.setSecondaries()
+  }
+
+  stopOnSecondTransistor() {
+    this.notgate2.stopOnTransistor()
+    this.tStop = this.notgate2.tStop
+    this.notgate1.tStop = this.tStop
+    // this.conduction1.tStop = this.notgate2.conduction.tStop
+    this.conduction2.tStop = this.notgate2.conduction.tStop
+    // this.conduction3.tStop = this.notgate2.conduction.tStop
+    this.conduction4.tStop = this.notgate2.conduction.tStop
+    this.notgate1.setSecondaries()
+    this.notgate2.setSecondaries()
+    // this.conduction1.setSecondaries()
+    this.conduction2.setSecondaries()
+    // this.conduction3.setSecondaries()
+    this.conduction4.setSecondaries()
+
   }
 
   getTransform() {
@@ -84,6 +121,7 @@ class Orgate {
       conduction3: this.conduction3.getProps(),
       conduction4: this.conduction4.getProps(),
       transform: this.transform,
+      switchOrder: this.switchOrder,
     }
 
     return props
