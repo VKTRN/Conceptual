@@ -2,6 +2,7 @@ import {Sequence}            from 'remotion'
 import {Screen}              from './components/Screen'
 import {Scene, table, title} from './scenes/nandgate'
 import {Table}               from './Table'
+import {Test}               from './Test'
 import './style.css'
 
 export const App = () => {
@@ -9,10 +10,11 @@ export const App = () => {
   return (
       <Sequence id = 'App'  from={0}>
         <Screen>
-          <Scene/>
+          <Test/>
+          {/* <Scene/> */}
         </Screen>
-        <Table data = {table}/>
-        <div className = 'chapter'>{title}</div>
+        {/* <Table data = {table}/> */}
+        {/* <div className = 'chapter'>{title}</div> */}
       </Sequence>
   )
 }

@@ -73,7 +73,7 @@ body{
 
 .categories{
   /* background-color: rgba(15, 36, 94, 0.631); */
-  backdrop-filter: contrast(250%) brightness(160%);
+  backdrop-filter: contrast(250%) brightness(290%);
   display: flex;
 }
 
