@@ -7,6 +7,8 @@ import {transformPoints}     from '../utils/util'
 import {getTotalLength}      from '../utils/util'
 import {getTravelTime}       from '../utils/util'
 import {linearInterpolation} from '../utils/functions'
+import {generateTimes}       from '../utils/functions'
+
 
 class Conduction extends Element {
   constructor(points) {
@@ -44,6 +46,18 @@ class Conduction extends Element {
     this.setPath()
     this.setLength()
     this.setTravelTime()
+  }
+
+  startAt(t0) {
+    this.timePoints = generateTimes(t0, 0)
+  }
+
+  startAtHalf() {
+    this.timePoints = generateTimes(this.t0, this.travelTime/2)
+  }
+
+  startAtFull() {
+    this.timePoints = generateTimes(this.t0, this.travelTime)
   }
 
   getProps() {

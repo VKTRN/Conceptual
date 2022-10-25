@@ -6,6 +6,7 @@ import {getRoundedPath}  from '../utils/util'
 import {transformPoints} from '../utils/util'
 import {yellowStep}      from '../utils/util'
 import {linearInterpolation} from '../utils/functions'
+import {generateTimes} from '../utils/functions'
 
 
 class Transistor extends Element {
@@ -28,6 +29,10 @@ class Transistor extends Element {
 
   setSecondaries() {
     // this.transformPoints()
+  }
+
+  startAt(t0) {
+    this.timePoints = generateTimes(t0, 0)
   }
 
   getProps() {

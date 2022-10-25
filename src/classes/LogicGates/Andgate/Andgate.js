@@ -21,20 +21,11 @@ class Andgate {
   }
 
   setSecondaries() {
-    const transform2 = cloneDeep(transform)
+    const transform2         = cloneDeep(transform)
     transform2.translation.y = constant(500)
-    this.notgate2.transform = transform2
+    this.notgate2.transform  = transform2
 
-    // this.notgate1.tStop = this.tStop
-    // this.notgate2.tStop = this.tStop
-    
-    // this.notgate1.tInput = this.tInput1
-    // this.notgate2.tInput = this.tInput2
-
-    // this.notgate1.tConduction = this.tConduction
     this.notgate1.setSecondaries()
-    
-    // this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
     this.notgate2.setSecondaries()
 
     this.travelTime = this.notgate1.conduction.travelTime + this.notgate2.conduction.travelTime
@@ -65,8 +56,31 @@ class Andgate {
     return this
   }
 
+  turnOnInput1() {
+    this.notgate1.turnOnInput()
+    return this
+  }
+
+  turnOnInput2() {
+    this.notgate2.turnOnInput()
+    return this
+  }
+
   turnOffInput2() {
     this.notgate2.turnOffInput()
+    return this
+  }
+
+  startFromFirstTransistor() {
+    this.notgate1.startFromTransistor()
+    const dt = this.notgate1.conduction.travelTime
+    this.notgate2.startConductionAt(dt/2)
+    return this
+  }
+
+  startFromSecondTransistor() {
+    this.notgate1.startAtFull()
+    this.notgate2.startFromTransistor()
     return this
   }
 

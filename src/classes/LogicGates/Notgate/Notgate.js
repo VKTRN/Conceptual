@@ -26,29 +26,21 @@ class Notgate {
   }
 
   setSecondaries() {
-
-    // this.conduction.tStop = this.tStop
-    
     this.input.setSecondaries()
     this.conduction.setSecondaries()
     this.transistor.setSecondaries()
-    
-    
-    // this.input.signal.t0      = this.tInput
-    // this.transistor.signal.t0 = this.tInput + this.input.travelTime
-    // this.conduction.signal.t0 = this.tConduction
   }
 
   startConductionAt(t0){
     this.tConduction = t0
-    this.conduction.timePoints = generateTimes(t0, 0)
+    this.conduction.startAt(t0)
     return this
   }
 
   startInputAt(t0) {
     this.tInput = t0
-    this.input.timePoints = generateTimes(t0, 0)
-    this.transistor.timePoints = generateTimes(t0 + this.input.travelTime, 0)
+    this.input.startAt(t0)
+    this.transistor.startAt(t0 + this.input.travelTime)
     return this
   }
 
@@ -71,6 +63,10 @@ class Notgate {
     this.input.timePoints      = times
     this.transistor.timePoints = times
     return this
+  }
+
+  startAtFull() {
+    this.conduction.startAtFull()
   }
 
   turnOffInput() {

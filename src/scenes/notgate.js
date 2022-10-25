@@ -47,14 +47,14 @@ gate.setSecondaries()
 /// input true, output false ///
 
 gate
-  .startInputAt(0)
-  .startConductionAt(40)
+  .startFromTransistor()
+  .turnOnInput()
 
   ///////////////// 
  /// GET PROPS ///
 /////////////////
 
-const props      = gate.getProps()
+const props = gate.getProps()
 
   /////////////
  /// SCENE ///

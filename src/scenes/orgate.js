@@ -17,12 +17,6 @@ const title = 'OR-GATE'
 
 const gate  = new Orgate()
 
-  /////////////// 
- /// SIGNALS ///
-///////////////
-
-gate.tInput = 0
-
   ////////////////// 
  /// TRANSFORMS ///
 //////////////////
@@ -38,14 +32,23 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
-gate.stopOnFirstTransistor()
-// gate.stopOnSecondTransistor()
+
+gate
+  .startUpperInputAt(0)
+  .startLowerInputAt(40)
+  .startConductionAt(80)
+
+
 
 ///////////////// 
 /// GET PROPS ///
 /////////////////
 
 const props = gate.getProps()
+
+  ///////////// 
+ /// SCENE ///
+/////////////
 
 const Scene = () => {
   return (

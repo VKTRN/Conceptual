@@ -38,59 +38,95 @@ class Orgate {
     this.notgate1.transform    = transform1
     this.notgate2.transform    = transform2
 
-    this.notgate1.tInput = this.tInput1
-    this.notgate2.tInput = this.tInput2
+    // this.notgate1.tInput = this.tInput1
+    // this.notgate2.tInput = this.tInput2
 
     // this.conduction1.signal.t0 = this.tInput1 + this.tConduction
     // this.conduction2.signal.t0 = this.tInput1 + this.tConduction
-    this.conduction1.signal.t0 = this.tConduction
-    this.conduction2.signal.t0 = this.tConduction
+    // this.conduction1.signal.t0 = this.tConduction
+    // this.conduction2.signal.t0 = this.tConduction
     this.conduction2.setSecondaries()
     this.conduction1.setSecondaries()
 
-    this.notgate1.tConduction = this.tConduction + this.conduction1.travelTime
-    this.notgate2.tConduction = this.tConduction + this.conduction2.travelTime
+    // this.notgate1.tConduction = this.tConduction + this.conduction1.travelTime
+    // this.notgate2.tConduction = this.tConduction + this.conduction2.travelTime
     this.notgate1.setSecondaries()
     this.notgate2.setSecondaries()
 
-    this.conduction3.signal.t0 = this.notgate1.tConduction + this.notgate1.conduction.travelTime
-    this.conduction4.signal.t0 = this.notgate2.tConduction + this.notgate2.conduction.travelTime
+    // this.conduction3.signal.t0 = this.notgate1.tConduction + this.notgate1.conduction.travelTime
+    // this.conduction4.signal.t0 = this.notgate2.tConduction + this.notgate2.conduction.travelTime
     this.conduction3.setSecondaries()
     this.conduction4.setSecondaries()
   }
 
-  stopOnFirstTransistor() {
+  startConductionAt(t0) {
+    this.tConduction = t0
+
+    const dtUpper  = this.conduction1.travelTime
+    const dtLower  = this.conduction2.travelTime
+    const dtUpper2 = dtUpper + this.notgate1.conduction.travelTime
+    const dtLower2 = dtLower + this.notgate2.conduction.travelTime
+
+    this.conduction1.startAt(t0)
+    this.conduction2.startAt(t0)
+    this.notgate1.startConductionAt(t0 + dtUpper)
+    this.notgate2.startConductionAt(t0 + dtLower)
+    this.conduction3.startAt(t0 + dtUpper2)
+    this.conduction4.startAt(t0 + dtLower2)
+
+    return this
+  }
+
+  startUpperInputAt(t0) {
+    this.tInput1 = t0
+    this.notgate1.startInputAt(t0)
+    return this
+  }
+
+  startLowerInputAt(t0) {
+    this.tInput2 = t0
+    this.notgate2.startInputAt(t0)
+    return this
+  }
+
+  turnOffUpperInput() {
+    this.notgate1.turnOffInput()
+    return this
+  }
+
+  turnOnUpperInput() {
+    this.notgate1.turnOnInput()
+    return this
+  }
+
+  turnOnLowerInput() {
+    this.notgate2.turnOnInput()
+    return this
+  }
+
+  startFromUpperTransistor() {
+    this.conduction1.startAtFull()
+    this.conduction2.startAt(0)
+    this.notgate1.startFromTransistor()    
+  }
+
+  turnOffLowerInput() {
+    this.notgate2.turnOffInput()
+    return this
+  }
+
+  stopOnUpperTransistor() {
     this.notgate1.stopOnTransistor()
-    this.tStop = this.notgate1.tStop
-    this.notgate2.conduction.tStop = this.notgate1.conduction.tStop
-    this.conduction1.tStop = this.notgate1.conduction.tStop
-    this.conduction2.tStop = this.notgate1.conduction.tStop
-    this.conduction3.tStop = this.notgate1.conduction.tStop
-    // this.conduction4.tStop = this.notgate1.conduction.tStop
-    this.notgate1.setSecondaries()
-    this.notgate2.setSecondaries()
-    this.conduction1.setSecondaries()
-    this.conduction2.setSecondaries()
-    this.conduction3.setSecondaries()
+    this.conduction3.timePoints = generateTimes(10000, 0)
     this.switchOrder = true
-    // this.conduction4.setSecondaries()
+    return this
   }
 
-  stopOnSecondTransistor() {
+  stopOnLowerTransistor() {
     this.notgate2.stopOnTransistor()
-    this.tStop = this.notgate2.tStop
-    this.notgate1.tStop = this.tStop
-    // this.conduction1.tStop = this.notgate2.conduction.tStop
-    this.conduction2.tStop = this.notgate2.conduction.tStop
-    // this.conduction3.tStop = this.notgate2.conduction.tStop
-    this.conduction4.tStop = this.notgate2.conduction.tStop
-    this.notgate1.setSecondaries()
-    this.notgate2.setSecondaries()
-    // this.conduction1.setSecondaries()
-    this.conduction2.setSecondaries()
-    // this.conduction3.setSecondaries()
-    this.conduction4.setSecondaries()
-
+    this.conduction4.timePoints = generateTimes(10000, 0)
+    this.switchOrder = false
+    return this
   }
 
   getTransform() {

@@ -63,16 +63,25 @@ gate.setSecondaries()
 
 /// true true -> true ///
 
-gate
-  .startInput1At(0)
-  .startInput2At(40)
-  .startConductionAt(80)
+// gate
+//   .startInput1At(0)
+//   .startInput2At(40)
+//   .startConductionAt(80)
 
-///////////////// 
-/// GET PROPS ///
+gate
+  .turnOnInput1()
+  .turnOnInput2()
+  .startFromSecondTransistor()
+
+  ///////////////// 
+ /// GET PROPS ///
 /////////////////
 
 const props = gate.getProps()
+
+  ///////////// 
+ /// SCENE ///
+/////////////
 
 const Scene = () => {
   return (
