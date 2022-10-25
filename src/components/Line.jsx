@@ -6,10 +6,12 @@ import {signalVelocity}  from '../constants';
 import {clone}           from '../utils/util';
 import {getTotalLength}  from '../utils/util';
 
-export const Line = ({points, signal, strokeWidth, style, stop=100000}) => {
+export const Line = ({points, signal, strokeWidth, style,timeFunction = (t) => t, stop=100000}) => {
 
 	const t0 		= signal.t0
-	const t   = Math.min(useCurrentFrame(), stop)
+	// const t   = Math.min(useCurrentFrame(), stop)
+	const t_ = useCurrentFrame()
+	const t = timeFunction(t_)
 
 	const color = signal.color(t, t0)
 	

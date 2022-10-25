@@ -1,3 +1,6 @@
+import {durationInFrames} from '../constants.js'
+import {signalVelocity} from '../constants.js'
+
 export function constant(c) {
   
   const fn = (t) => c
@@ -61,3 +64,13 @@ export const interpolate = (p1,p2) => {
   return f
 }
 
+export const generateTimes = (t0, dt, tEnd = durationInFrames) => {
+  const times = []
+
+  times.push({x: 0, y: dt})
+  if (t0 !== 0){times.push({x: t0, y: dt})}
+  if (tEnd !== durationInFrames){times.push({x: tEnd, y: dt+tEnd-t0})}
+  times.push({x: durationInFrames, y: dt+tEnd-t0})
+
+  return times
+}

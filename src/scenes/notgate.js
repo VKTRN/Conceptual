@@ -17,12 +17,6 @@ const title = 'NOT-GATE'
 
 const gate  = new Notgate()
 
-  /////////////// 
- /// SIGNALS ///
-///////////////
-
-gate.tInput = 0
-
   ////////////////// 
  /// TRANSFORMS ///
 //////////////////
@@ -39,11 +33,32 @@ gate.transform = {
 
 gate.setSecondaries()
 
-///////////////// 
-/// GET PROPS ///
+  ///////////// 
+ /// CASES ///
+/////////////
+
+/// input false, output true ///
+
+// gate
+//   .turnOffTransistor()
+//   .startConductionAt(0)
+//   .stopOnTransistor()
+
+/// input true, output false ///
+
+gate
+  .startInputAt(0)
+  .startConductionAt(40)
+
+  ///////////////// 
+ /// GET PROPS ///
 /////////////////
 
 const props      = gate.getProps()
+
+  /////////////
+ /// SCENE ///
+/////////////
 
 const Scene = () => {
   return (

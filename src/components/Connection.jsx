@@ -5,8 +5,8 @@ import {getTotalLength}  from '../utils/util';
 export const Connection = ({points, color='black', signal, strokeWidth=12, velocity=8, timeFunction = (t) => t, stop=100000}) => {
 
 	// const t   = Math.min(useCurrent	Frame(), stop)
-	console.log(useCurrentFrame(), timeFunction(useCurrentFrame()))
-	const t = timeFunction(useCurrentFrame())
+	const t_ = useCurrentFrame()
+	const t = timeFunction(t_)
 
 	const v 	= velocity
 	const ls 	= signalLength

@@ -1,11 +1,12 @@
-import {Element}         from './Element.js'
-import {conductionWidth} from '../constants.js'
-import {signalVelocity}  from '../constants.js'
-import {signal}          from '../constants.js'
-import {getRoundedPath}  from '../utils/util'
-import {transformPoints} from '../utils/util'
-import {getTotalLength}  from '../utils/util'
-import {getTravelTime}   from '../utils/util'
+import {Element}             from './Element.js'
+import {conductionWidth}     from '../constants.js'
+import {signalVelocity}      from '../constants.js'
+import {signal}              from '../constants.js'
+import {getRoundedPath}      from '../utils/util'
+import {transformPoints}     from '../utils/util'
+import {getTotalLength}      from '../utils/util'
+import {getTravelTime}       from '../utils/util'
+import {linearInterpolation} from '../utils/functions'
 
 class Conduction extends Element {
   constructor(points) {
@@ -15,10 +16,12 @@ class Conduction extends Element {
     this.signal     = {t0: this.t0, color:this.color}
     this.width      = conductionWidth
     this.velocity   = signalVelocity
-    this.tStop       = 10000
+    this.tStop      = 10000
     this.path       = []
     this.length     = 0
     this.travelTime = 0
+    // this.timeFunction = (t) => t
+    this.timePoints = []
   }
 
   setPath() {
@@ -44,6 +47,7 @@ class Conduction extends Element {
   }
 
   getProps() {
+    const timeFunction = this.timePoints.length !== 0? linearInterpolation(this.timePoints) : (t) => t
 
     const props = {
       points: this.path,
@@ -51,6 +55,7 @@ class Conduction extends Element {
       signal: this.signal,
       velocity: this.velocity,
       stop: this.tStop,
+      timeFunction: timeFunction
     }
 
     return props

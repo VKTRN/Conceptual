@@ -5,6 +5,8 @@ import {signal}          from '../constants.js'
 import {getRoundedPath}  from '../utils/util'
 import {transformPoints} from '../utils/util'
 import {yellowStep}      from '../utils/util'
+import {linearInterpolation} from '../utils/functions'
+
 
 class Transistor extends Element {
   constructor(points) {
@@ -15,6 +17,9 @@ class Transistor extends Element {
     this.width    = transistorWidth
     this.tStop     = 10000
     this.style    = {}
+    // this.timeFunction = (t) => t
+    this.timePoints = []
+
   }
 
   transformPoints() {
@@ -28,13 +33,15 @@ class Transistor extends Element {
   getProps() {
 
     const strokeWidth = this.width
+    const timeFunction = this.timePoints.length !== 0? linearInterpolation(this.timePoints) : (t) => t
 
     const props = {
       points: this.points,
       strokeWidth: strokeWidth,
       signal: this.signal,
       style: this.style,
-      stop: this.tStop
+      stop: this.tStop,
+      timeFunction: timeFunction
     }
 
     return props

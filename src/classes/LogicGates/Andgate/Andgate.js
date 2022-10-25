@@ -25,35 +25,61 @@ class Andgate {
     transform2.translation.y = constant(500)
     this.notgate2.transform = transform2
 
-    this.notgate1.tStop = this.tStop
-    this.notgate2.tStop = this.tStop
+    // this.notgate1.tStop = this.tStop
+    // this.notgate2.tStop = this.tStop
     
-    this.notgate1.tInput = this.tInput1
-    this.notgate2.tInput = this.tInput2
+    // this.notgate1.tInput = this.tInput1
+    // this.notgate2.tInput = this.tInput2
 
-    this.notgate1.tConduction = this.tConduction
+    // this.notgate1.tConduction = this.tConduction
     this.notgate1.setSecondaries()
     
-    this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
+    // this.notgate2.tConduction = this.notgate1.tConduction + this.notgate1.conduction.travelTime 
     this.notgate2.setSecondaries()
 
     this.travelTime = this.notgate1.conduction.travelTime + this.notgate2.conduction.travelTime
   }
 
+  startConductionAt(t0) {
+    this.tConduction = t0
+    const dt = this.notgate1.conduction.travelTime
+    this.notgate1.startConductionAt(t0)
+    this.notgate2.startConductionAt(t0 + dt)
+    return this
+  }
+
+  startInput1At(t0) {
+    this.tInput1 = t0
+    this.notgate1.startInputAt(t0)
+    return this
+  }
+
+  startInput2At(t0) {
+    this.tInput2 = t0
+    this.notgate2.startInputAt(t0)
+    return this
+  }
+
+  turnOffInput1() {
+    this.notgate1.turnOffInput()
+    return this
+  }
+
+  turnOffInput2() {
+    this.notgate2.turnOffInput()
+    return this
+  }
+
   stopOnFirstTransistor() {
     this.notgate1.stopOnTransistor()
-    this.tStop = this.notgate1.tStop
-    this.notgate2.conduction.tStop = this.notgate1.conduction.tStop
-    this.notgate1.setSecondaries()
-    this.notgate2.setSecondaries()
+    this.notgate2.startConductionAt(10000)
+    return this
   }
 
   stopOnSecondTransistor() {
+    this.notgate1.startConductionAt(this.tConduction)
     this.notgate2.stopOnTransistor()
-    this.tStop = this.notgate2.tStop
-    this.notgate1.tStop = this.tStop
-    this.notgate1.setSecondaries()
-    this.notgate2.setSecondaries()
+    return this
   }
 
   getTransform() {

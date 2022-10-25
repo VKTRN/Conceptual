@@ -13,6 +13,8 @@ import {Connection as ConnectionComp} from '../components/Connection'
 import {Conduction}                   from '../classes/Conduction'
 import {yellowStep}                   from '../utils/util'
 import {computeTransform}             from '../utils/util'
+import {linearInterpolation}          from '../utils/functions'
+import {generateTimes}                from '../utils/functions'
 
 export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset = .5) {
   const p1_        = transformPoints([connector1], computeTransform(transform1, 0))[0]
@@ -95,6 +97,9 @@ const conduction2 = getConductionFromConnectors(notgate.connectors.output, andga
 const conduction3 = getConductionFromConnectors(orgate.connectors.output, andgate2.connectors.input.b, orgate.transform, andgate2.transform)
 
 
+const timings = generateTimes(0, 60, 80)
+
+conduction3.timeFunction = linearInterpolation(timings)
 
 ///////////////// 
 /// GET PROPS ///
@@ -108,7 +113,6 @@ const orgateProps       = orgate.getProps()
 const conduction1Props = conduction1.getProps()
 const conduction2Props = conduction2.getProps()
 const conduction3Props = conduction3.getProps()
-
 
 const Scene = () => {
   return (

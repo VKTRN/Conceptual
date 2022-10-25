@@ -17,13 +17,6 @@ const title = 'AND-GATE'
 
 const gate  = new Andgate()
 
-  /////////////// 
- /// SIGNALS ///
-///////////////
-
-gate.tInput = 0
-gate.tStop = 103
-
   ////////////////// 
  /// TRANSFORMS ///
 //////////////////
@@ -39,8 +32,41 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
-// gate.stopOnFirstTransistor()
-gate.stopOnSecondTransistor()
+
+  ///////////// 
+ /// CASES ///
+/////////////
+
+/// false false -> false ///
+
+// gate
+//   .turnOffInput1()
+//   .turnOffInput2()
+//   .startConductionAt(0)
+//   .stopOnFirstTransistor()
+
+/// false true -> false ///
+
+// gate
+//   .startInput1At(0)
+//   .turnOffInput2()
+//   .startConductionAt(40)
+//   .stopOnSecondTransistor()
+
+/// true false -> false ///
+
+// gate
+//   .turnOffInput1()
+//   .startInput2At(0)
+//   .startConductionAt(40)
+//   .stopOnFirstTransistor()
+
+/// true true -> true ///
+
+gate
+  .startInput1At(0)
+  .startInput2At(40)
+  .startConductionAt(80)
 
 ///////////////// 
 /// GET PROPS ///
