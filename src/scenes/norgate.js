@@ -42,6 +42,48 @@ gate.transform = {
 
 gate.setSecondaries()
 
+  ///////////// 
+ /// CASES ///
+/////////////
+
+/// false false -> false ///
+
+gate
+  // .turnOffUpperInput()
+  // .turnOffLowerInput()
+  // .startConduction1At(0)
+  // .stopOnUpperTransistor()
+  // .stopOnLowerTransistor()
+  // .turnOffNotgateInput()
+  // .startConduction2At(170)
+  // .stopOnRightTransistor()
+
+/// false true -> true ///
+
+// gate
+//   .turnOffUpperInput()
+//   .startLowerInputAt(0)
+//   .startConduction1At(40)
+//   .stopOnUpperTransistor()
+//   .startConduction2At(320)
+
+/// true false -> false ///
+
+// gate
+//   .turnOffLowerInput()
+//   .startUpperInputAt(0)
+//   .startConduction1At(40)
+//   .stopOnLowerTransistor()
+//   .startConduction2At(320)
+
+/// true true -> false ///
+  
+gate
+  .startUpperInputAt(0)
+  .startLowerInputAt(0)
+  .startConduction1At(40)
+  .startConduction2At(320)
+
 ///////////////// 
 /// GET PROPS ///
 /////////////////

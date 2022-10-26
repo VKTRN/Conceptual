@@ -60,6 +60,10 @@ class Conduction extends Element {
     this.timePoints = generateTimes(this.t0, this.travelTime)
   }
 
+  turnOff() {
+    this.timePoints = generateTimes(10000, 0)
+  }
+
   getProps() {
     const timeFunction = this.timePoints.length !== 0? linearInterpolation(this.timePoints) : (t) => t
 

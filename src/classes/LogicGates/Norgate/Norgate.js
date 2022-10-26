@@ -26,26 +26,85 @@ class Norgate {
 
   setSecondaries() {
       
-      const transform1 = cloneDeep(transform)
+      const transform1         = cloneDeep(transform)
       transform1.translation.x = constant(points.notgate.x)
       transform1.translation.y = constant(points.notgate.y)
-      transform1.rotation = constant(90)
+      transform1.rotation      = constant(90)
+      this.notgate.transform   = transform1
   
-      this.notgate.transform = transform1
+      this.orgate.setSecondaries()
+      this.notgate.setSecondaries()
 
       // this.notgate.tInput     = this.tInput1
 
-      this.orgate.tConduction = this.tConduction
-      this.orgate.tInput1     = this.tInput1
-      this.orgate.tInput2     = this.tInput2
-      this.orgate.setSecondaries()
+      // this.orgate.tConduction = this.tConduction
+      // this.orgate.tInput1     = this.tInput1
+      // this.orgate.tInput2     = this.tInput2
 
-      const travelTime         = this.orgate.conduction1.travelTime + this.orgate.conduction3.travelTime + this.orgate.notgate1.conduction.travelTime
-      this.notgate.tInput      = this.tConduction + travelTime
-      this.notgate.tConduction = this.notgate.tInput + 40
+      // const travelTime         = this.orgate.conduction1.travelTime + this.orgate.conduction3.travelTime + this.orgate.notgate1.conduction.travelTime
+      // this.notgate.tInput      = this.tConduction + travelTime
+      // this.notgate.tConduction = this.notgate.tInput + 40
 
-      this.notgate.setSecondaries()
   }
+
+  startConduction1At(t0) {
+    this.tConduction = t0
+    const dt = t0 + this.orgate.travelTime
+    this.orgate.startConductionAt(t0)
+    this.notgate.startInputAt(dt)
+    return this
+  }
+
+  startConduction2At(t0) {
+    this.notgate.startConductionAt(t0)
+    return this
+  }
+
+  turnOffNotgate() {
+    this.notgate.turnOff()
+    return this
+  }
+
+  startUpperInputAt(t0) {
+    this.orgate.startUpperInputAt(t0)
+    return this
+  }
+
+  startLowerInputAt(t0) {
+    this.orgate.startLowerInputAt(t0)
+    return this
+  }
+
+  stopOnUpperTransistor() {
+    this.orgate.stopOnUpperTransistor()
+    return this
+  }
+
+  stopOnLowerTransistor() {
+    this.orgate.stopOnLowerTransistor()
+    return this
+  }
+
+  turnOffUpperInput() {
+    this.orgate.turnOffUpperInput()
+    return this
+  }
+
+  turnOffLowerInput() {
+    this.orgate.turnOffLowerInput()
+    return this
+  }
+
+  turnOffNotgateInput() {
+    this.notgate.turnOffInput()
+    return this
+  }
+
+  stopOnRightTransistor() {
+    this.notgate.stopOnTransistor()
+    return this
+  }
+
 
   getTransform() {
 
@@ -66,8 +125,6 @@ class Norgate {
   }
 
   getProps() {
-
-    // const transform = this.getTransform()
 
     return {
       notgate: this.notgate.getProps(),

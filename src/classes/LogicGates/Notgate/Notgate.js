@@ -69,6 +69,11 @@ class Notgate {
     this.conduction.startAtFull()
   }
 
+  turnOff() {
+    this.conduction.turnOff()
+    this.turnOffInput()
+  }
+
   turnOffInput() {
     const times                = generateTimes(100000, 0)
     this.input.timePoints      = times

@@ -15,6 +15,7 @@ class Orgate {
     this.conduction3 = new Conduction(points.conduction3)
     this.conduction4 = new Conduction(points.conduction4)
     this.switchOrder = false
+    this.travelTime  = 0 
 
     this.tInput1     = 0
     this.tInput2     = 0
@@ -57,6 +58,8 @@ class Orgate {
     // this.conduction4.signal.t0 = this.notgate2.tConduction + this.notgate2.conduction.travelTime
     this.conduction3.setSecondaries()
     this.conduction4.setSecondaries()
+
+    this.travelTime = this.conduction1.travelTime + this.notgate1.conduction.travelTime + this.conduction3.travelTime
   }
 
   startConductionAt(t0) {
@@ -94,22 +97,6 @@ class Orgate {
     return this
   }
 
-  turnOnUpperInput() {
-    this.notgate1.turnOnInput()
-    return this
-  }
-
-  turnOnLowerInput() {
-    this.notgate2.turnOnInput()
-    return this
-  }
-
-  startFromUpperTransistor() {
-    this.conduction1.startAtFull()
-    this.conduction2.startAt(0)
-    this.notgate1.startFromTransistor()    
-  }
-
   turnOffLowerInput() {
     this.notgate2.turnOffInput()
     return this
@@ -117,14 +104,14 @@ class Orgate {
 
   stopOnUpperTransistor() {
     this.notgate1.stopOnTransistor()
-    this.conduction3.timePoints = generateTimes(10000, 0)
+    this.conduction3.turnOff()
     this.switchOrder = true
     return this
   }
 
   stopOnLowerTransistor() {
     this.notgate2.stopOnTransistor()
-    this.conduction4.timePoints = generateTimes(10000, 0)
+    this.conduction4.turnOff()
     this.switchOrder = false
     return this
   }
