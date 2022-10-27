@@ -30,7 +30,7 @@ class Orgate extends Polygon{
     this.width     = 6
     this.fill      = '#3a7335'
     this.text      = new Text({x: 15, y: 2}, 'OR')
-    this.connectors = {input: {a: {x:0, y:-15}, b: {x:0, y:15}}, output: {x: a, y: 0}}
+    this.connectors = {input: {a: {x:5, y:-15}, b: {x:5, y:15}}, output: {x: a, y: 0}}
 
     this.t0        = 0
     this.color     = yellowStep

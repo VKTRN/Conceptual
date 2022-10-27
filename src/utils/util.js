@@ -350,13 +350,28 @@ export const generatePointsX = (start, end, offset) => {
 	return points
 }
 
-// export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset) {
-//   const p1_        = transformPoints([connector1], computeTransform(transform1, 0))[0]
-//   const p2_        = transformPoints([connector2], computeTransform(transform2, 0))[0]
+export const Lshape = (start, end) => {
+
+  const points = []
+  points.push(start)
+  points.push({x: start.x, y: end.y})
+  points.push(end)
   
-//   const points     = generatePointsX(p1_, p2_, offset)
-//   const conduction = new Conduction(points)
-//   conduction.setSecondaries()
-//   return conduction
-// }
+	return points
+}
+
+export const getConductionFromConnectors = function (connector1, connector2, transform1, transform2, offset, direction='x', lShape=false) {
+  const p1_        = transformPoints([connector1], computeTransform(transform1, 0))[0]
+  const p2_        = transformPoints([connector2], computeTransform(transform2, 0))[0]
+  
+  let points
+
+  if (!lShape) {
+    points = direction === 'y'? generatePointsY(p1_, p2_, offset) : generatePointsX(p1_, p2_, offset)
+  } else {
+    points = Lshape(p1_, p2_)
+  }
+
+  return points
+}
 

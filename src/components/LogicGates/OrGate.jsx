@@ -21,7 +21,6 @@ export const OrGate = ({conduction1,conduction2,conduction3,conduction4, notgate
         <Connection {...conductions[3]}/>
         <NotGate {...notgate1}/>
         <NotGate {...notgate2}/>
-        <LightLayer/>
       </Transform>
     </g>
   )

@@ -33,35 +33,76 @@ class Nandgate {
       transform1.translation.x = constant(points.notgate.x)
       transform1.translation.y = constant(points.notgate.y)
       transform1.rotation      = constant(90)
+      this.notgate.transform   = transform1
   
-      this.notgate.transform = transform1
-
-      this.notgate.tConduction = this.tInput1
-      this.andgate.tConduction = this.tConduction
-      this.andgate.tInput1     = this.tInput1
-      this.andgate.tInput2     = this.tInput2
       this.andgate.setSecondaries()
-
-      const travelTime         = this.andgate.travelTime
-      this.notgate.tInput      = this.tConduction + travelTime
-      this.notgate.tConduction = this.tConduction2
       this.notgate.setSecondaries()
+
+      // this.notgate.tConduction = this.tInput1
+      // this.andgate.tConduction = this.tConduction
+      // this.andgate.tInput1     = this.tInput1
+      // this.andgate.tInput2     = this.tInput2
+
+      // const travelTime         = this.andgate.travelTime
+      // this.notgate.tInput      = this.tConduction + travelTime
+      // this.notgate.tConduction = this.tConduction2
+  }
+
+  startFirstInputAt(t0) {
+    this.tInput1 = t0
+    this.andgate.startInput1At(t0)
+    return this
+  }
+
+  startSecondInputAt(t0) {
+    this.tInput2 = t0
+    this.andgate.startInput2At(t0)
+    return this
+  }
+
+  startConduction1At(t0) {
+    this.tConduction = t0
+    const dt = t0 + this.andgate.travelTime
+    this.andgate.startConductionAt(t0)
+    this.notgate.startInputAt(dt)
+    return this
+  }
+
+  startConduction2At(t0) {
+    this.notgate.startConductionAt(t0)
+    return this
+  }
+
+  turnOffFirstInput() {
+    this.andgate.turnOffInput1()
+    return this
+  }
+
+  turnOffSecondInput() {
+    this.andgate.turnOffInput2()
+    return this
+  }
+
+  turnOffNotgateInput() {
+    this.notgate.turnOffInput()
+    return this
+  }
+
+  stopOnRightTransistor() {
+    this.notgate.stopOnTransistor()
+    return this
   }
 
   stopOnFirstTransistor() {
     this.andgate.stopOnFirstTransistor()
-    this.notgate.conduction.tStop = 0
-    this.notgate.input.tStop      = 0
-    this.notgate.transistor.tStop = 0
-    this.notgate.setSecondaries()
+    this.notgate.turnOff()
+    return this
   }
 
   stopOnSecondTransistor() {
     this.andgate.stopOnSecondTransistor()
-    this.notgate.conduction.tStop = 0
-    this.notgate.input.tStop      = 0
-    this.notgate.transistor.tStop = 0
-    this.notgate.setSecondaries()
+    this.notgate.turnOff()
+    return this
   }
 
   getTransform() {

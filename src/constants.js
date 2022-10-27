@@ -26,8 +26,8 @@ const gradient6 = {
 }
 
 export const backgroundColor  = gradient6
-export const conductionWidth  = 20
-export const transistorWidth  = 26
+export const conductionWidth  = 14
+export const transistorWidth  = 22
 
 
 export const transform = {

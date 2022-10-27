@@ -1,30 +1,29 @@
-import {NandGate as GateComp} from '../components/LogicGates/NandGate'
-import {Nandgate}             from '../classes/LogicGates/Nandgate/Nandgate'
+import {XorGate as GateComp} from '../components/LogicGates/XorGate'
+import {Xorgate}             from '../classes/LogicGates/Xorgate/Xorgate'
 import {constant}           from '../utils/functions'
 import {DropShadow}         from '../components/DropShadow'
-import {nandgate as table}    from '../logicTables'
-
+import {xorgate as table}    from '../logicTables'
 
   ///////////// 
  /// TITLE ///
 /////////////
 
-const title = 'NAND-GATE'
+const title = 'XOR-GATE'
 
   /////////////// 
  /// OBJECTS ///
 ///////////////
 
-const gate  = new Nandgate()
+const gate  = new Xorgate()
 
   ////////////////// 
  /// TRANSFORMS ///
 //////////////////
 
 gate.transform = {
-  translation : {x: constant(100), y: constant(700)},
-  rotation : constant(-90),
-  scale : constant(.8),
+  translation : {x: constant(100), y: constant(400)},
+  rotation : constant(0),
+  scale : constant(1),
 }
 
   /////////////////////// 
@@ -67,11 +66,11 @@ gate.setSecondaries()
 
 /// true true -> false ///
 
-gate
-  .startFirstInputAt(0)
-  .startSecondInputAt(40)
-  .startConduction1At(80)
-  .startConduction2At(260)
+// gate
+//   .startFirstInputAt(0)
+//   .startSecondInputAt(40)
+//   .startConduction1At(80)
+//   .startConduction2At(260)
   
 
 
