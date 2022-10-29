@@ -4,15 +4,17 @@ import {Text}       from '../Text'
 import {Line }      from '../Line'
 import {Circle}     from '../Circle'
 
-export const Xnorgate = ({points, strokeWidth, signal, fill, circle, text, line, transform = {}}) => {
+export const Xnorgate = ({points, strokeWidth, signal, fill, circle, text,timeFunction, line, transform = {}}) => {
 
   return (
     <g id = 'xnorgate'>
       <Transform transform={transform}>
-        <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal}/>
-        <Circle {...circle} fill = {fill}/>
+      <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal} timeFunction = {timeFunction}/>
+
+        <Circle {...circle} fill = {fill} timeFunction = {timeFunction}/>
         <Line {...line}/>
-        <Text {...text}/>
+        <Text {...text} timeFunction = {timeFunction}/>
+
       </Transform>
     </g>
   )

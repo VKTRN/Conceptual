@@ -3,14 +3,16 @@ import {Polygon}    from '../Polygon'
 import {Text}       from '../Text'
 import {Line }      from '../Line'
 
-export const Xorgate = ({points, strokeWidth, signal, fill, text, line, transform = {}}) => {
+export const Xorgate = ({points, strokeWidth, signal, fill, text, line,timeFunction, transform = {}}) => {
 
   return (
     <g id = 'xorgate'>
       <Transform transform={transform}>
-        <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal}/>
+      <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal} timeFunction = {timeFunction}/>
+
         <Line {...line}/>
-        <Text {...text}/>
+        <Text {...text} timeFunction = {timeFunction}/>
+
       </Transform>
     </g>
   )

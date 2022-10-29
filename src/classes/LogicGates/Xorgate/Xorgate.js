@@ -34,11 +34,6 @@ class Xorgate {
     this.travelTime  = 0 
     this.tInput1     = 0
     this.tInput2     = 0
-    this.tConduction = 0
-  }
-
-  setColor(color){
-    console.log('setColor', color)
   }
 
   setSecondaries() {
@@ -67,23 +62,20 @@ class Xorgate {
       scale : constant(2),
     }
 
-
-
     this.andgate1.setSecondaries()
     this.andgate2.setSecondaries()
     this.notgate.setSecondaries()
     this.orgate.setSecondaries()
 
     this.conduction1.points = getConductionFromConnectors(this.andgate1.connectors.output, this.notgate.connectors.input, this.andgate1.transform, this.notgate.transform,.5)
-    this.conduction2.points = getConductionFromConnectors(this.notgate.connectors.output, this.andgate2.connectors.input.a, this.notgate.transform, this.andgate2.transform,.5)
-    this.conduction3.points = getConductionFromConnectors(this.orgate.connectors.output, this.andgate2.connectors.input.b, this.orgate.transform, this.andgate2.transform,.5)
+    this.conduction2.points = getConductionFromConnectors(this.notgate.connectors.output, this.andgate2.connectors.input.a, this.notgate.transform, this.andgate2.transform,.37)
+    this.conduction3.points = getConductionFromConnectors(this.orgate.connectors.output, this.andgate2.connectors.input.b, this.orgate.transform, this.andgate2.transform,.4)
     this.conduction4.points = getConductionFromConnectors({x:0, y:-30}, this.andgate1.connectors.input.a, transform, this.andgate1.transform,.5)
     this.conduction5.points = getConductionFromConnectors({x:0, y:30}, this.andgate1.connectors.input.b, transform, this.andgate1.transform,.5)
     
-    this.conduction6.points = getConductionFromConnectors({x:120, y:-30}, this.orgate.connectors.input.a, transform, this.orgate.transform,.9,'y', true)
-    this.conduction7.points = getConductionFromConnectors({x:60, y:30}, this.orgate.connectors.input.b, transform, this.orgate.transform,1,'y', true)
+    this.conduction6.points = getConductionFromConnectors({x:120, y:-23}, this.orgate.connectors.input.a, transform, this.orgate.transform,.9,'y', true)
+    this.conduction7.points = getConductionFromConnectors({x:60, y:37}, this.orgate.connectors.input.b, transform, this.orgate.transform,1,'y', true)
     this.conduction8.points = getConductionFromConnectors(this.andgate2.connectors.output, {y:200, x:1600}, this.andgate2.transform, transform,.5)
-
 
     this.conduction1.setSecondaries()
     this.conduction2.setSecondaries()
@@ -94,8 +86,27 @@ class Xorgate {
     this.conduction7.setSecondaries()
     this.conduction8.setSecondaries()
 
+
     this.travelTime = 120 
   }
+
+  startAt(t0) {
+    this.tInput1 = t0
+    this.conduction4.startAt(t0)
+    this.conduction5.startAt(t0)
+    this.conduction6.startAt(t0+15)
+    this.conduction7.startAt(t0+9)
+    this.andgate1.startAt(t0 + 25)
+    this.conduction1.startAt(t0 + 25)
+    this.notgate.startAt(t0 + 50)
+    this.conduction2.startAt(t0 + 70)
+    this.orgate.startAt(t0 + 123)
+    this.conduction3.startAt(t0 + 153)
+    this.andgate2.startAt(t0 + 223)
+    this.conduction8.startAt(t0 + 253)
+  }
+
+
 
   getTransform() {
 
@@ -132,7 +143,6 @@ class Xorgate {
       conduction6: this.conduction6.getProps(),
       conduction7: this.conduction7.getProps(),
       conduction8: this.conduction8.getProps(),
-
     }
 
     return props

@@ -4,6 +4,8 @@ import {Text}    from '../Text.js'
 import {yellowStep} from '../../utils/util'
 import {makeArc} from '../../utils/util'
 import {Circle}  from '../Circle.js'
+import {linearInterpolation} from '../../utils/functions'
+import {generateTimes} from '../../utils/functions'
 
 
 const a = 90
@@ -36,6 +38,8 @@ class Norgate extends Polygon{
     this.t0        = 0
     this.color     = yellowStep
     this.signal    = {t0: this.t0, color: this.color}
+    this.timePoints = []
+
   }
 
   setSecondaries() {
@@ -43,8 +47,13 @@ class Norgate extends Polygon{
     this.text.signal = this.signal
   }
 
+  startAt(t0) {
+    this.timePoints = generateTimes(t0, 0)
+  }
 
   getProps() {
+
+    const timeFunction = this.timePoints.length !== 0? linearInterpolation(this.timePoints) : (t) => t
 
     const props ={
       points: this.points,
@@ -54,6 +63,8 @@ class Norgate extends Polygon{
       fill: this.fill,
       circle: this.circle.getProps(),
       text: this.text.getProps(),
+      timeFunction: timeFunction
+
     } 
 
     return props

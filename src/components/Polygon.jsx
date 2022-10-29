@@ -4,9 +4,10 @@ const style = {
 	strokeLinejoin: 'round'
 }
 
-export const Polygon = ({points, signal, strokeWidth, fill = 'none'}) => {
+export const Polygon = ({points, signal, strokeWidth, fill = 'none', timeFunction = (t) => t}) => {
 
-	const t = useCurrentFrame()
+	const t_ = useCurrentFrame()
+	const t = timeFunction(t_)
 	const t0 = signal.t0
 	const color = signal.color(t, t0)
 

@@ -5,14 +5,16 @@ import {Polygon}    from '../Polygon'
 import {Circle}     from '../Circle'
 import {Text}       from '../Text'
 
-export const Nandgate = ({points, strokeWidth, signal, circle, fill, text, transform = {}}) => {
+export const Nandgate = ({points, strokeWidth, signal, circle, fill, text,timeFunction, transform = {}}) => {
 
   return (
     <g id = 'nandgate'>
       <Transform transform={transform}>
-        <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal}/>
-        <Circle {...circle} fill = {fill}/>
-        <Text {...text}/>
+      <Polygon points = {points} strokeWidth = {strokeWidth} fill = {fill} signal = {signal} timeFunction = {timeFunction}/>
+
+        <Circle {...circle} fill = {fill} timeFunction = {timeFunction}/>
+        <Text {...text} timeFunction = {timeFunction}/>
+
       </Transform>
     </g>
   )
