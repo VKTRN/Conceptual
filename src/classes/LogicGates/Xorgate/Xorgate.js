@@ -3,7 +3,9 @@ import {Notgate}    from '../Notgate/Notgate'
 import {Conduction} from '../../Conduction.js'
 import {points}     from './points'
 import {transform}  from '../../../constants'
+import {signalVelocity}  from '../../../constants'
 import {constant}   from '../../../utils/functions'
+import {timeTrapez}   from '../../../utils/functions'
 
 import {Andgate} from '../../LogicGateSymbols/Andgate'
 import {Notgate} from '../../LogicGateSymbols/Notgate'
@@ -21,14 +23,14 @@ class Xorgate {
     this.notgate  = new Notgate()
     this.orgate   = new Orgate()
 
-    this.conduction1 = new Conduction()
-    this.conduction2 = new Conduction()
-    this.conduction3 = new Conduction()
-    this.conduction4 = new Conduction()
-    this.conduction5 = new Conduction()
-    this.conduction6 = new Conduction()
-    this.conduction7 = new Conduction()
-    this.conduction8 = new Conduction()
+    this.and1ToNot = new Conduction()
+    this.notToAnd2 = new Conduction()
+    this.orToAnd2 = new Conduction()
+    this.upperInputToAnd = new Conduction()
+    this.lowerInputToAnd = new Conduction()
+    this.upperInputToOr = new Conduction()
+    this.lowerInputToOr = new Conduction()
+    this.output = new Conduction()
 
     this.switchOrder = false
     this.travelTime  = 0 
@@ -67,24 +69,24 @@ class Xorgate {
     this.notgate.setSecondaries()
     this.orgate.setSecondaries()
 
-    this.conduction1.points = getConductionFromConnectors(this.andgate1.connectors.output, this.notgate.connectors.input, this.andgate1.transform, this.notgate.transform,.5)
-    this.conduction2.points = getConductionFromConnectors(this.notgate.connectors.output, this.andgate2.connectors.input.a, this.notgate.transform, this.andgate2.transform,.37)
-    this.conduction3.points = getConductionFromConnectors(this.orgate.connectors.output, this.andgate2.connectors.input.b, this.orgate.transform, this.andgate2.transform,.4)
-    this.conduction4.points = getConductionFromConnectors({x:0, y:-30}, this.andgate1.connectors.input.a, transform, this.andgate1.transform,.5)
-    this.conduction5.points = getConductionFromConnectors({x:0, y:30}, this.andgate1.connectors.input.b, transform, this.andgate1.transform,.5)
+    this.and1ToNot.points = getConductionFromConnectors(this.andgate1.connectors.output, this.notgate.connectors.input, this.andgate1.transform, this.notgate.transform,.5)
+    this.notToAnd2.points = getConductionFromConnectors(this.notgate.connectors.output, this.andgate2.connectors.input.a, this.notgate.transform, this.andgate2.transform,.37)
+    this.orToAnd2.points = getConductionFromConnectors(this.orgate.connectors.output, this.andgate2.connectors.input.b, this.orgate.transform, this.andgate2.transform,.4)
+    this.upperInputToAnd.points = getConductionFromConnectors({x:0, y:-30}, this.andgate1.connectors.input.a, transform, this.andgate1.transform,.5)
+    this.lowerInputToAnd.points = getConductionFromConnectors({x:0, y:30}, this.andgate1.connectors.input.b, transform, this.andgate1.transform,.5)
     
-    this.conduction6.points = getConductionFromConnectors({x:120, y:-23}, this.orgate.connectors.input.a, transform, this.orgate.transform,.9,'y', true)
-    this.conduction7.points = getConductionFromConnectors({x:60, y:37}, this.orgate.connectors.input.b, transform, this.orgate.transform,1,'y', true)
-    this.conduction8.points = getConductionFromConnectors(this.andgate2.connectors.output, {y:200, x:1600}, this.andgate2.transform, transform,.5)
+    this.upperInputToOr.points = getConductionFromConnectors({x:120, y:-23}, this.orgate.connectors.input.a, transform, this.orgate.transform,.9,'y', true)
+    this.lowerInputToOr.points = getConductionFromConnectors({x:60, y:37}, this.orgate.connectors.input.b, transform, this.orgate.transform,1,'y', true)
+    this.output.points = getConductionFromConnectors(this.andgate2.connectors.output, {y:200, x:1600}, this.andgate2.transform, transform,.5)
 
-    this.conduction1.setSecondaries()
-    this.conduction2.setSecondaries()
-    this.conduction3.setSecondaries()
-    this.conduction4.setSecondaries()
-    this.conduction5.setSecondaries()
-    this.conduction6.setSecondaries()
-    this.conduction7.setSecondaries()
-    this.conduction8.setSecondaries()
+    this.and1ToNot.setSecondaries()
+    this.notToAnd2.setSecondaries()
+    this.orToAnd2.setSecondaries()
+    this.upperInputToAnd.setSecondaries()
+    this.lowerInputToAnd.setSecondaries()
+    this.upperInputToOr.setSecondaries()
+    this.lowerInputToOr.setSecondaries()
+    this.output.setSecondaries()
 
 
     this.travelTime = 120 
@@ -92,21 +94,81 @@ class Xorgate {
 
   startAt(t0) {
     this.tInput1 = t0
-    this.conduction4.startAt(t0)
-    this.conduction5.startAt(t0)
-    this.conduction6.startAt(t0+15)
-    this.conduction7.startAt(t0+9)
+    this.upperInputToAnd.startAt(t0)
+    this.lowerInputToAnd.startAt(t0)
+    this.upperInputToOr.startAt(t0+15)
+    this.lowerInputToOr.startAt(t0+9)
     this.andgate1.startAt(t0 + 25)
-    this.conduction1.startAt(t0 + 25)
+    this.and1ToNot.startAt(t0 + 25)
     this.notgate.startAt(t0 + 50)
-    this.conduction2.startAt(t0 + 70)
+    this.notToAnd2.startAt(t0 + 70)
     this.orgate.startAt(t0 + 123)
-    this.conduction3.startAt(t0 + 153)
+    this.orToAnd2.startAt(t0 + 153)
     this.andgate2.startAt(t0 + 223)
-    this.conduction8.startAt(t0 + 253)
+    this.output.startAt(t0 + 253)
   }
 
+  falseFalse() {
+    this.andgate1.turnOff()
+    this.andgate2.turnOff()
+    this.orgate.turnOff()
+    this.notgate.startAt(0)
+    this.and1ToNot.turnOff()
+    this.notToAnd2.startAt(0)
+    this.orToAnd2.turnOff()
+    this.upperInputToAnd.turnOff()
+    this.lowerInputToAnd.turnOff()
+    this.upperInputToOr.turnOff()
+    this.lowerInputToOr.turnOff()
+    this.output.turnOff()
+  }
 
+  falseTrue() {
+    this.andgate1.turnOff()
+    this.andgate2.startAt(204)
+    this.orgate.startAt(124)
+    this.notgate.startAt(-10)
+    this.notToAnd2.startAt(-68)
+    this.and1ToNot.turnOff()
+    this.orToAnd2.startAt(134)
+    this.upperInputToAnd.turnOff()
+    this.lowerInputToAnd.startAt(0)
+    this.upperInputToOr.turnOff()
+    this.lowerInputToOr.startAt(8)
+    this.output.startAt(214)
+  }
+
+  trueFalse() {
+    this.andgate1.turnOff()
+    this.andgate2.startAt(204)
+    this.orgate.startAt(124)
+    this.notgate.startAt(-10)
+    this.notToAnd2.startAt(-68)
+    this.and1ToNot.turnOff()
+    this.orToAnd2.startAt(134)
+    this.upperInputToAnd.startAt(0)
+    this.lowerInputToAnd.turnOff()
+    this.upperInputToOr.startAt(15)
+    this.lowerInputToOr.turnOff()
+    this.output.startAt(214)
+  }
+
+  trueTrue() {
+    this.upperInputToAnd.startAt(-1000)
+    this.upperInputToOr.startAt(-1000)
+    this.lowerInputToOr.startAt(8)
+    this.lowerInputToAnd.startAt(0)
+    this.andgate1.startAt(150)
+    this.orgate.startAt(-1000)
+    this.notgate.timePoints = timeTrapez(10,176)
+    this.notToAnd2.startAt(-1000)
+    this.notToAnd2.signalLength = (1000+196) * signalVelocity
+    this.and1ToNot.startAt(160)
+    this.orToAnd2.startAt(-1000)
+    this.andgate2.timePoints = timeTrapez(10,254)
+    this.output.startAt(-1000)
+    this.output.signalLength = (1000+274) * signalVelocity
+  }
 
   getTransform() {
 
@@ -135,14 +197,14 @@ class Xorgate {
       andgate2: this.andgate2.getProps(),
       notgate: this.notgate.getProps(),
       orgate: this.orgate.getProps(),
-      conduction1: this.conduction1.getProps(),
-      conduction2: this.conduction2.getProps(),
-      conduction3: this.conduction3.getProps(),
-      conduction4: this.conduction4.getProps(),
-      conduction5: this.conduction5.getProps(),
-      conduction6: this.conduction6.getProps(),
-      conduction7: this.conduction7.getProps(),
-      conduction8: this.conduction8.getProps(),
+      conduction1: this.and1ToNot.getProps(),
+      conduction2: this.notToAnd2.getProps(),
+      conduction3: this.orToAnd2.getProps(),
+      conduction4: this.upperInputToAnd.getProps(),
+      conduction5: this.lowerInputToAnd.getProps(),
+      conduction6: this.upperInputToOr.getProps(),
+      conduction7: this.lowerInputToOr.getProps(),
+      conduction8: this.output.getProps(),
     }
 
     return props

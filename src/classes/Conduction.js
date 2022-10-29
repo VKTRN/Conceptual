@@ -22,6 +22,7 @@ class Conduction extends Element {
     this.path       = []
     this.length     = 0
     this.travelTime = 0
+    this.signalLength = 100000
     // this.timeFunction = (t) => t
     this.timePoints = []
   }
@@ -73,6 +74,7 @@ class Conduction extends Element {
       signal: this.signal,
       velocity: this.velocity,
       stop: this.tStop,
+      signalLength: this.signalLength,
       timeFunction: timeFunction
     }
 

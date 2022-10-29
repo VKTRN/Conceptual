@@ -33,6 +33,10 @@ class Buffer extends Polygon{
     this.timePoints = generateTimes(t0, 0)
   }
 
+  turnOff() {
+    this.timePoints = generateTimes(10000,0)
+  }
+
 
   getProps() {
 

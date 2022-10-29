@@ -14,10 +14,10 @@ console.log("🚀 ~ file: Table.jsx ~ line 12 ~ Table ~ data", data)
   const t     = useCurrentFrame()
   const top   = dampedSpring(t)
   // const style = {top: top, left:2600, transform: 'scale(2)'}
-  const style = {top: top, left:'1100px'}
+  // const style = {top: top, left:'1100px'}
 
   return (
-    <div className = 'table' style = {style}>
+    <div className = 'table'>
 
       <div className = 'categories'>
         {data.categories.map((category) => (<div className = 'item'>{category}</div>))}

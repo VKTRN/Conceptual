@@ -49,6 +49,10 @@ class Orgate extends Polygon{
     this.timePoints = generateTimes(t0, 0)
   }
 
+  turnOff() {
+    this.timePoints = generateTimes(10000,0)
+  }
+
   getProps() {
 
     const timeFunction = this.timePoints.length !== 0? linearInterpolation(this.timePoints) : (t) => t

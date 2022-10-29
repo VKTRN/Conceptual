@@ -41,10 +41,13 @@ export function linearInterpolation(points){
     intervals.push(interval)
   }
 
+  console.log(intervals)
+
 
   const interpolator = x => {
     const interval = intervals.find((item) => {
       const {xL, xR, f} = item
+      
       return xL <= x && x <= xR
     })
     return interval.f(x)
@@ -63,6 +66,17 @@ export const interpolate = (p1,p2) => {
 
   return f
 }
+
+export function timeTrapez(h, dx){
+  const p1 = {x: -1000, y: h}
+  const p2 = {x: h + dx, y: h}
+  const p3 = {x: h + dx + h, y: 0}
+  const p4 = {x:10000, y:0}
+
+  const points = [p1, p2, p3, p4]
+
+  return points
+} 
 
 export const generateTimes = (t0, dt, tEnd = durationInFrames) => {
   const times = []

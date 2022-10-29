@@ -33,7 +33,7 @@ gate.transform = {
 gate.setSecondaries()
 
 gate
-  .startAt(0)
+  .trueTrue()
 
   ///////////// 
  /// CASES ///

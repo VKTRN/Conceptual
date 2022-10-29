@@ -1,8 +1,8 @@
 import {useCurrentFrame} from 'remotion';
-import {signalLength}    from '../constants';
+import {signalLength as signalLength_}    from '../constants';
 import {getTotalLength}  from '../utils/util';
 
-export const Connection = ({points, color='black', signal, strokeWidth=12, velocity=8, timeFunction = (t) => t, stop=100000}) => {
+export const Connection = ({points, color='black', signal, strokeWidth=12, velocity=8, signalLength = signalLength_, timeFunction = (t) => t, stop=100000}) => {
 
 	// const t   = Math.min(useCurrent	Frame(), stop)
 	const t_ = useCurrentFrame()
