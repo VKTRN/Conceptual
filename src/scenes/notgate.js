@@ -4,7 +4,6 @@ import {constant}            from '../utils/functions'
 import {DropShadow}          from '../components/DropShadow'
 import {notgate as table}    from '../logicTables'
 
-
   ///////////// 
  /// TITLE ///
 /////////////
@@ -40,16 +39,16 @@ gate.setSecondaries()
 /// input false, output true ///
 
 // gate
-//   .turnOffTransistor()
+//   .turnOffInput()
 //   .startConductionAt(0)
 //   .stopOnTransistor()
 
 /// input true, output false ///
 
 gate
-  .startFromTransistor()
-  .turnOnInput()
-
+  .startFromTransistor(40)
+  .startInputAt(0)
+  
   ///////////////// 
  /// GET PROPS ///
 /////////////////

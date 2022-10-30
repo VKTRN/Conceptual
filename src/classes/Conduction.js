@@ -49,8 +49,8 @@ class Conduction extends Element {
     this.setTravelTime()
   }
 
-  startAt(t0) {
-    this.timePoints = generateTimes(t0, 0)
+  startAt(t0, t1=0) {
+    this.timePoints = generateTimes(t0, t1)
   }
 
   startAtHalf() {

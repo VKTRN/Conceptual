@@ -71,16 +71,16 @@ class Andgate {
     return this
   }
 
-  startFromFirstTransistor() {
-    this.notgate1.startFromTransistor()
+  startFromFirstTransistor(t0) {
+    this.notgate1.startFromTransistor(t0)
     const dt = this.notgate1.conduction.travelTime
-    this.notgate2.startConductionAt(dt/2)
+    this.notgate2.startConductionAt(dt/2 + t0)
     return this
   }
 
-  startFromSecondTransistor() {
+  startFromSecondTransistor(t0) {
     this.notgate1.startAtFull()
-    this.notgate2.startFromTransistor()
+    this.notgate2.startFromTransistor(t0)
     return this
   }
 
@@ -90,8 +90,14 @@ class Andgate {
     return this
   }
 
+  stayAtFirstTransistor() {
+    this.notgate1.stayAtTransistor()
+    this.notgate2.startConductionAt(10000)
+    return this
+  }
+
   stopOnSecondTransistor() {
-    this.notgate1.startConductionAt(this.tConduction)
+    // this.notgate1.startConductionAt(this.tConduction)
     this.notgate2.stopOnTransistor()
     return this
   }

@@ -158,7 +158,7 @@ class Xorgate {
     this.upperInputToOr.startAt(-1000)
     this.lowerInputToOr.startAt(8)
     this.lowerInputToAnd.startAt(0)
-    this.andgate1.startAt(150)
+    this.andgate1.startAt(25)
     this.orgate.startAt(-1000)
     this.notgate.timePoints = timeTrapez(10,176)
     this.notToAnd2.startAt(-1000)
