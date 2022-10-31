@@ -83,6 +83,18 @@ class Nandgate {
     return this
   }
 
+  startFromFirstTransistor(t0) {
+    this.tConduction = t0
+    this.andgate.startFromFirstTransistor(t0)
+    return this
+  }
+
+  startFromSecondTransistor(t0) {
+    this.andgate.startFromSecondTransistor(t0)
+    this.notgate.startInputAt(t0 + this.andgate.notgate2.conduction.travelTime/2)
+    return this
+  }
+
   turnOffNotgateInput() {
     this.notgate.turnOffInput()
     return this
@@ -121,6 +133,11 @@ class Nandgate {
     const transform = `${translate} ${rotate} ${scale}`
     
     return transform
+  }
+
+  startFromRightTransistor(t0) {
+    this.notgate.startFromTransistor(t0)
+    return this
   }
 
   getProps() {

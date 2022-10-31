@@ -52,9 +52,15 @@ class Notgate {
   }
 
   startFromTransistor(t0 = 0) {
-    const tEnd = this.tConduction + this.conduction.travelTime/2
     const times = generateTimes(this.tConduction + t0, this.conduction.travelTime/2)
     this.conduction.timePoints = times
+    return this
+  }
+
+  false(t0) {
+    this.startConductionAt(t0)
+    this.turnOffInput()
+    this.stopOnTransistor()
     return this
   }
 

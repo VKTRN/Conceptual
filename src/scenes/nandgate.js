@@ -24,7 +24,7 @@ const gate  = new Nandgate()
 gate.transform = {
   translation : {x: constant(100), y: constant(700)},
   rotation : constant(-90),
-  scale : constant(.8),
+  scale : constant(1),
 }
 
   /////////////////////// 
@@ -33,8 +33,8 @@ gate.transform = {
 
 gate.setSecondaries()
 
-  ///////////// 
- /// CASES ///
+///////////// 
+/// CASES ///
 /////////////
 
 /// false false -> true ///
@@ -44,34 +44,37 @@ gate.setSecondaries()
 //   .turnOffFirstInput()
 //   .turnOffSecondInput()
 //   .stopOnFirstTransistor()
+//   .startConduction2At(40)
+//   .stopOnRightTransistor()
 
 /// false true -> true ///
 
 // gate
-//   .startSecondInputAt(0)
+//   .startConduction1At(-1000)
 //   .turnOffFirstInput()
-//   .startConduction1At(40)
+//   .startSecondInputAt(0)
 //   .stopOnFirstTransistor()
-//   .startConduction2At(100)
+//   .startConduction2At(-1000)
 //   .stopOnRightTransistor()
 
 /// true false -> true ///
 
 // gate
 //   .startFirstInputAt(0)
+//   .startFromFirstTransistor(40)
 //   .turnOffSecondInput()
-//   .startConduction1At(40)
 //   .stopOnSecondTransistor()
-//   .startConduction2At(160)
+//   .startConduction2At(-1000)
 //   .stopOnRightTransistor()
 
 /// true true -> false ///
 
 gate
-  .startFirstInputAt(0)
-  .startSecondInputAt(40)
-  .startConduction1At(80)
-  .startConduction2At(260)
+  .startFirstInputAt(-1000)
+  .startSecondInputAt(0)
+  .startFromSecondTransistor(40)
+  .startFromRightTransistor(120)
+  
   
 
 

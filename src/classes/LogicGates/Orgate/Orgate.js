@@ -80,6 +80,14 @@ class Orgate {
     return this
   }
 
+  turnOnUpperConduction() {
+    this.conduction1.turnOn()
+    this.notgate1.turnOnInput()
+    this.notgate1.startAtFull()
+    this.conduction3.turnOn()
+    return this
+  }
+
   startUpperInputAt(t0) {
     this.tInput1 = t0
     this.notgate1.startInputAt(t0)
@@ -89,6 +97,36 @@ class Orgate {
   startLowerInputAt(t0) {
     this.tInput2 = t0
     this.notgate2.startInputAt(t0)
+    return this
+  }
+
+  startLowerFromTransistor(t0) {
+    this.conduction2.startAt(-1000)
+    this.notgate2.startFromTransistor(t0)
+    this.conduction4.startAt(t0 + this.notgate2.conduction.travelTime/2)
+    return this
+  }
+
+  startUpperFromTransistor(t0) {
+    this.conduction1.startAt(-1000)
+    this.notgate1.startFromTransistor(t0)
+    this.conduction3.startAt(t0 + this.notgate1.conduction.travelTime/2)
+    return this
+  }
+
+  stayAtUpperTransistor() {
+    this.conduction1.startAt(-1000)
+    this.notgate1.stayAtTransistor()
+    this.conduction3.startAt(1000)
+    this.switchOrder = true
+    return this
+  }
+
+  stayAtLowerTransistor() {
+    this.conduction2.startAt(-1000)
+    this.notgate2.stayAtTransistor()
+    this.conduction4.startAt(1000)
+    this.switchOrder = false
     return this
   }
 
@@ -114,6 +152,37 @@ class Orgate {
     this.conduction4.turnOff()
     this.switchOrder = false
     return this
+  }
+
+  falseFalse() {
+    this
+      .turnOffUpperInput()
+      .turnOffLowerInput()
+      .startConductionAt(0)
+      .stopOnUpperTransistor()
+      .stopOnLowerTransistor()
+  }
+
+  trueFalse() {
+    this
+      .startLowerInputAt(0)
+      .startLowerFromTransistor(40)
+      .turnOffUpperInput()
+      .stayAtUpperTransistor()
+  }
+
+  falseTrue() {
+    this
+      .startUpperInputAt(0)
+      .startUpperFromTransistor(40)
+      .turnOffLowerInput()
+      .stayAtLowerTransistor()
+  }
+
+  trueTrue() {
+    this
+      .turnOnUpperConduction()
+      .startLowerFromTransistor(40)
   }
 
   getTransform() {

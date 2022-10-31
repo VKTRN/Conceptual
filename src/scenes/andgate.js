@@ -45,34 +45,29 @@ gate.setSecondaries()
 //   .startConductionAt(0)
 //   .stopOnFirstTransistor()
 
-/// true false -> false ///
-
-// gate
-//   .startFromFirstTransistor(0)
-//   .turnOffInput1()
-//   .stayAtFirstTransistor()
-
 /// false true -> false ///
 
 // gate
-//   .startFromFirstTransistor(40)
-//   .startInput1At(0)
-//   .turnOffInput2()
-//   .stopOnSecondTransistor()
+// .startFromFirstTransistor(0)
+// .turnOffInput1()
+// .stayAtFirstTransistor()
+
+/// true false -> false ///
+
+gate
+  .startFromFirstTransistor(40)
+  .startInput1At(0)
+  .turnOffInput2()
+  .stopOnSecondTransistor()
 
 
 
 /// true true -> true ///
 
-gate
-  .turnOnInput1()
-  .startInput2At(0)
-  .startFromSecondTransistor(40)
-
 // gate
 //   .turnOnInput1()
-//   .turnOnInput2()
-//   .startFromSecondTransistor()
+//   .startInput2At(0)
+//   .startFromSecondTransistor(40)
 
   ///////////////// 
  /// GET PROPS ///

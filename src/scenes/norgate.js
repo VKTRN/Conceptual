@@ -48,15 +48,11 @@ gate.setSecondaries()
 
 /// false false -> false ///
 
-gate
-  // .turnOffUpperInput()
-  // .turnOffLowerInput()
-  // .startConduction1At(0)
-  // .stopOnUpperTransistor()
-  // .stopOnLowerTransistor()
-  // .turnOffNotgateInput()
-  // .startConduction2At(170)
-  // .stopOnRightTransistor()
+// gate.falseFalse()
+// gate.falseTrue()
+// gate.trueFalse()
+gate.trueTrue()
+
 
 /// false true -> true ///
 
@@ -78,11 +74,11 @@ gate
 
 /// true true -> false ///
   
-gate
-  .startUpperInputAt(0)
-  .startLowerInputAt(0)
-  .startConduction1At(40)
-  .startConduction2At(320)
+// gate
+//   .startUpperInputAt(0)
+//   .startLowerInputAt(0)
+//   .startConduction1At(40)
+//   .startConduction2At(320)
 
 ///////////////// 
 /// GET PROPS ///

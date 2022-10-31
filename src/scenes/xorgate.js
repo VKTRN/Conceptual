@@ -32,8 +32,8 @@ gate.transform = {
 
 gate.setSecondaries()
 
-gate
-  .trueTrue()
+gate.falseTrue()
+// gate.trueTrue()
 
   ///////////// 
  /// CASES ///

@@ -4,22 +4,8 @@ import {constant}           from '../utils/functions'
 import {DropShadow}         from '../components/DropShadow'
 import {orgate as table}    from '../logicTables'
 
-
-  ///////////// 
- /// TITLE ///
-/////////////
-
 const title = 'OR-GATE'
-
-  /////////////// 
- /// OBJECTS ///
-///////////////
-
 const gate  = new Orgate()
-
-  ////////////////// 
- /// TRANSFORMS ///
-//////////////////
 
 gate.transform = {
   translation : {x: constant(100), y: constant(700)},
@@ -27,59 +13,14 @@ gate.transform = {
   scale : constant(.8),
 }
 
-  /////////////////////// 
- /// SET SECONDARIES ///
-///////////////////////
-
 gate.setSecondaries()
 
-  ///////////// 
- /// CASES ///
-/////////////
-
-/// false false -> false ///
-
-// gate
-//   .turnOffUpperInput()
-//   .turnOffLowerInput()
-//   .startConductionAt(0)
-//   .stopOnUpperTransistor()
-//   .stopOnLowerTransistor()
-
-/// false true -> true ///
-
-// gate
-//   .turnOffUpperInput()
-//   .startLowerInputAt(0)
-//   .startConductionAt(40)
-//   .stopOnUpperTransistor()
-
-/// true false -> true ///
-
-// gate
-//   .startUpperInputAt(0)
-//   .turnOffLowerInput()
-//   .startConductionAt(40)
-//   .stopOnLowerTransistor()
-
-/// true true -> true ///
-
-gate
-  .startUpperInputAt(0)
-  .startLowerInputAt(0)
-  .startConductionAt(40)
-
-
-
-///////////////// 
-/// GET PROPS ///
-/////////////////
+// gate.falseFalse()
+// gate.falseTrue()
+gate.trueFalse()
+// gate.trueTrue()
 
 const props = gate.getProps()
-
-  ///////////// 
- /// SCENE ///
-/////////////
 
 const Scene = () => {
   return (

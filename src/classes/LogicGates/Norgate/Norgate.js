@@ -105,6 +105,28 @@ class Norgate {
     return this
   }
 
+  falseFalse() {
+    this.orgate.falseFalse()
+    this.notgate.false(180)
+  }
+
+  falseTrue() {
+    this.orgate.falseTrue()
+    this.notgate.startInputAt(142)
+    this.notgate.startFromTransistor(182)
+  }
+
+  trueFalse() {
+    this.orgate.trueFalse()
+    this.notgate.startInputAt(192)
+    this.notgate.startFromTransistor(232)
+  }
+
+  trueTrue() {
+    this.orgate.trueTrue()
+    this.notgate.startInputAt(-1000)
+    this.notgate.startFromTransistor(-1000)
+  }
 
   getTransform() {
 

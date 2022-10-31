@@ -60,6 +60,10 @@ class Conduction extends Element {
   startAtFull() {
     this.timePoints = generateTimes(this.t0, this.travelTime)
   }
+  
+  turnOn() {
+    this.timePoints = generateTimes(this.t0, this.travelTime)
+  }
 
   turnOff() {
     this.timePoints = generateTimes(10000, 0)
