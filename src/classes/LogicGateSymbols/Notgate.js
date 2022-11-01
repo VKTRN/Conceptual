@@ -41,6 +41,10 @@ class Notgate extends Polygon{
     this.timePoints = generateTimes(10000,0)
   }
 
+  turnOn() {
+    this.startAt(-1000)
+  }
+
   getProps() {
 
     const timeFunction = this.timePoints.length !== 0 ? linearInterpolation(this.timePoints) : (t) => t

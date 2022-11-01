@@ -9,7 +9,7 @@ export const XorGate = ({andgate1, andgate2, notgate, orgate, conduction1, condu
   // const conductions = switchOrder ? [conduction1,conduction2,conduction3,conduction4] : [conduction1,conduction2,conduction4,conduction3]
 
   return (
-    <g id = 'orgate'>
+    <g id = 'xorgate'>
       <Transform transform={transform}>
         <Connection {...conduction1}/>
         <Connection {...conduction2}/>
@@ -18,7 +18,7 @@ export const XorGate = ({andgate1, andgate2, notgate, orgate, conduction1, condu
         <Connection {...conduction5}/>
         <Connection {...conduction6}/>
         <Connection {...conduction7}/>
-        <Connection {...conduction8}/>
+        {/* <Connection {...conduction8}/> */}
         <Andgate {...andgate1}/>
         <Andgate {...andgate2}/>
 
