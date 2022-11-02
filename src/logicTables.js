@@ -65,3 +65,11 @@ export const xnorgate = {
     ['false', 'false', 'true'],
   ]
 }
+
+export const buffer = {
+  categories: ['Input', 'Output'],
+  values: [
+    ['true', 'true'],
+    ['false', 'false'],
+  ]
+}
