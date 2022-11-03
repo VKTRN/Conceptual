@@ -1,8 +1,11 @@
 import {XorGate as GateComp} from '../components/LogicGates/XorGate'
 import {Xorgate}             from '../classes/LogicGates/Xorgate/Xorgate'
-import {constant}           from '../utils/functions'
-import {DropShadow}         from '../components/DropShadow'
+import {constant}            from '../utils/functions'
+import {Conduction}          from '../classes/Conduction'
+import {Connection}          from '../components/Connection'
+import {DropShadow}          from '../components/DropShadow'
 import {xorgate as table}    from '../logicTables'
+import {signalVelocity}      from '../constants'
 
   ///////////// 
  /// TITLE ///
@@ -14,9 +17,12 @@ const title = 'XOR-GATE'
  /// OBJECTS ///
 ///////////////
 
-const gate  = new Xorgate()
+const points = [{x: 1295, y: 600}, {x: 1400, y: 600}]
 
-  ////////////////// 
+const gate  = new Xorgate()
+const output = new Conduction(points)
+
+////////////////// 
  /// TRANSFORMS ///
 //////////////////
 
@@ -31,9 +37,21 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
+output.setSecondaries()
 
-gate.falseTrue()
-// gate.trueTrue()
+// gate.falseFalse()
+// output.turnOff()
+
+// gate.falseTrue()
+// output.startAt(210)
+
+// gate.trueFalse()
+// output.startAt(210)
+
+gate.trueTrue()
+output.startAt(-1000)
+output.signalLength = (1000+260) * signalVelocity
+
 
   ///////////// 
  /// CASES ///
@@ -83,12 +101,14 @@ gate.falseTrue()
 /////////////////
 
 const props = gate.getProps()
+const outputProps = output.getProps()
 
 const Scene = () => {
   return (
     <>
       <DropShadow id = 'scene'/>
       <g id='scene'>
+        <Connection {...outputProps} />
         <GateComp {...props} />
       </g>
     </>

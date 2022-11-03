@@ -1,8 +1,11 @@
 import {NotGate as GateComp} from '../components/LogicGates/NotGate'
 import {Notgate}             from '../classes/LogicGates/Notgate/Notgate'
 import {constant}            from '../utils/functions'
+import {Conduction}          from '../classes/Conduction'
+import {Connection}          from '../components/Connection'
 import {DropShadow}          from '../components/DropShadow'
 import {notgate as table}    from '../logicTables'
+import {signalVelocity}      from '../constants'
 
   ///////////// 
  /// TITLE ///
@@ -14,7 +17,11 @@ const title = 'NOT-GATE'
  /// OBJECTS ///
 ///////////////
 
-const gate  = new Notgate()
+const points = [{x: 250, y: 590}, {x: 250, y: 500}]
+
+const gate   = new Notgate()
+const output = new Conduction(points)
+
 
   ////////////////// 
  /// TRANSFORMS ///
@@ -31,6 +38,8 @@ gate.transform = {
 ///////////////////////
 
 gate.setSecondaries()
+output.setSecondaries()
+
 
   ///////////// 
  /// CASES ///
@@ -38,22 +47,29 @@ gate.setSecondaries()
 
 /// input false, output true ///
 
-// gate
-//   .turnOffInput()
-//   .startConductionAt(0)
-//   .stopOnTransistor()
+gate
+  .turnOffInput()
+  .startConductionAt(0)
+  .stopOnTransistor()
+
+output.startAt(6)
 
 /// input true, output false ///
 
-gate
-  .startFromTransistor(40)
-  .startInputAt(0)
+// gate
+//   .startFromTransistor(40)
+//   .startInputAt(0)
+
+// output.startAt(-1000)
+// output.signalLength = (1000+55) * signalVelocity
+
   
   ///////////////// 
  /// GET PROPS ///
 /////////////////
 
 const props = gate.getProps()
+const outputProps = output.getProps()
 
   /////////////
  /// SCENE ///
@@ -64,6 +80,7 @@ const Scene = () => {
     <>
       <DropShadow id = 'scene'/>
       <g id='scene'>
+        <Connection {...outputProps} />
         <GateComp {...props} />
       </g>
     </>

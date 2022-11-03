@@ -63,7 +63,7 @@ output.turnOff()
  /// GET PROPS ///
 /////////////////
 
-const props = gate.getProps()
+const props       = gate.getProps()
 const outputProps = output.getProps()
 
   /////////////
