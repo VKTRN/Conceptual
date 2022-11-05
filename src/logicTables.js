@@ -59,10 +59,10 @@ export const xorgate = {
 export const xnorgate = {
   categories: ['Input A', 'Input B', 'Output'],
   values: [
-    ['true', 'true', 'true'],
-    ['true', 'false', 'false'],
-    ['false', 'true', 'false'],
     ['false', 'false', 'true'],
+    ['false', 'true', 'false'],
+    ['true', 'false', 'false'],
+    ['true', 'true', 'true'],
   ]
 }
 

@@ -8,13 +8,13 @@ const opacity = (t, t0) => {
   return (t - t0) / (t1 - t0)
 }
 
-export const Table = ({data}) => {
-console.log("🚀 ~ file: Table.jsx ~ line 12 ~ Table ~ data", data)
 
-  const t     = useCurrentFrame()
-  const top   = dampedSpring(t)
-  // const style = {top: top, left:2600, transform: 'scale(2)'}
-  // const style = {top: top, left:'1100px'}
+
+export const Table = ({data, timeFunction = (t) => t}) => {
+
+  const t_  = useCurrentFrame()
+	const t   = timeFunction(t_)
+  const top = dampedSpring(t)
 
   return (
     <div className = 'table'>

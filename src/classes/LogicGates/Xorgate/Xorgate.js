@@ -107,13 +107,13 @@ class Xorgate {
     // this.output.startAt(t0 + 253)
   }
 
-  falseFalse() {
+  falseFalse(t0=0) {
     this.andgate1.turnOff()
     this.andgate2.turnOff()
     this.orgate.turnOff()
-    this.notgate.startAt(0)
+    this.notgate.startAt(t0)
     this.and1ToNot.turnOff()
-    this.notToAnd2.startAt(0)
+    this.notToAnd2.startAt(t0)
     this.orToAnd2.turnOff()
     this.upperInputToAnd.turnOff()
     this.lowerInputToAnd.turnOff()
@@ -122,49 +122,49 @@ class Xorgate {
     // this.output.turnOff()
   }
 
-  falseTrue() {
+  falseTrue(t0=0) {
     this.andgate1.turnOff()
-    this.andgate2.startAt(189)
-    this.orgate.startAt(99)
-    this.notgate.startAt(-10)
-    this.notToAnd2.startAt(-68)
+    this.andgate2.startAt(189+t0)
+    this.orgate.startAt(99+t0)
+    this.notgate.startAt(-1000)
+    this.notToAnd2.startAt(-1000)
     this.and1ToNot.turnOff()
-    this.orToAnd2.startAt(119)
+    this.orToAnd2.startAt(119+t0)
     this.upperInputToAnd.turnOff()
-    this.lowerInputToAnd.startAt(0)
+    this.lowerInputToAnd.startAt(t0)
     this.upperInputToOr.turnOff()
-    this.lowerInputToOr.startAt(8)
+    this.lowerInputToOr.startAt(8+t0)
     // this.output.startAt(214)
   }
 
-  trueFalse() {
+  trueFalse(t0=0) {
     this.andgate1.turnOff()
-    this.andgate2.startAt(188)
-    this.orgate.startAt(98)
-    this.notgate.startAt(-10)
-    this.notToAnd2.startAt(-68)
+    this.andgate2.startAt(188+t0)
+    this.orgate.startAt(98+t0)
+    this.notgate.startAt(-1000)
+    this.notToAnd2.startAt(-1000)
     this.and1ToNot.turnOff()
-    this.orToAnd2.startAt(118)
-    this.upperInputToAnd.startAt(0)
+    this.orToAnd2.startAt(118+t0)
+    this.upperInputToAnd.startAt(t0)
     this.lowerInputToAnd.turnOff()
-    this.upperInputToOr.startAt(15)
+    this.upperInputToOr.startAt(15+t0)
     this.lowerInputToOr.turnOff()
     // this.output.startAt(214)
   }
 
-  trueTrue() {
+  trueTrue(t0=0) {
     this.upperInputToAnd.startAt(-1000)
     this.upperInputToOr.startAt(-1000)
-    this.lowerInputToOr.startAt(8)
-    this.lowerInputToAnd.startAt(0)
-    this.andgate1.startAt(25)
+    this.lowerInputToOr.startAt(8+t0)
+    this.lowerInputToAnd.startAt(t0)
+    this.andgate1.startAt(25+t0)
     this.orgate.startAt(-1000)
-    this.notgate.timePoints = timeTrapez(10,170)
+    this.notgate.timePoints = timeTrapez(10,170+t0)
     this.notToAnd2.startAt(-1000)
-    this.notToAnd2.signalLength = (1000+190) * signalVelocity
-    this.and1ToNot.startAt(160)
+    this.notToAnd2.signalLength = (1000+190+t0) * signalVelocity
+    this.and1ToNot.startAt(160+t0)
     this.orToAnd2.startAt(-1000)
-    this.andgate2.timePoints = timeTrapez(10,229)
+    this.andgate2.timePoints = timeTrapez(10,229+t0)
     // this.output.startAt(-1000)
     // this.output.signalLength = (1000+274) * signalVelocity
   }

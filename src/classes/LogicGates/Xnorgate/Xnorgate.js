@@ -51,29 +51,29 @@ class Xnorgate {
     this.conduction.setSecondaries()
   }
 
-  falseFalse() {
-    this.xorgate.falseFalse()
-    this.notgate.startAt(0)
+  falseFalse(t0=0) {
+    this.xorgate.falseFalse(t0)
+    this.notgate.startAt(t0)
     this.conduction.turnOff()
   }
 
-  falseTrue() {
-    this.xorgate.falseTrue()
-    this.notgate.timePoints = timeTrapez(10,212)
-    this.conduction.startAt(209)
+  falseTrue(t0=0) {
+    this.xorgate.falseTrue(t0)
+    this.notgate.timePoints = timeTrapez(10,212+t0)
+    this.conduction.startAt(209+t0)
   }
 
-  trueFalse() {
-    this.xorgate.trueFalse()
-    this.notgate.timePoints = timeTrapez(10,212)
-    this.conduction.startAt(209)
+  trueFalse(t0=0) {
+    this.xorgate.trueFalse(t0)
+    this.notgate.timePoints = timeTrapez(10,212+t0)
+    this.conduction.startAt(209+t0)
   }
 
-  trueTrue() {
-    this.xorgate.trueTrue()
+  trueTrue(t0=0) {
+    this.xorgate.trueTrue(t0)
     this.conduction.startAt(-1000)
-    this.conduction.signalLength = (1000+249) * signalVelocity
-    this.notgate.startAt(262)
+    this.conduction.signalLength = (1000+249+t0) * signalVelocity
+    this.notgate.startAt(262+t0)
   }
 
   getProps() {

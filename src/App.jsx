@@ -13,7 +13,7 @@ export const App = () => {
           {/* <Test/> */}
           <Scene/>
         </Screen>
-        <Table data = {table}/>
+        <Table {...table}/>
         <div className = 'chapter'>{title}</div>
       </Sequence>
   )

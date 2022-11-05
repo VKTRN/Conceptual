@@ -6,8 +6,6 @@ import {Connection} from '../Connection'
 import {XorGate}    from './XorGate'
 
 export const XnorGate = ({xorgate, notgate, conduction, transform = {}}) => {
-  console.log(conduction)
-
   return (
     <g id = 'xnor'>
       <Transform transform={transform}>

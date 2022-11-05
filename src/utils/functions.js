@@ -41,9 +41,6 @@ export function linearInterpolation(points){
     intervals.push(interval)
   }
 
-  console.log(intervals)
-
-
   const interpolator = x => {
     const interval = intervals.find((item) => {
       const {xL, xR, f} = item
