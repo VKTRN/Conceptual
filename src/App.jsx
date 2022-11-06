@@ -1,6 +1,6 @@
 import {Sequence}            from 'remotion'
 import {Screen}              from './components/Screen'
-import {Scene, table, title} from './scenes/xnorgate'
+import {Scene, table, title} from './scenes/andgate'
 import {Table}               from './Table'
 import {Test}               from './Test'
 import './style.css'

@@ -2,14 +2,16 @@ import {AndGate as GateComp} from '../components/LogicGates/AndGate'
 import {Andgate}             from '../classes/LogicGates/Andgate/Andgate'
 import {constant}            from '../utils/functions'
 import {DropShadow}          from '../components/DropShadow'
-import {andgate as table}    from '../logicTables'
-
+import {andgate as data}    from '../logicTables'
+import {generateTimes}        from '../utils/functions'
+import {linearInterpolation}  from '../utils/functions'
 
   ///////////// 
  /// TITLE ///
 /////////////
 
 const title = 'AND-GATE'
+const t0 = 120
 
   /////////////// 
  /// OBJECTS ///
@@ -42,32 +44,53 @@ gate.setSecondaries()
 // gate
 //   .turnOffInput1()
 //   .turnOffInput2()
-//   .startConductionAt(0)
+//   .startConductionAt(t0)
 //   .stopOnFirstTransistor()
+
+// const times = generateTimes(0,120,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
 /// false true -> false ///
 
 // gate
-// .startFromFirstTransistor(0)
 // .turnOffInput1()
 // .stayAtFirstTransistor()
+// .startInput2At(t0)
+// const times = generateTimes(0,210,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
 /// true false -> false ///
 
-gate
-  .startFromFirstTransistor(40)
-  .startInput1At(0)
-  .turnOffInput2()
-  .stopOnSecondTransistor()
+// gate
+//   .startFromFirstTransistor(40+t0)
+//   .startInput1At(t0)
+//   .turnOffInput2()
+//   .stopOnSecondTransistor()
+// const times = generateTimes(0,300,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
 
 
 /// true true -> true ///
 
-// gate
-//   .turnOnInput1()
-//   .startInput2At(0)
-//   .startFromSecondTransistor(40)
+gate
+  .turnOnInput1()
+  .startInput2At(t0)
+  .startFromSecondTransistor(40+t0)
+const times = generateTimes(0,390,90)
+const table = {
+  data,
+  timeFunction : linearInterpolation(times)
+}
 
   ///////////////// 
  /// GET PROPS ///

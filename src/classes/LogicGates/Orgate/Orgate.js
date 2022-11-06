@@ -154,35 +154,35 @@ class Orgate {
     return this
   }
 
-  falseFalse() {
+  falseFalse(t0) {
     this
       .turnOffUpperInput()
       .turnOffLowerInput()
-      .startConductionAt(0)
+      .startConductionAt(t0)
       .stopOnUpperTransistor()
       .stopOnLowerTransistor()
   }
 
-  trueFalse() {
+  trueFalse(t0) {
     this
-      .startLowerInputAt(0)
-      .startLowerFromTransistor(40)
+      .startLowerInputAt(t0)
+      .startLowerFromTransistor(40+t0)
       .turnOffUpperInput()
       .stayAtUpperTransistor()
   }
 
-  falseTrue() {
+  falseTrue(t0) {
     this
-      .startUpperInputAt(0)
-      .startUpperFromTransistor(40)
+      .startUpperInputAt(t0)
+      .startUpperFromTransistor(40+t0)
       .turnOffLowerInput()
       .stayAtLowerTransistor()
   }
 
-  trueTrue() {
+  trueTrue(t0) {
     this
       .turnOnUpperConduction()
-      .startLowerFromTransistor(40)
+      .startLowerFromTransistor(40+t0)
   }
 
   getTransform() {

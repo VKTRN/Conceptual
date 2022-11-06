@@ -4,14 +4,17 @@ import {constant}            from '../utils/functions'
 import {Conduction}          from '../classes/Conduction'
 import {Connection}          from '../components/Connection'
 import {DropShadow}          from '../components/DropShadow'
-import {xorgate as table}    from '../logicTables'
+import {xorgate as data}    from '../logicTables'
 import {signalVelocity}      from '../constants'
+import {generateTimes}        from '../utils/functions'
+import {linearInterpolation}  from '../utils/functions'
 
   ///////////// 
  /// TITLE ///
 /////////////
 
 const title = 'XOR-GATE'
+const t0    = 120
 
   /////////////// 
  /// OBJECTS ///
@@ -39,19 +42,39 @@ gate.transform = {
 gate.setSecondaries()
 output.setSecondaries()
 
-// gate.falseFalse()
+// gate.falseFalse(t0)
 // output.turnOff()
+// const times         = generateTimes(0,120,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
-// gate.falseTrue()
-// output.startAt(210)
+// gate.falseTrue(t0)
+// output.startAt(210+t0)
+// const times         = generateTimes(0,210,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
-// gate.trueFalse()
-// output.startAt(210)
+// gate.trueFalse(t0)
+// output.startAt(210+t0)
+// const times         = generateTimes(0,300,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
-gate.trueTrue()
+gate.trueTrue(t0)
 output.startAt(-1000)
-output.signalLength = (1000+260) * signalVelocity
+output.signalLength = (1000+260+t0) * signalVelocity
 
+const times         = generateTimes(0,390,90)
+const table = {
+  data,
+  timeFunction : linearInterpolation(times)
+}
 
   ///////////// 
  /// CASES ///

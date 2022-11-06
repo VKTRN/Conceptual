@@ -4,13 +4,16 @@ import {Conduction}          from '../classes/Conduction'
 import {Connection}          from '../components/Connection'
 import {constant}            from '../utils/functions'
 import {DropShadow}          from '../components/DropShadow'
-import {buffer as table}    from '../logicTables'
+import {buffer as data}    from '../logicTables'
+import {generateTimes}        from '../utils/functions'
+import {linearInterpolation}  from '../utils/functions'
 
   ///////////// 
  /// TITLE ///
 /////////////
 
 const title = 'BUFFER'
+const t0 = 120
 
   /////////////// 
  /// OBJECTS ///
@@ -44,20 +47,32 @@ output.setSecondaries()
 
 /// input false, output true ///
 
-gate
-  .turnOffInput()
-  .startConductionAt(0)
-  .stopOnTransistor()
+// gate
+//   .turnOffInput()
+//   .startConductionAt(t0)
+//   .stopOnTransistor()
 
-output.turnOff()
+// output.turnOff()
+
+// const times = generateTimes(0,90,90)
+// const table = {
+//   data,
+//   timeFunction : linearInterpolation(times)
+// }
 
 /// input true, output false ///
 
-// gate
-//   .startFromTransistor(40)
-//   .startInputAt(0)
+gate
+  .startFromTransistor(40+t0)
+  .startInputAt(t0)
 
-// output.startAt(71)
+output.startAt(71+t0)
+
+const times = generateTimes(0,180,90)
+const table = {
+  data,
+  timeFunction : linearInterpolation(times)
+}
   
   ///////////////// 
  /// GET PROPS ///
