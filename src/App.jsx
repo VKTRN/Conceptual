@@ -10,11 +10,11 @@ export const App = () => {
   return (
       <Sequence id = 'App'  from={0}>
         <Screen>
-          {/* <Test/> */}
-          <Scene/>
+          <Test/>
+          {/* <Scene/> */}
         </Screen>
-        <Table {...table}/>
-        <div className = 'chapter'>{title}</div>
+        {/* <Table {...table}/> */}
+        {/* <div className = 'chapter'>{title}</div> */}
       </Sequence>
   )
 }
