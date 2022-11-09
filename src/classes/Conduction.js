@@ -9,26 +9,27 @@ import {getTravelTime}       from '../utils/util'
 import {linearInterpolation} from '../utils/functions'
 import {generateTimes}       from '../utils/functions'
 
-
 class Conduction extends Element {
   constructor(points) {
     super(points)
-    this.color      = 'rgb(255,178,0)'
-    this.t0         = 0
-    this.signal     = {t0: this.t0, color:this.color}
-    this.width      = conductionWidth
-    this.velocity   = signalVelocity
-    this.tStop      = 10000
-    this.path       = []
-    this.length     = 0
-    this.travelTime = 0
-    this.signalLength = 100000
+    this.color        = 'rgb(255,178,0)'
+    this.t0           = 0
+    this.signal       = {t0: this.t0, color:this.color}
+    this.width        = conductionWidth
+    this.velocity     = signalVelocity
+    this.tStop        = 10000
+    this.path         = []
+    this.length       = 0
+    this.travelTime   = 0
+    this.signalLength = 50
+    this.timePoints   = []
+    this.duration     = this.points.length
     // this.timeFunction = (t) => t
-    this.timePoints = []
   }
 
   setPath() {
-    this.path = getRoundedPath(this.points, 30)
+    // this.path = getRoundedPath(this.points, 30)
+    this.path = this.points.map( item => getRoundedPath(item, 30))
   }
 
   transformPoints() {
@@ -36,7 +37,7 @@ class Conduction extends Element {
   }
 
   setLength() {
-    this.length = getTotalLength(this.path)
+    this.length = getTotalLength(this.path[this.duration-1])
   }
 
   setTravelTime() {

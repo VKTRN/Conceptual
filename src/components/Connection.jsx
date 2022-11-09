@@ -3,14 +3,15 @@ import {signalLength as signalLength_}    from '../constants';
 import {getTotalLength}  from '../utils/util';
 
 export const Connection = ({points, color='black', signal, strokeWidth=12, velocity=8, signalLength = signalLength_, timeFunction = (t) => t, stop=100000}) => {
-
+	
 	// const t   = Math.min(useCurrent	Frame(), stop)
 	const t_ = useCurrentFrame()
 	const t = timeFunction(t_)
 
+	const points_ = points[t]
 	const v 	= velocity
 	const ls 	= signalLength
-	const l 	= getTotalLength(points)
+	const l 	= getTotalLength(points_)
 	const t0a = signal.t0
 	
 	const t1a = t0a + l/v
@@ -23,7 +24,7 @@ export const Connection = ({points, color='black', signal, strokeWidth=12, veloc
 	const ga  = clip(fa)
 	const gb  = clip(fb)
 
-	const lengths    = getLengths(points)
+	const lengths    = getLengths(points_)
 	const normalized = normalize(lengths)
 	const cumulated  = cumulate(normalized) 
 	
@@ -33,17 +34,17 @@ export const Connection = ({points, color='black', signal, strokeWidth=12, veloc
 	const sa = ga - cumulated[ia]
 	const sb = gb - cumulated[ib]
 
-	const na = normalizeVector(points[ia], points[ia+1])
-	const nb = normalizeVector(points[ib], points[ib+1])
+	const na = normalizeVector(points_[ia], points_[ia+1])
+	const nb = normalizeVector(points_[ib], points_[ib+1])
 
-	const pa = add(points[ia], multiply(na, sa*l))
-	const pb = add(points[ib], multiply(nb, sb*l))
+	const pa = add(points_[ia], multiply(na, sa*l))
+	const pb = add(points_[ib], multiply(nb, sb*l))
 	
-	const signalPoints = [pa, ...points.slice(ib+1,ia+1).reverse() ,pb]
+	const signalPoints = [pa, ...points_.slice(ib+1,ia+1).reverse() ,pb]
 
 	return(
 		<>
-		 <polyline   points={getPolyline(points)} fill='none' stroke={color} strokeWidth={strokeWidth}/>
+		 <polyline   points={getPolyline(points[t_])} fill='none' stroke={color} strokeWidth={strokeWidth}/>
 		 <polyline  points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
 		</> 
 	)
