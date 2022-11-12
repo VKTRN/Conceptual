@@ -24,12 +24,13 @@ class Conduction extends Element {
     this.signalLength = 50
     this.timePoints   = []
     this.duration     = this.points.length
+    this.r            = 30
     // this.timeFunction = (t) => t
   }
 
   setPath() {
     // this.path = getRoundedPath(this.points, 30)
-    this.path = this.points.map( item => getRoundedPath(item, 30))
+    this.path = this.points.map( item => getRoundedPath(item, this.r))
   }
 
   transformPoints() {

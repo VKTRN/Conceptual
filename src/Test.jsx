@@ -35,41 +35,135 @@ function diffusion(array){
   return newArray
 }
 
-const a = 400
+// {x:    0, y:   0},
+// {x:    0, y: 100},
+// {x: -100, y: 200},
+// {x: -100, y: 300},
+// {x:    0, y: 400},
+// {x:    0, y: 500}
 
-const p1 = {t:0,   point: {x:400, y:400}}
-const p2 = {t:100, point: {x:400+a, y:400}}
-const p3 = {t:200, point: {x:400+a, y:400+a}}
-const p4 = {t:300, point: {x:400, y:400+a}}
-const p5 = {t:400, point: {x:400, y:400}}
+const a = 250
+const c = 100
+const d = 150
+const b = 50
+const e = 100
+const f = 100
 
-const timePoints = [p1, p2, p3, p4, p5]
+const t1 = 50
+const t2 = 100
+const t3 = 150
+const t4 = 200
+
+const center = {x: 1920/2, y: 1080/2}
+
+const p1 = []
+const p2 = []
+const p3 = []
+const p4 = []
+const p5 = []
+const p6 = []
+
+const tr1 = []
+const tr2 = []
+
+const in1 = []
+const in2 = []
+
+in1.push({t: 0, point: {x: center.x, y: center.y + c}})
+in1.push({t: t4, point: {x: center.x, y: center.y + c}})
+
+in2.push({t: 0, point: {x: center.x, y: center.y + c}})
+in2.push({t: t4, point: {x: center.x, y: center.y + c+f}})
+
+tr1.push({t: 0, point: {x: center.x, y: center.y}})
+tr1.push({t: t1, point: {x: center.x, y: center.y}})
+tr1.push({t: t2, point: {x: center.x - e, y: center.y}})
+tr1.push({t: t3, point: {x: center.x - e, y: center.y + c}})
+
+tr2.push({t: 0, point: {x: center.x, y: center.y}})
+tr2.push({t: t1, point: {x: center.x, y: center.y}})
+tr2.push({t: t2, point: {x: center.x + e, y: center.y}})
+tr2.push({t: t3, point: {x: center.x + e, y: center.y + c}})
+
+p1.push({t:0,   point: {x:center.x, y:center.y}})
+p1.push({t:t1, point: {x:center.x - a, y:center.y}})
+
+p2.push({t:0, point: {x:center.x, y:center.y}})
+p2.push({t:t1, point: {x:center.x - d, y:center.y}})
+
+p3.push({t:0,   point: {x:center.x, y:center.y}})
+p3.push({t:t1, point: {x:center.x - b, y:center.y}})
+p3.push({t:t3, point: {x:center.x - b, y:center.y + c}})
+
+p4.push({t:0,   point: {x:center.x, y:center.y}})
+p4.push({t:t1, point: {x:center.x + b, y:center.y}})
+p4.push({t:t3, point: {x:center.x + b, y:center.y + c}})
+
+p5.push({t:0,   point: {x:center.x, y:center.y}})
+p5.push({t:t1, point: {x:center.x + d, y:center.y}})
+
+p6.push({t:0,   point: {x:center.x, y:center.y}})
+p6.push({t:t1, point: {x:center.x + a, y:center.y}})
 
 
-const positionArray1 = new Array(durationInFrames).fill({x: 50, y: 600})
-const positionArray2 = new Array(durationInFrames).fill({x: 200, y: 600})
-const positionArray3 = getPositionArray(timePoints, durationInFrames)
+// const positionArray1 = new Array(durationInFrames).fill({x: 50, y: 600})
+
+const pa1 = getPositionArray(p1, durationInFrames)
+const pa2 = getPositionArray(p2, durationInFrames)
+const pa3 = getPositionArray(p3, durationInFrames)
+const pa4 = getPositionArray(p4, durationInFrames)
+const pa5 = getPositionArray(p5, durationInFrames)
+const pa6 = getPositionArray(p6, durationInFrames)
+
+const ta1 = getPositionArray(tr1, durationInFrames)
+const ta2 = getPositionArray(tr2, durationInFrames)
+
+const ia1 = getPositionArray(in1, durationInFrames)
+const ia2 = getPositionArray(in2, durationInFrames)
 
 const conductionPoints = []
+const transistorPoints = []
+const inputPoints      = []
 
 for (let i = 0; i < durationInFrames; i++) {
-  conductionPoints.push([positionArray1[i], positionArray2[i], positionArray3[i]])
+  conductionPoints.push([pa1[i],pa2[i],pa3[i],pa4[i], pa5[i], pa6[i]])
+  transistorPoints.push([ta1[i], ta2[i]])
+  inputPoints.push([ia1[i], ia2[i]])
 }
 
-const conduction1 = new Conduction(conductionPoints)
-conduction1.setSecondaries()
-const props1 = conduction1.getProps()
+const conduction = new Conduction(conductionPoints)
+const transistor = new Conduction(transistorPoints)
+const input      = new Conduction(inputPoints)
 
+
+const scale = 2
+conduction.r = 30
+conduction.width = 14
+conduction.setSecondaries()
+conduction.turnOff()
+
+transistor.r = 30
+transistor.width = 22
+transistor.setSecondaries()
+transistor.turnOff()
+
+input.setSecondaries()
+input.turnOff()
+
+const props1 = conduction.getProps()
+const props2 = transistor.getProps()
+const props3 = input.getProps()
 
 export const Test = (props) => {
 
   const t = useCurrentFrame()
 
-
   return (
     <>
       {/* <circle cx = {positionArray[t].x} cy = {positionArray[t].y} r = '10' fill = 'red' /> */}
       <Connection {...props1}/>
+      <Connection {...props2}/>
+      <Connection {...props3}/>
     </>
   )
 }
