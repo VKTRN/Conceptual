@@ -6,6 +6,7 @@ import {durationInFrames} from './constants'
 import './style.css'
 import {Connection} from './components/Connection'
 import {Conduction} from './classes/Conduction'
+import {Point} from './classes/Point'
 
 function getPositionArray(timePoints, duration){
   const T = Array.from({length: duration}, () => ({x: 0, y: 0}))
@@ -34,13 +35,21 @@ function diffusion(array){
   })
   return newArray
 }
+// conductionPoints.push([pa1[i],pa2[i],pa3[i],pa4[i], pa5[i], pa6[i]])
 
-// {x:    0, y:   0},
-// {x:    0, y: 100},
-// {x: -100, y: 200},
-// {x: -100, y: 300},
-// {x:    0, y: 400},
-// {x:    0, y: 500}
+function getPolyline(points){
+  const timelines = points.map(point => point.getTimeline())
+  console.log("🚀 ~ file: Test.jsx ~ line 42 ~ getPolyline ~ timelines", timelines)
+  const timeline = []
+  for (let i = 0; i < timelines[0].length; i++) {
+    const points = []
+    for (let j = 0; j < timelines.length; j++) {
+      points.push(timelines[j][i])
+    }
+    timeline.push(points)
+  }
+  return timeline
+}
 
 const a = 250
 const c = 100
@@ -49,94 +58,83 @@ const b = 50
 const e = 100
 const f = 100
 
+const t0 = 0
 const t1 = 50
 const t2 = 100
 const t3 = 150
 const t4 = 200
 
-const center = {x: 1920/2, y: 1080/2}
-
-const p1 = []
-const p2 = []
-const p3 = []
-const p4 = []
-const p5 = []
-const p6 = []
-
-const tr1 = []
-const tr2 = []
-
-const in1 = []
-const in2 = []
-
-in1.push({t: 0, point: {x: center.x, y: center.y + c}})
-in1.push({t: t4, point: {x: center.x, y: center.y + c}})
-
-in2.push({t: 0, point: {x: center.x, y: center.y + c}})
-in2.push({t: t4, point: {x: center.x, y: center.y + c+f}})
-
-tr1.push({t: 0, point: {x: center.x, y: center.y}})
-tr1.push({t: t1, point: {x: center.x, y: center.y}})
-tr1.push({t: t2, point: {x: center.x - e, y: center.y}})
-tr1.push({t: t3, point: {x: center.x - e, y: center.y + c}})
-
-tr2.push({t: 0, point: {x: center.x, y: center.y}})
-tr2.push({t: t1, point: {x: center.x, y: center.y}})
-tr2.push({t: t2, point: {x: center.x + e, y: center.y}})
-tr2.push({t: t3, point: {x: center.x + e, y: center.y + c}})
-
-p1.push({t:0,   point: {x:center.x, y:center.y}})
-p1.push({t:t1, point: {x:center.x - a, y:center.y}})
-
-p2.push({t:0, point: {x:center.x, y:center.y}})
-p2.push({t:t1, point: {x:center.x - d, y:center.y}})
-
-p3.push({t:0,   point: {x:center.x, y:center.y}})
-p3.push({t:t1, point: {x:center.x - b, y:center.y}})
-p3.push({t:t3, point: {x:center.x - b, y:center.y + c}})
-
-p4.push({t:0,   point: {x:center.x, y:center.y}})
-p4.push({t:t1, point: {x:center.x + b, y:center.y}})
-p4.push({t:t3, point: {x:center.x + b, y:center.y + c}})
-
-p5.push({t:0,   point: {x:center.x, y:center.y}})
-p5.push({t:t1, point: {x:center.x + d, y:center.y}})
-
-p6.push({t:0,   point: {x:center.x, y:center.y}})
-p6.push({t:t1, point: {x:center.x + a, y:center.y}})
+const cx = 1920/2
+const cy = 1080/2
 
 
-// const positionArray1 = new Array(durationInFrames).fill({x: 50, y: 600})
+const p1 = new Point()
+const p2 = new Point()
+const p3 = new Point()
+const p4 = new Point()
+const p5 = new Point()
+const p6 = new Point()
 
-const pa1 = getPositionArray(p1, durationInFrames)
-const pa2 = getPositionArray(p2, durationInFrames)
-const pa3 = getPositionArray(p3, durationInFrames)
-const pa4 = getPositionArray(p4, durationInFrames)
-const pa5 = getPositionArray(p5, durationInFrames)
-const pa6 = getPositionArray(p6, durationInFrames)
+const tr1 = new Point()
+const tr2 = new Point()
 
-const ta1 = getPositionArray(tr1, durationInFrames)
-const ta2 = getPositionArray(tr2, durationInFrames)
+const in1 = new Point()
+const in2 = new Point()
 
-const ia1 = getPositionArray(in1, durationInFrames)
-const ia2 = getPositionArray(in2, durationInFrames)
+in1.setKeyframe(t0, cx, cy + c    )
+in2.setKeyframe(t0, cx, cy + c    )
+in2.setKeyframe(t4, cx, cy + c + f)
 
-const conductionPoints = []
-const transistorPoints = []
-const inputPoints      = []
+tr1.setKeyframe(t0, cx    , cy    )
+tr1.setKeyframe(t1, cx    , cy    )
+tr1.setKeyframe(t2, cx - e, cy    )
+tr1.setKeyframe(t3, cx - e, cy + c)
+tr2.setKeyframe(t0, cx    , cy    )
+tr2.setKeyframe(t1, cx    , cy    )
+tr2.setKeyframe(t2, cx + e, cy    )
+tr2.setKeyframe(t3, cx + e, cy + c)
 
-for (let i = 0; i < durationInFrames; i++) {
-  conductionPoints.push([pa1[i],pa2[i],pa3[i],pa4[i], pa5[i], pa6[i]])
-  transistorPoints.push([ta1[i], ta2[i]])
-  inputPoints.push([ia1[i], ia2[i]])
-}
+p1.setKeyframe(t0, cx    , cy    )
+p2.setKeyframe(t0, cx    , cy    )
+p3.setKeyframe(t0, cx    , cy    )
+p4.setKeyframe(t0, cx    , cy    )
+p5.setKeyframe(t0, cx    , cy    )
+p6.setKeyframe(t0, cx    , cy    )
+p1.setKeyframe(t1, cx - a, cy    )
+p2.setKeyframe(t1, cx - d, cy    )
+p3.setKeyframe(t1, cx - b, cy    )
+p4.setKeyframe(t1, cx + b, cy    )
+p5.setKeyframe(t1, cx + d, cy    )
+p6.setKeyframe(t1, cx + a, cy    )    
+p3.setKeyframe(t3, cx - b, cy + c)
+p4.setKeyframe(t3, cx + b, cy + c)
 
-const conduction = new Conduction(conductionPoints)
-const transistor = new Conduction(transistorPoints)
-const input      = new Conduction(inputPoints)
+in1.diffuse()
+in2.diffuse()
+tr1.diffuse()
+tr2.diffuse()
+p1.diffuse()
+p2.diffuse()
+p3.diffuse()
+p4.diffuse()
+p5.diffuse()
+p6.diffuse()
+
+const conductionPoints   = [p1, p2, p3, p4, p5, p6]
+const inputPoints        = [in1, in2]
+const transistorPoints   = [tr1, tr2]
+
+const conductionTimeline = getPolyline(conductionPoints)
+const inputTimeline      = getPolyline(inputPoints)
+const transistorTimeline = getPolyline(transistorPoints)
+
+const conduction         = new Conduction(conductionTimeline)
+const transistor         = new Conduction(transistorTimeline)
+const input              = new Conduction(inputTimeline)
 
 
-const scale = 2
+/// CONFIGS ///
+
 conduction.r = 30
 conduction.width = 14
 conduction.setSecondaries()
@@ -154,13 +152,14 @@ const props1 = conduction.getProps()
 const props2 = transistor.getProps()
 const props3 = input.getProps()
 
+/// COMPONENT ///
+
 export const Test = (props) => {
 
   const t = useCurrentFrame()
 
   return (
     <>
-      {/* <circle cx = {positionArray[t].x} cy = {positionArray[t].y} r = '10' fill = 'red' /> */}
       <Connection {...props1}/>
       <Connection {...props2}/>
       <Connection {...props3}/>

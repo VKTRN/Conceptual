@@ -4,6 +4,9 @@ import {constant} from './utils/functions.js'
 export const signalLength     = 50
 export const signalVelocity   = 2
 export const durationInFrames = 260
+export const screen           = {width: 1920, height: 1080}
+
+
 const gradient1               = 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)'
 const gradient2               = 'linear-gradient(30deg, #09203f 0%, #537895 100%)'
 const gradient3 = {

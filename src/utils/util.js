@@ -375,3 +375,14 @@ export const getConductionFromConnectors = function (connector1, connector2, tra
   return points
 }
 
+export function diffusion(array){
+  const newArray = array.map((point, index) => {
+    if(index === array.length - 1 || index === 0) return point
+    return {
+      x: (array[index-1].x + array[index].x + array[index+1].x)/3,
+      y: (array[index-1].y + array[index].y + array[index+1].y)/3
+    }
+  })
+  return newArray
+}
+
