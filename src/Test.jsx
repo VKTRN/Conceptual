@@ -8,6 +8,10 @@ import {Connection} from './components/Connection'
 import {Conduction} from './classes/Conduction'
 import {Point} from './classes/Point'
 
+function sigmoid(t, f0, df, c) {
+  return df / (1 + Math.exp(-c*(t-t0))) + f0
+}
+
 function getPositionArray(timePoints, duration){
   const T = Array.from({length: duration}, () => ({x: 0, y: 0}))
   
@@ -109,16 +113,16 @@ p6.setKeyframe(t1, cx + a, cy    )
 p3.setKeyframe(t3, cx - b, cy + c)
 p4.setKeyframe(t3, cx + b, cy + c)
 
-in1.diffuse()
-in2.diffuse()
-tr1.diffuse()
-tr2.diffuse()
-p1.diffuse()
-p2.diffuse()
-p3.diffuse()
-p4.diffuse()
-p5.diffuse()
-p6.diffuse()
+// in1.diffuse()
+// in2.diffuse()
+// tr1.diffuse()
+// tr2.diffuse()
+// p1.diffuse()
+// p2.diffuse()
+// p3.diffuse()
+// p4.diffuse()
+// p5.diffuse()
+// p6.diffuse()
 
 const conductionPoints   = [p1, p2, p3, p4, p5, p6]
 const inputPoints        = [in1, in2]
