@@ -1,59 +1,12 @@
-import {useCurrentFrame} from 'remotion'
-import {Connection} from './components/Connection'
-import {linearInterpolation} from './utils/functions'
-import {Andgate} from './components/LogicGateSymbols/Andgate'
-import {durationInFrames} from './constants'
-import './style.css'
-import {Connection} from './components/Connection'
-import {Conduction} from './classes/Conduction'
-import {Point} from './classes/Point'
+import {Connection}      from '../../components/Connection'
+import {Connection}      from '../../components/Connection'
+import {Conduction}      from '../../classes/Conduction'
+import {Point}           from '../../classes/Point'
+import {getPolyline}     from '../../utils/util'
+import                        '../../style.css'
 
-function sigmoid(t, f0, df, c) {
-  return df / (1 + Math.exp(-c*(t-t0))) + f0
-}
-
-function getPositionArray(timePoints, duration){
-  const T = Array.from({length: duration}, () => ({x: 0, y: 0}))
-  
-  timePoints.forEach((item, index) => {
-    T.fill(item.point, item.t, duration)
-  })
-
-  let T2 = T
-
-  for (let i = 0; i < 80; i++) {
-    T2 = diffusion(T2)
-  }
-
-  return T2
-
-}
-
-function diffusion(array){
-  const newArray = array.map((point, index) => {
-    if(index === array.length - 1 || index === 0) return point
-    return {
-      x: (array[index-1].x + array[index].x + array[index+1].x)/3,
-      y: (array[index-1].y + array[index].y + array[index+1].y)/3
-    }
-  })
-  return newArray
-}
-// conductionPoints.push([pa1[i],pa2[i],pa3[i],pa4[i], pa5[i], pa6[i]])
-
-function getPolyline(points){
-  const timelines = points.map(point => point.getTimeline())
-  console.log("🚀 ~ file: Test.jsx ~ line 42 ~ getPolyline ~ timelines", timelines)
-  const timeline = []
-  for (let i = 0; i < timelines[0].length; i++) {
-    const points = []
-    for (let j = 0; j < timelines.length; j++) {
-      points.push(timelines[j][i])
-    }
-    timeline.push(points)
-  }
-  return timeline
-}
+const cx = 1920/2
+const cy = 1080/2
 
 const a = 250
 const c = 100
@@ -67,10 +20,6 @@ const t1 = 50
 const t2 = 100
 const t3 = 150
 const t4 = 200
-
-const cx = 1920/2
-const cy = 1080/2
-
 
 const p1 = new Point()
 const p2 = new Point()
@@ -113,17 +62,6 @@ p6.setKeyframe(t1, cx + a, cy    )
 p3.setKeyframe(t3, cx - b, cy + c)
 p4.setKeyframe(t3, cx + b, cy + c)
 
-// in1.diffuse()
-// in2.diffuse()
-// tr1.diffuse()
-// tr2.diffuse()
-// p1.diffuse()
-// p2.diffuse()
-// p3.diffuse()
-// p4.diffuse()
-// p5.diffuse()
-// p6.diffuse()
-
 const conductionPoints   = [p1, p2, p3, p4, p5, p6]
 const inputPoints        = [in1, in2]
 const transistorPoints   = [tr1, tr2]
@@ -135,7 +73,6 @@ const transistorTimeline = getPolyline(transistorPoints)
 const conduction         = new Conduction(conductionTimeline)
 const transistor         = new Conduction(transistorTimeline)
 const input              = new Conduction(inputTimeline)
-
 
 /// CONFIGS ///
 
@@ -152,15 +89,15 @@ transistor.turnOff()
 input.setSecondaries()
 input.turnOff()
 
+/// PROPS ///
+
 const props1 = conduction.getProps()
 const props2 = transistor.getProps()
 const props3 = input.getProps()
 
 /// COMPONENT ///
 
-export const Test = (props) => {
-
-  const t = useCurrentFrame()
+export const Scene = () => {
 
   return (
     <>

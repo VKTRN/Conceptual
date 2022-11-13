@@ -15,14 +15,18 @@ export function linear(c) {
   return fn 
 }
 
-export function sigmoid(fMin, fMax, t0, fSlope) {
+// export function sigmoid(fMin, fMax, t0, fSlope) {
   
-  const fn = t => {
-    const f = fMin + (fMax - fMin) / (1 + Math.exp(-fSlope*(t-t0)))
-    return f
-  }
+//   const fn = t => {
+//     const f = fMin + (fMax - fMin) / (1 + Math.exp(-fSlope*(t-t0)))
+//     return f
+//   }
   
-  return fn
+//   return fn
+// }
+
+export function sigmoid(t, t0, f0, f1, c) {
+  return (f1-f0) / (1 + Math.exp(-c*(t-t0))) + f0
 }
 
 export function track(p1,p2, t0, t1){
