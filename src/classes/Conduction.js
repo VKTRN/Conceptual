@@ -31,6 +31,7 @@ class Conduction extends Element {
   setPath() {
     // this.path = getRoundedPath(this.points, 30)
     this.path = this.points.map( item => getRoundedPath(item, this.r))
+    // this.path = this.points.map( item => item)
   }
 
   transformPoints() {

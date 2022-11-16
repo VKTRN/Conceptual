@@ -2,7 +2,7 @@ import {Sequence}            from 'remotion'
 import {Screen}              from './components/Screen'
 // import {Scene, table, title} from './scenes/andgate'
 import {Table}               from './Table'
-import {Scene}               from './scenes/buildUps/andgate'
+import {Scene}               from './scenes/buildUps/orgate'
 import './style.css'
 
 export const App = () => {
