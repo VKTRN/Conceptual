@@ -256,7 +256,7 @@ export const getRoundedPath = (points, radius) => {
     const r = Math.min(radius, length1, length2)
 
     if (r > 1) {
-      const roundedPoints = getRoundedPathPoints(pR, p, pL, r)
+      const roundedPoints = getRoundedPathPoints(pR, p, pL, radius)
       path.push(...roundedPoints)
     }
 

@@ -87,6 +87,8 @@ const conduction2        = new Conduction(conductionTimeline2)
 
 /// CONFIGS ///
 
+conduction.width = 5
+conduction.r = 50
 conduction.setSecondaries()
 conduction2.setSecondaries()
 conduction.turnOff()
