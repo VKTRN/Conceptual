@@ -3,6 +3,7 @@ import {Connection}      from '../../components/Connection'
 import {Conduction}      from '../../classes/Conduction'
 import {Point}           from '../../classes/Point'
 import {getPolyline}     from '../../utils/util'
+import {bezier}          from '../../utils/util'
 import                        '../../style.css'
 
 const cx = 1920/2
@@ -87,8 +88,6 @@ const conduction2        = new Conduction(conductionTimeline2)
 
 /// CONFIGS ///
 
-conduction.width = 5
-conduction.r = 50
 conduction.setSecondaries()
 conduction2.setSecondaries()
 conduction.turnOff()
@@ -106,7 +105,7 @@ export const Scene = () => {
   return (
     <>
       <Connection {...props1}/>
-      {/* <Connection {...props2}/> */}
+      <Connection {...props2}/>
     </>
   )
 }

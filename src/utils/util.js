@@ -212,6 +212,13 @@ const linspace = (a,b,n) => {
   return arr
 }
 
+export function bezier(pL, p, pR, t){
+  const x = (1-t)*(1-t)*pL.x + 2*(1-t)*t*p.x + t*t*pR.x
+  const y = (1-t)*(1-t)*pL.y + 2*(1-t)*t*p.y + t*t*pR.y
+  return {x, y}
+}
+
+
 export const getRoundedPathPoints = (pR, p, pL, radius) => {
   
   const vR     = getVector(p, pR)
@@ -240,6 +247,26 @@ export const getRoundedPathPoints = (pR, p, pL, radius) => {
 
 }
 
+export const getRoundedPathPoints2 = (pR, p, pL, radius) => {
+  
+  const vR     = getVector(p, pR)
+  const vL     = getVector(p, pL)
+  const nvR    = getUnitVector(vR)
+  const nvL    = getUnitVector(vL)
+  const A      = getPointOnLine(p, nvR, radius)
+  const B      = getPointOnLine(p, nvL, radius)
+
+  const s = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+
+  const points = s.map(t => {
+    return bezier(A, p, B, t)
+  })
+
+
+  return points
+
+}
+
 export const getRoundedPath = (points, radius) => {
   
   const path = [points[0]]
@@ -253,23 +280,12 @@ export const getRoundedPath = (points, radius) => {
     const length1 = getLength(getVector(pR, p))
     const length2 = getLength(getVector(p, pL))
 
-    const r = Math.min(radius, length1, length2)
+    const r = Math.min(radius, length1/2, length2/2)
 
     if (r > 1) {
-      const roundedPoints = getRoundedPathPoints(pR, p, pL, radius)
+      const roundedPoints = getRoundedPathPoints2(pR, p, pL, r)
       path.push(...roundedPoints)
     }
-
-    // if(length1 < 1 || length2 < 1) {
-    //   path.push(pR, p, pL)
-    //   continue
-    // }
-
-
-
-    // const roundedPoints = getRoundedPathPoints(pR, p, pL, radius)
-    // path.push(...roundedPoints)
-
   }
 
   path.push(points[points.length-1])
@@ -416,4 +432,5 @@ export function getPolyline(points){
   }
   return timeline
 }
+
 
