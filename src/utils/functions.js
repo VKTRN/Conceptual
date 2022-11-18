@@ -68,6 +68,23 @@ export const interpolate = (p1,p2) => {
   return f
 }
 
+export function lerp(p1, p2, t) {
+
+  const x = p1.x + (p2.x - p1.x) * t
+  const y = p1.y + (p2.y - p1.y) * t
+
+  return {x, y}
+}
+
+export function lerpPolyline(points, t) {
+  const n = points.length - 1
+  const i = Math.floor(t*n)
+  const j = Math.min(i + 1, n)
+  const u = n*t - i
+  const p = lerp(points[i], points[j], u)
+  return p
+}
+
 export function timeTrapez(h, dx){
   const p1 = {x: -1000, y: h}
   const p2 = {x: h + dx, y: h}

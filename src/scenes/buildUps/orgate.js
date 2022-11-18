@@ -1,8 +1,10 @@
   import {Connection}      from '../../components/Connection'
 import {Connection}      from '../../components/Connection'
+import {Circle}          from '../../components/Circle'
 import {Conduction}      from '../../classes/Conduction'
 import {Point}           from '../../classes/Point'
 import {getPolyline}     from '../../utils/util'
+import {lerpPolyline}     from '../../utils/functions'
 import {bezier}          from '../../utils/util'
 import                        '../../style.css'
 
@@ -98,6 +100,15 @@ conduction2.turnOff()
 const props1 = conduction.getProps()
 const props2 = conduction2.getProps()
 
+const c1 = {x: cx, y: cy}
+
+const c2 = conductionTimeline.map( points => {
+  const p = lerpPolyline(points, 0.5)
+  return p
+} )
+
+console.log(c2)
+
 /// COMPONENT ///
 
 export const Scene = () => {
@@ -106,6 +117,7 @@ export const Scene = () => {
     <>
       <Connection {...props1}/>
       <Connection {...props2}/>
+      <Circle position = {c2} radius={10} fill="red" />
     </>
   )
 }
