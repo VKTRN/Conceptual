@@ -4,7 +4,9 @@ import {Circle}          from '../../components/Circle'
 import {Conduction}      from '../../classes/Conduction'
 import {Point}           from '../../classes/Point'
 import {getPolyline}     from '../../utils/util'
+import {translate}     from '../../utils/util'
 import {lerpPolyline}     from '../../utils/functions'
+import {getInterpolationIndex}     from '../../utils/functions'
 import {bezier}          from '../../utils/util'
 import                        '../../style.css'
 
@@ -101,13 +103,43 @@ const props1 = conduction.getProps()
 const props2 = conduction2.getProps()
 
 const c1 = {x: cx, y: cy}
+const s = .55 
+const i = getInterpolationIndex(conductionTimeline[conductionTimeline.length-1], s)
 
 const c2 = conductionTimeline.map( points => {
-  const p = lerpPolyline(points, 0.5)
+  const p = lerpPolyline(points, s)
   return p
 } )
 
-console.log(c2)
+const a1  = new Point()
+const a2  = new Point()
+const a3  = new Point()
+
+a1.setKeyframe(t0, 0, 0)
+a2.setKeyframe(t0, 0, 0)
+a3.setKeyframe(t0, 0, 0)
+a1.setKeyframe(175, -100, 0)
+a2.setKeyframe(175, 0, 100)
+a3.setKeyframe(175, 100, 0)
+
+const testPoints = [a1, a2, a3]
+const testTimeline = getPolyline(testPoints)
+
+const newConductionTimeline = conductionTimeline.map( (points, index) => {
+  
+  const ps = translate(testTimeline[index], c2[index].x, c2[index].y)
+  
+  points.splice(i,0,...ps)
+  return points
+} )
+
+
+const conduction3 = new Conduction(newConductionTimeline)
+conduction3.setSecondaries()
+conduction3.turnOff()
+const props3 = conduction3.getProps()
+
+
 
 /// COMPONENT ///
 
@@ -115,9 +147,9 @@ export const Scene = () => {
 
   return (
     <>
-      <Connection {...props1}/>
+      <Connection {...props3}/>
       <Connection {...props2}/>
-      <Circle position = {c2} radius={10} fill="red" />
+      {/* <Circle position = {c2} radius={10} fill="red" /> */}
     </>
   )
 }

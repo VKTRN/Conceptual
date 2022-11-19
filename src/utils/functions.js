@@ -25,6 +25,18 @@ export function linear(c) {
 //   return fn
 // }
 
+export const getLength = (p1, p2) => {
+	return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2))
+}
+
+export const getLengths = (points) => {
+	let lengths = []
+	for (let i = 0; i < points.length - 1; i++) {
+		lengths.push(getLength(points[i], points[i + 1]))
+	}
+	return lengths
+}
+
 export function sigmoid(t, t0, f0, f1, c) {
   return (f1-f0) / (1 + Math.exp(-c*(t-t0))) + f0
 }
@@ -106,3 +118,32 @@ export const generateTimes = (t0, dt, tEnd = durationInFrames) => {
 
   return times
 }
+
+export const normalize = (values) => {
+	const total = values.reduce((acc, curr) => acc + curr, 0)
+	return values.map(v => v/total)
+}
+
+export const cumulate = (values) => {
+	let cumulated = [0]
+	let sum = 0
+	for (let i = 0; i < values.length; i++) {
+		sum += values[i]
+		cumulated.push(sum)
+	}
+	return cumulated
+}
+
+export const getCumulatedLengths = (points) => {
+  let lengths = getLengths(points)
+  return cumulate(lengths)
+}
+
+export const getInterpolationIndex = (polyline, s) => {
+  const lengths = getLengths(polyline)
+  const normalizedLengths = normalize(lengths)
+  const normalizedCumulatedLengths = cumulate(normalizedLengths)
+  const index = normalizedCumulatedLengths.findIndex((item) => item > s)
+  return index
+}
+
