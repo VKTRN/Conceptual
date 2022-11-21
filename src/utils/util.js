@@ -421,7 +421,7 @@ export function diffusion(array){
 }
 
 export function getPolyline(points){
-  const timelines = points.map(point => point.getTimeline())
+  const timelines = points.map(point => point.getValues())
   const timeline = []
   for (let i = 0; i < timelines[0].length; i++) {
     const points = []

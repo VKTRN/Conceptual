@@ -2,13 +2,30 @@
 import {Connection}      from '../../components/Connection'
 import {Circle}          from '../../components/Circle'
 import {Conduction}      from '../../classes/Conduction'
-import {Point}           from '../../classes/Point'
+import {TimePoint}           from '../../classes/TimePoint'
 import {getPolyline}     from '../../utils/util'
 import {translate}     from '../../utils/util'
 import {lerpPolyline}     from '../../utils/functions'
 import {getInterpolationIndex}     from '../../utils/functions'
 import {bezier}          from '../../utils/util'
 import                        '../../style.css'
+
+const transistorAnimation = () => {
+
+  const p1  = new TimePoint()
+  const p2  = new TimePoint()
+  const p3  = new TimePoint()
+  
+  p1.setKeyframe(t0, 0, 0)
+  p2.setKeyframe(t0, 0, 0)
+  p3.setKeyframe(t0, 0, 0)
+  p1.setKeyframe(175, -100, 0)
+  p2.setKeyframe(175, 0, 100)
+  p3.setKeyframe(175, 100, 0)
+
+  const testPoints = [p1, p2, p3]
+  return testPoints
+}
 
 const cx = 1920/2
 const cy = 1080/2
@@ -23,19 +40,19 @@ const a = 400
 const b = 600
 const c = 300
 
-const p1  = new Point()
-const p2  = new Point()
-const p3  = new Point()
-const p4  = new Point()
-const p5  = new Point()
-const p6  = new Point()
+const p1  = new TimePoint()
+const p2  = new TimePoint()
+const p3  = new TimePoint()
+const p4  = new TimePoint()
+const p5  = new TimePoint()
+const p6  = new TimePoint()
 
-const p7  = new Point()
-const p8  = new Point()
-const p9  = new Point()
-const p10  = new Point()
-const p11  = new Point()
-const p12  = new Point()
+const p7  = new TimePoint()
+const p8  = new TimePoint()
+const p9  = new TimePoint()
+const p10  = new TimePoint()
+const p11  = new TimePoint()
+const p12  = new TimePoint()
 
 p1.setKeyframe(t0, cx, cy)
 p2.setKeyframe(t0, cx, cy)
@@ -111,19 +128,17 @@ const c2 = conductionTimeline.map( points => {
   return p
 } )
 
-const a1  = new Point()
-const a2  = new Point()
-const a3  = new Point()
 
-a1.setKeyframe(t0, 0, 0)
-a2.setKeyframe(t0, 0, 0)
-a3.setKeyframe(t0, 0, 0)
-a1.setKeyframe(175, -100, 0)
-a2.setKeyframe(175, 0, 100)
-a3.setKeyframe(175, 100, 0)
+//////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
 
-const testPoints = [a1, a2, a3]
+
+
+const testPoints   = transistorAnimation()
 const testTimeline = getPolyline(testPoints)
+
+
 
 const newConductionTimeline = conductionTimeline.map( (points, index) => {
   
@@ -138,6 +153,12 @@ const conduction3 = new Conduction(newConductionTimeline)
 conduction3.setSecondaries()
 conduction3.turnOff()
 const props3 = conduction3.getProps()
+
+
+//////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+
 
 
 
