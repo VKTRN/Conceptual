@@ -44,7 +44,7 @@ export const Connection = ({points, color='black', signal, strokeWidth=12, veloc
 
 	return(
 		<>
-		 <polyline   points={getPolyline(points[t_])} fill='none' stroke={color} strokeWidth={strokeWidth}/>
+		 <polyline onClick = {() => {console.log('hi')}}   points={getPolyline(points[t_])} fill='none' stroke={color} strokeWidth={strokeWidth}/>
 		 <polyline  points={getPolyline(signalPoints)} fill='none'    stroke={signal.color} strokeWidth={strokeWidth} />
 		</> 
 	)

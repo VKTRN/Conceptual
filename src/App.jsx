@@ -8,6 +8,7 @@ import './style.css'
 export const App = () => {
   
   return (
+    <>
       <Sequence id = 'App'  from={0}>
         <Screen>
           {/* <Test/> */}
@@ -16,5 +17,6 @@ export const App = () => {
         {/* <Table {...table}/> */}
         {/* <div className = 'chapter'>{title}</div> */}
       </Sequence>
+    </>
   )
 }
