@@ -30,6 +30,12 @@ class TimeLine {
 
     this.values = newConductionTimeline
   }
+
+  translate(p) {
+    this.values = this.values.map( (points, i) => {
+      return translate(points, p[i].x, p[i].y)
+    } )
+  }
   
 }
 
