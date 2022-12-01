@@ -62,6 +62,9 @@ const p4   = new TimePoint()
 const p5   = new TimePoint()
 const p6   = new TimePoint()
 
+
+
+
 const p7   = new TimePoint()
 const p8   = new TimePoint()
 const p9   = new TimePoint()
@@ -75,6 +78,7 @@ p3.setKeyframe(t0, cx, cy)
 p4.setKeyframe(t0, cx, cy)
 p5.setKeyframe(t0, cx, cy)
 p6.setKeyframe(t0, cx, cy)
+
 
 p1.setKeyframe(t1, cx - b, cy)
 p2.setKeyframe(t1, cx - a, cy)
