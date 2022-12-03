@@ -1,5 +1,6 @@
-import {durationInFrames} from '../constants.js'
-import {signalVelocity} from '../constants.js'
+import {durationInFrames} from '../constants'
+import {signalVelocity} from '../constants'
+import { Point } from '../types'
 
 export function constant(c) {
   
@@ -37,7 +38,7 @@ export const getLengths = (points) => {
 	return lengths
 }
 
-export function sigmoid(t, t0, f0, f1, c) {
+export function sigmoid(t, t0, f0, f1, c): number {
   return (f1-f0) / (1 + Math.exp(-c*(t-t0))) + f0
 }
 
@@ -80,15 +81,17 @@ export const interpolate = (p1,p2) => {
   return f
 }
 
-export function lerp(p1, p2, t) {
+export function lerp(p1: Point, p2: Point, t: number) {
 
   const x = p1.x + (p2.x - p1.x) * t
   const y = p1.y + (p2.y - p1.y) * t
+  const p: Point = {x, y}
 
-  return {x, y}
+
+  return p
 }
 
-export function lerpPolyline(points, t) {
+export function lerpPolyline(points: Point[], t: number) {
   const n = points.length - 1
   const i = Math.floor(t*n)
   const j = Math.min(i + 1, n)

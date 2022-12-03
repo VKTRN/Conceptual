@@ -1,4 +1,5 @@
 import {Conduction} from '../classes/Conduction'
+import { Point } from '../types'
 
 export const getTotalLength = (points) => {
   let length = 0
@@ -66,8 +67,8 @@ export const clone = (x) => JSON.parse(JSON.stringify(x))
 
 export const maximum = (a,b) => a.map((x,i) => Math.max(x,b[i]))
 
-export const translate = (points,x,y) => {
-  const newPoints = points.map(point => {
+export const translate = (points: Point[], x: number, y: number): Point[] => {
+  const newPoints: Point[] = points.map(point => {
     return {x: point.x + x, y: point.y + y}
   })
   return newPoints

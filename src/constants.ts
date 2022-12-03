@@ -1,5 +1,4 @@
-import {constant} from './utils/functions.js'
-
+import {constant} from './utils/functions'
 
 export const signalLength     = 50
 export const signalVelocity   = 2
@@ -44,18 +43,18 @@ export const signal = {
   color: 'red',
 }
 
-const defaults                   = {}
-defaults.transform               = {}
-defaults.transform.translation   = {}
-defaults.signal                  = {}
-defaults.conduction              = {}
+// const defaults                   = {}
+// defaults.transform               = {}
+// defaults.transform.translation   = {}
+// defaults.signal                  = {}
+// defaults.conduction              = {}
 
-defaults.transform.rotation      = 0
-defaults.transform.scale         = 1
-defaults.transform.translation.x = 0
-defaults.transform.translation.y = 0
-defaults.signal.t0               = 0
-defaults.signal.color            = 'rgb(255,0,0)'
-defaults.signal.length           = 5000
-defaults.velocity                = 8
-defaults.conduction.width        = 14
+// defaults.transform.rotation      = 0
+// defaults.transform.scale         = 1
+// defaults.transform.translation.x = 0
+// defaults.transform.translation.y = 0
+// defaults.signal.t0               = 0
+// defaults.signal.color            = 'rgb(255,0,0)'
+// defaults.signal.length           = 5000
+// defaults.velocity                = 8
+// defaults.conduction.width        = 14

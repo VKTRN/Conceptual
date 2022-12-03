@@ -1,11 +1,6 @@
 import {durationInFrames as duration} from '../constants'
-import {screen} from '../constants'
-import {sigmoid} from '../utils/functions'
-
-type Point = {
-  x: number
-  y: number
-}
+import {sigmoid}                      from '../utils/functions'
+import {Point}                        from '../types'
 
 class TimePoint {
 
@@ -30,6 +25,9 @@ class TimePoint {
     this.c = .2
   }
 
+  /** 
+   * 
+   */
   setKeyframe(t: number, x: number, y: number) {
     this.keyframes.push({t, x, y})
     this.setValues(t, x, y)
