@@ -1,4 +1,4 @@
-import {Element}             from './Element.js'
+import {Element}             from './Element'
 import {conductionWidth}     from '../constants'
 import {signalVelocity}      from '../constants'
 import {signal}              from '../constants'
@@ -10,6 +10,9 @@ import {linearInterpolation} from '../utils/functions'
 import {generateTimes}       from '../utils/functions'
 
 class Conduction extends Element {
+
+  width: number
+
   constructor(points) {
     super(points)
     this.color        = 'rgb(255,178,0)'

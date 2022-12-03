@@ -1,7 +1,7 @@
 import {Connection}      from '../../components/Connection'
 import {Connection}      from '../../components/Connection'
 import {Conduction}      from '../../classes/Conduction'
-import {Point}           from '../../classes/Point'
+import {TimePoint}           from '../../classes/TimePoint'
 import {getPolyline}     from '../../utils/util'
 import                        '../../style.css'
 
@@ -14,27 +14,27 @@ const t2 = 100
 const t3 = 200
 const t4 = 250
 
-const p1  = new Point()
-const p2  = new Point()
-const p3  = new Point()
-const p4  = new Point()
-const p5  = new Point()
-const p6  = new Point()
-const p7  = new Point()
-const p8  = new Point()
-const p9  = new Point()
-const p10 = new Point()
+const p1  = new TimePoint()
+const p2  = new TimePoint()
+const p3  = new TimePoint()
+const p4  = new TimePoint()
+const p5  = new TimePoint()
+const p6  = new TimePoint()
+const p7  = new TimePoint()
+const p8  = new TimePoint()
+const p9  = new TimePoint()
+const p10 = new TimePoint()
 
-const tr1L = new Point()
-const tr2L = new Point()
-const tr1R = new Point()
-const tr2R = new Point()
+const tr1L = new TimePoint()
+const tr2L = new TimePoint()
+const tr1R = new TimePoint()
+const tr2R = new TimePoint()
 
 
-const in1L = new Point()
-const in2L = new Point()
-const in1R = new Point()
-const in2R = new Point()
+const in1L = new TimePoint()
+const in2L = new TimePoint()
+const in1R = new TimePoint()
+const in2R = new TimePoint()
 
 in1L.setKeyframe(t0, cx - 250, cy + 100)
 in2L.setKeyframe(t0, cx - 250, cy + 100)
@@ -113,17 +113,17 @@ const inputR              = new Conduction(inputTimelineR)
 
 /// CONFIGS ///
 
-conduction.r = 30
+conduction.r = 20
 conduction.width = 14
 conduction.setSecondaries()
 conduction.turnOff()
 
-transistorL.r = 30
+transistorL.r = 20
 transistorL.width = 22
 transistorL.setSecondaries()
 transistorL.turnOff()
 
-transistorR.r = 30
+transistorR.r = 20
 transistorR.width = 22
 transistorR.setSecondaries()
 transistorR.turnOff()

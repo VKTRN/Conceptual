@@ -3,12 +3,13 @@ import {translate}             from '../utils/util'
 import {lerpPolyline}          from '../utils/functions'
 import {getInterpolationIndex} from '../utils/functions'
 import {Point}                 from '../types'
+import {TimePoint}             from './TimePoint'   
 
 class TimeLine {
 
   values: Point[][]
 
-  constructor(timePoints: Point[][]) {
+  constructor(timePoints: TimePoint[]) {
     this.values  = getPolyline(timePoints)
   }
 
