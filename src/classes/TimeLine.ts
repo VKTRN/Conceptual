@@ -44,6 +44,30 @@ class TimeLine {
 
     this.values = newValues
   }
+
+  mirrorHorizontally(center: Point) {
+    const newValues: Point[][] = this.values.map( (points, i) => {
+      const mirroredPoints = points.map( (point) => {
+        const dx = point.x - center.x
+        return {x: center.x - dx, y: point.y}
+      } )
+      return mirroredPoints
+    } )
+
+    this.values = newValues
+  }
+
+  mirrorVertically(center: Point) {
+    const newValues: Point[][] = this.values.map( (points, i) => {
+      const mirroredPoints = points.map( (point) => {
+        const dy = point.y - center.y
+        return {x: point.x, y: center.y - dy}
+      } )
+      return mirroredPoints
+    } )
+
+    this.values = newValues
+  }
   
 }
 

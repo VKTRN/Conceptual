@@ -5,6 +5,7 @@
   "scripts": {
     "start": "remotion preview src/index.jsx",
     "build": "remotion render src/index.jsx App out/video.mp4",
+    "animator":"remotion .",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx"
   },
