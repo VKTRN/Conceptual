@@ -5,24 +5,48 @@
   "scripts": {
     "start": "remotion preview src/index.jsx",
     "build": "remotion render src/index.jsx App out/video.mp4",
-    "animator":"remotion .",
+    "animator": "webpack serve --mode development --config webpack.config.js",
+    "backend": "node server.js",
+    "app": "npm run start & npm run animator & npm run backend",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx"
   },
   "repository": {},
   "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.18.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^1.6.2",
+    "sass": "^1.32.6",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.2"
+  },
   "dependencies": {
-    "@types/react": "^18.0.6",
-    "@types/web": "^0.0.61",
     "@remotion/cli": "^3.0.0",
     "@remotion/eslint-config": "^3.0.0",
+    "@types/react": "^18.0.6",
+    "@types/web": "^0.0.61",
+    "axios": "^1.2.1",
+    "cors": "^2.8.5",
     "eslint": "^8.14.0",
+    "express": "^4.18.2",
     "lodash": "^4.17.21",
     "prettier": "^2.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "remotion": "^3.0.0",
-    "uuid": "^9.0.0",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "uuid": "^9.0.0"
   }
 }

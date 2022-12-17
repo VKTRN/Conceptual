@@ -2,7 +2,7 @@ import {constant} from './utils/functions'
 
 export const signalLength     = 50
 export const signalVelocity   = 2
-export const durationInFrames = 360
+export const durationInFrames = 120
 export const screen           = {width: 1920, height: 1080}
 
 

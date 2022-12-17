@@ -1,0 +1,51 @@
+.app{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen{
+  background-color: rgb(96, 63, 98);
+  height: 80vh;
+  aspect-ratio: 16/9;
+}
+
+.timeline{
+  input{
+    width: 1000px;
+  }
+}
+
+.container1{
+  display: flex;
+  gap: 10px;
+}
+
+.settings{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.frame-step{
+  display: flex;
+  gap: 10px;
+}
+
+.file-view{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(188, 178, 189);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.file{
+  display: flex;
+  user-select: none;
+  gap: 10px;
+  cursor: pointer;
+}

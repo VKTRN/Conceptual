@@ -1,4 +1,9 @@
-import {registerRoot} from 'remotion'
-import {RemotionVideo} from './Video'
+// require('file-loader?name=[name].[ext]!./index.html');
+import React      from 'react'
+import ReactDOM   from 'react-dom'
+import {App} from './Animator'
+import               './App.scss'
+ 
+const root = document.getElementById('root')
 
-registerRoot(RemotionVideo)
+ReactDOM.render(<App/>, root) 

@@ -4,11 +4,14 @@
 		"module": "esnext",
 		"jsx": "react-jsx",
 		"outDir": "./dist",
-		"strict": true,
-		"noEmit": true,
+		"strict": false,
+		"noEmit": false,
+    "allowJs": true,
 		"lib": ["es2015"],
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
-	}
+    "moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+	},
 }

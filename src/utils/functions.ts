@@ -42,9 +42,9 @@ export function sigmoid(t, t0, f0, f1, c): number {
   return (f1-f0) / (1 + Math.exp(-c*(t-t0))) + f0
 }
 
-export function track(p1,p2, t0, t1){
-  const fn = linear()
-}
+// export function track(p1,p2, t0, t1){
+//   const fn = linear()
+// }
 
 export function linearInterpolation(points){
   const intervals = []

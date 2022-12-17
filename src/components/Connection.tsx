@@ -1,4 +1,4 @@
-import {useCurrentFrame} from 'remotion';
+import { useCurrentFrame } from 'remotion'
 import {signalLength as signalLength_}    from '../constants';
 import {getTotalLength}  from '../utils/util';
 

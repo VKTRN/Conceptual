@@ -9,9 +9,27 @@ import {getTravelTime}       from '../utils/util'
 import {linearInterpolation} from '../utils/functions'
 import {generateTimes}       from '../utils/functions'
 
+type Signal = {
+  t0: number,
+  color: string
+}
+
 class Conduction extends Element {
 
   width: number
+  color: string
+  t0: number
+  signal: Signal
+  velocity: number
+  tStop: number
+  path: any
+  length: number
+  travelTime  : number
+  signalLength: number
+  timePoints  : any
+  duration    : number   
+  r           : number
+
 
   constructor(points) {
     super(points)
